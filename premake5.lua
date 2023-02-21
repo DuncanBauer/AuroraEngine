@@ -26,8 +26,8 @@ project "AuroraCoreLib"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "AuroraEngineLibPCH.h"
-	pchsource "AuroraEngineLib/src/AuroraEngineLibPCH.cpp"
+	pchheader "AuroraCoreLibPCH.h"
+	pchsource "AuroraCoreLib/src/AuroraCoreLibPCH.cpp"
 
 	files
 	{
@@ -50,25 +50,27 @@ project "AuroraCoreLib"
 		{
 			"PA_PLATFORM_WINDOWS",
 			"PA_ASSERTS_ENABLED",
-			"PA_BUILD_DLL"
+			"PA_CORE_BUILD_DLL"
 		}
 
 		postbuildcommands
 		{
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraEngineLib"),
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleLib"),
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer")
 		}
 
 	filter "configurations:Debug"
-		defines "AE_DEBUG"
+		defines "PA_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "AE_RELEASE"
+		defines "PA_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "AE_DIST"
+		defines "PA_DIST"
 		optimize "On"
 
 
@@ -113,7 +115,7 @@ project "AuroraEngineLib"
 		{
 			"PA_PLATFORM_WINDOWS",
 			"PA_ASSERTS_ENABLED",
-			"PA_BUILD_DLL"
+			"PA_ENGINE_BUILD_DLL"
 		}
 
 		postbuildcommands
@@ -123,15 +125,15 @@ project "AuroraEngineLib"
 		}
 
 	filter "configurations:Debug"
-		defines "AE_DEBUG"
+		defines "PA_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "AE_RELEASE"
+		defines "PA_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "AE_DIST"
+		defines "PA_DIST"
 		optimize "On"
 
 		
@@ -174,7 +176,7 @@ project "AuroraMapleLib"
 		{
 			"PA_PLATFORM_WINDOWS",
 			"PA_ASSERTS_ENABLED",
-			"PA_BUILD_DLL"
+			"PA_MAPLE_BUILD_DLL"
 		}
 
 		postbuildcommands
@@ -184,15 +186,15 @@ project "AuroraMapleLib"
 		}
 
 	filter "configurations:Debug"
-		defines "AE_DEBUG"
+		defines "PA_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "AE_RELEASE"
+		defines "PA_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "AE_DIST"
+		defines "PA_DIST"
 		optimize "On"
 
 project "AuroraMapleClient"
@@ -235,15 +237,15 @@ project "AuroraMapleClient"
 		}
 
 	filter "configurations:Debug"
-		defines "AE_DEBUG"
+		defines "PA_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "AE_RELEASE"
+		defines "PA_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "AE_DIST"
+		defines "PA_DIST"
 		optimize "On"
 
 		
@@ -287,13 +289,13 @@ project "AuroraMapleServer"
 		}
 
 	filter "configurations:Debug"
-		defines "AE_DEBUG"
+		defines "PA_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "AE_RELEASE"
+		defines "PA_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "AE_DIST"
+		defines "PA_DIST"
 		optimize "On"

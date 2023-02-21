@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Aurora/Core/Core.h"
+#include <Core/Core.h>
+
 #include <sstream>
 
 namespace Aurora
@@ -30,7 +31,7 @@ namespace Aurora
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-  class AURORA_API Event
+  class AURORA_ENGINE_API Event
   {
     //friend class EventDispatcher;
   

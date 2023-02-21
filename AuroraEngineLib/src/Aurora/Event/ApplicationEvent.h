@@ -6,7 +6,7 @@
 
 namespace Aurora
 {
-  class AURORA_API WindowClosedEvent : public Event
+  class AURORA_ENGINE_API WindowClosedEvent : public Event
   {
     public:
       WindowClosedEvent() = default;
@@ -22,7 +22,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
 
-  class AURORA_API WindowResizedEvent : public Event
+  class AURORA_ENGINE_API WindowResizedEvent : public Event
   {
     public:
       WindowResizedEvent(unsigned int _width, unsigned int _height) : width(_width), height(_height) {};
@@ -45,7 +45,7 @@ namespace Aurora
 
   };
 
-  class AURORA_API WindowMaximizedEvent : public Event
+  class AURORA_ENGINE_API WindowMaximizedEvent : public Event
   {
     public:
       WindowMaximizedEvent() = default;
@@ -61,7 +61,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API WindowMinimizedEvent : public Event
+  class AURORA_ENGINE_API WindowMinimizedEvent : public Event
   {
     public:
       WindowMinimizedEvent() = default;
@@ -77,7 +77,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API WindowGainedFocusEvent : public Event
+  class AURORA_ENGINE_API WindowGainedFocusEvent : public Event
   {
     public:
       WindowGainedFocusEvent() = default;
@@ -93,7 +93,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API WindowLostFocusEvent : public Event
+  class AURORA_ENGINE_API WindowLostFocusEvent : public Event
   {
     public:
       WindowLostFocusEvent() = default;
@@ -109,7 +109,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API WindowMovedEvent : public Event
+  class AURORA_ENGINE_API WindowMovedEvent : public Event
   {
     public:
       WindowMovedEvent() = default;
@@ -125,7 +125,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API AppTickedEvent : public Event
+  class AURORA_ENGINE_API AppTickedEvent : public Event
   {
     public:
       AppTickedEvent() = default;
@@ -141,7 +141,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API AppUpdateEvent : public Event
+  class AURORA_ENGINE_API AppUpdateEvent : public Event
   {
     public:
       AppUpdateEvent() = default;
@@ -157,7 +157,7 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryApplication)
   };
   
-  class AURORA_API AppRenderEvent : public Event
+  class AURORA_ENGINE_API AppRenderEvent : public Event
   {
     public:
       AppRenderEvent() = default;

@@ -8,7 +8,7 @@
 
 namespace Aurora
 {
-  class AURORA_API KeyEvent : public Event
+  class AURORA_ENGINE_API KeyEvent : public Event
   {
     public:
       inline int GetKeyCode() const { return KeyCode; }
@@ -20,7 +20,7 @@ namespace Aurora
       int KeyCode;
   };
 
-  class AURORA_API KeyPressedEvent : public KeyEvent
+  class AURORA_ENGINE_API KeyPressedEvent : public KeyEvent
   {
     public:
       KeyPressedEvent(int _KeyCode, int _RepeatCount) 
@@ -41,7 +41,7 @@ namespace Aurora
       int RepeatCount = 0;
   };
 
-  class AURORA_API KeyReleasedEvent : public KeyEvent
+  class AURORA_ENGINE_API KeyReleasedEvent : public KeyEvent
   {
     public:
       KeyReleasedEvent(int _KeyCode, int _Duration)
@@ -60,7 +60,7 @@ namespace Aurora
       int Duration = 0;
   };
 
-  class AURORA_API KeyClickedEvent : public KeyEvent
+  class AURORA_ENGINE_API KeyClickedEvent : public KeyEvent
   {
     public:
       KeyClickedEvent(int _KeyCode)

@@ -2,7 +2,7 @@
 
 #include "WindowsWindow.h"
 
-#include "Aurora/Log.h"
+#include <Core/Log.h>
 
 namespace Aurora
 {
@@ -29,12 +29,12 @@ namespace Aurora
     m_Props.Width = props.Width;
     m_Props.Height = props.Height;
   
-    AE_ENGINE_INFO("Creating Windows {0} ({1}, {2})", m_Props.Title, m_Props.Width, m_Props.Height);
+    PA_ENGINE_INFO("Creating Windows {0} ({1}, {2})", m_Props.Title, m_Props.Width, m_Props.Height);
   
     if (!GLFWInitialized)
     {
       int success = glfwInit();
-      AE_ENGINE_ASSERT(success, "Could not initialized GLFW!");
+      PA_ENGINE_ASSERT(success, "Could not initialized GLFW!");
 
       GLFWInitialized = true;
     }

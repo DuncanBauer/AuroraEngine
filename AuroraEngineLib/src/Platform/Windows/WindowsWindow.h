@@ -6,7 +6,7 @@
 
 namespace Aurora
 {
-  class AURORA_API WindowsWindow : public Window
+  class AURORA_ENGINE_API WindowsWindow : public Window
   {
     public:
       WindowsWindow(const WindowProperties& props);

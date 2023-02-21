@@ -1,10 +1,11 @@
 #include "AuroraEngineLibPCH.h"
 
+#include <Core/Log.h>
+
 #include "Application.h"
 
 #include "Aurora/Event/ApplicationEvent.h"
 #include "Aurora/Event/MouseEvent.h"
-#include "Aurora/Log.h"
 #include "Window.h"
 
 #include <GLFW/glfw3.h>

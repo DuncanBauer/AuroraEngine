@@ -1,15 +1,13 @@
 #pragma once
 
-//#include "AuroraPCH.h"
-
 // Engine
 #include "Event.h"
-#include "Aurora/Core/MouseCodes.h"
 
+#include <Core/MouseCodes.h>
 
 namespace Aurora
 {
-  class AURORA_API MouseMovedEvent : public Event
+  class AURORA_ENGINE_API MouseMovedEvent : public Event
   {
     public:
       MouseMovedEvent(const float x, const float y) {}
@@ -31,7 +29,7 @@ namespace Aurora
       float X, Y;
   };
 
-  class AURORA_API MouseScrolledEvent : public Event
+  class AURORA_ENGINE_API MouseScrolledEvent : public Event
   {
     public:
       MouseScrolledEvent(float _XOffset, float _YOffset) 
@@ -53,7 +51,7 @@ namespace Aurora
       float XOffset, YOffset;
   };
 
-  class AURORA_API MouseButtonEvent : public Event
+  class AURORA_ENGINE_API MouseButtonEvent : public Event
   {
     public:
       MouseCode GetMouseButton() { return MouseButton; }
@@ -67,7 +65,7 @@ namespace Aurora
       MouseCode MouseButton;
   };
 
-  class AURORA_API MouseButtonPressedEvent : public MouseButtonEvent
+  class AURORA_ENGINE_API MouseButtonPressedEvent : public MouseButtonEvent
   {
     public:
       MouseButtonPressedEvent(const MouseCode button)
@@ -83,7 +81,7 @@ namespace Aurora
       EVENT_CLASS_TYPE(MouseButtonPressed)
   };
 
-  class AURORA_API MouseButtonReleasedEvent : public MouseButtonEvent
+  class AURORA_ENGINE_API MouseButtonReleasedEvent : public MouseButtonEvent
   {
     public:
       MouseButtonReleasedEvent(const MouseCode button)

@@ -11,7 +11,6 @@
 #include <utility>
 #include <vector>
 
-#include <Core/Core.h>
 
 #ifdef PA_PLATFORM_WINDOWS
   #include <Windows.h>

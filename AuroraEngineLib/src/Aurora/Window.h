@@ -17,7 +17,7 @@ namespace Aurora
       : Title(_title), Width(_width), Height(_height) {};
   };
 
-  class AURORA_API Window
+  class AURORA_ENGINE_API Window
   {
   public:
     using EventCallbackFn = std::function<void(Event&)>;

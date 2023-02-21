@@ -2,13 +2,15 @@
 
 #include "Aurora.h"
 
-#ifdef AE_PLATFORM_WINDOWS
+#include <Core/Log.h>
+
+#ifdef PA_PLATFORM_WINDOWS
 
 extern Aurora::Application* Aurora::CreateApplication();
 
 int main(int argc, char** argv)
 {
-  Aurora::Log::Init();
+  Aurora::Core::Log::Init();
 
   //AE_ENGINE_INFO("INFO");
   //AE_ENGINE_TRACE("TRACE");

@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "AuroraPCH.h"
+#include "AuroraCoreLibPCH.h"
 
 namespace Aurora
 {

@@ -2,7 +2,6 @@
 
 // For use by applications 
 #include "Aurora/Application.h"
-#include "Aurora/Log.h"
 
 
 /****************************
