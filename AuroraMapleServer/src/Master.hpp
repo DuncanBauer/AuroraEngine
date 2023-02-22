@@ -3,7 +3,6 @@
 
 // Aurora Server
 #include "World/World.hpp"
-#include "Utils/Config.hpp"
 #include "Net/LoginServer.hpp"
 
 // C++
@@ -46,7 +45,7 @@ class Master : public std::enable_shared_from_this<Master>
     Worlds getWorlds() const { return this->worlds; }
 
   private:
-    Utils::Config config;
+    //Utils::Config config;
 
     // SERVER DATA
     size_t mapleVersion;

@@ -19,7 +19,6 @@
 // AuroraServer
 #include "World.hpp"
 #include "../Master.hpp"
-#include "../Utils/Logger.hpp"
 
 // C++
 #include <iostream>
