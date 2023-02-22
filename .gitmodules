@@ -1,6 +1,6 @@
-[submodule "AuroraEngine/vendor/glfw"]
-	path = AuroraEngine/vendor/glfw
-	url = https://github.com/duncanbauer/glfw.git
 [submodule "AuroraCoreLib/vendor/spdlog"]
 	path = AuroraCoreLib/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "AuroraEngineLib/vendor/glfw"]
+	path = AuroraEngineLib/vendor/glfw
+	url = https://github.com/duncanbauer/glfw.git
