@@ -12,8 +12,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include dirs relative to root folder
 IncludeDir = {}
+IncludeDir["SPDLog"] = "AuroraCoreLib/vendor/spdlog/include"
 IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
+
+IncludeDir["AuroraCoreLib"] = "AuroraCoreLib/src"
+IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
+IncludeDir["AuroraMapleLib"] = "AuroraMapleLib/src"
 
 -- Includes the premake file for GLFW
 include "AuroraEngineLib/vendor/glfw"
@@ -37,8 +42,8 @@ project "AuroraCoreLib"
 
 	includedirs
 	{
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.AuroraCoreLib}",
+		"%{IncludeDir.SPDLog}"
 	}
 
 	filter "system:windows"
@@ -58,7 +63,8 @@ project "AuroraCoreLib"
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraEngineLib"),
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleLib"),
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer"),
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraUnitTesting")
 		}
 
 	filter "configurations:Debug"
@@ -93,17 +99,17 @@ project "AuroraEngineLib"
 
 	includedirs
 	{
-		"%{prj.name}/src",
-		"AuroraCoreLib/src",
-		"AuroraCoreLib/vendor/spdlog/include",
+		"%{IncludeDir.AuroraCoreLib}",
+		"%{IncludeDir.AuroraEngineLib}",
+		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.GLFW}"
 	}
 
 	links
 	{
+		"AuroraCoreLib",
 		"GLFW",
-		"opengl32.lib",
-		"AuroraCoreLib"
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -121,7 +127,8 @@ project "AuroraEngineLib"
 		postbuildcommands
 		{
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer"),
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraUnitTesting")
 		}
 
 	filter "configurations:Debug"
@@ -156,10 +163,10 @@ project "AuroraMapleLib"
 
 	includedirs
 	{
-		"%{prj.name}/src",
-		"AuroraCoreLib/src",
-		"AuroraCoreLib/vendor/spdlog/include",
-		-- "%{IncludeDir.Boost}",
+		"%{IncludeDir.AuroraCoreLib}",
+		"%{IncludeDir.AuroraMapleLib}",
+		"%{IncludeDir.SPDLog}",
+		"%{IncludeDir.Boost}"
 	}
 
 	links
@@ -182,7 +189,8 @@ project "AuroraMapleLib"
 		postbuildcommands
 		{
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer"),
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraUnitTesting")
 		}
 
 	filter "configurations:Debug"
@@ -197,6 +205,7 @@ project "AuroraMapleLib"
 		defines "PA_DIST"
 		optimize "On"
 
+		
 project "AuroraMapleClient"
 	location "AuroraMapleClient"
 	kind "ConsoleApp"
@@ -213,10 +222,10 @@ project "AuroraMapleClient"
 
 	includedirs
 	{
-		"AuroraCoreLib/src",
-		"AuroraCoreLib/vendor/spdlog/include",
-		"AuroraEngineLib/src",
-		"AuroraMapleLib/src",
+		"%{IncludeDir.AuroraCoreLib}",
+		"%{IncludeDir.AuroraEngineLib}",
+		"%{IncludeDir.AuroraMapleLib}",
+		"%{IncludeDir.SPDLog}"
 	}
 
 	links
@@ -265,10 +274,62 @@ project "AuroraMapleServer"
 
 	includedirs
 	{
-		"AuroraCoreLib/src",
-		"AuroraCoreLib/vendor/spdlog/include",
-		"AuroraEngineLib/src",
-		"AuroraMapleLib/src",
+		"%{IncludeDir.AuroraCoreLib}",
+		"%{IncludeDir.AuroraEngineLib}",
+		"%{IncludeDir.AuroraMapleLib}",
+		"%{IncludeDir.SPDLog}"
+	}
+
+	links
+	{
+		"AuroraCoreLib",
+		"AuroraEngineLib",
+		"AuroraMapleLib"
+	}
+
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+		defines
+		{
+			"PA_PLATFORM_WINDOWS",
+		}
+
+	filter "configurations:Debug"
+		defines "PA_DEBUG"
+		symbols "On"
+
+	filter "configurations:Release"
+		defines "PA_RELEASE"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "PA_DIST"
+		optimize "On"
+
+
+project "AuroraUnitTesting"
+	location "AuroraUnitTesting"
+	kind "ConsoleApp"
+	language "C++"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/src/**.h"
+	}
+
+	includedirs
+	{
+		"%{IncludeDir.AuroraCoreLib}",
+		"%{IncludeDir.AuroraEngineLib}",
+		"%{IncludeDir.AuroraMapleLib}",
+		"%{IncludeDir.SPDLog}"
 	}
 
 	links
