@@ -12,21 +12,26 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include dirs relative to root folder
 IncludeDir = {}
-IncludeDir["SPDLog"] = "AuroraCoreLib/vendor/spdlog/include"
-IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
+IncludeDir["CryptoPP"] = "AuroraMapleLib/vendor"
+IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
+IncludeDir["SPDLog"] = "AuroraCoreLib/vendor/spdlog/include"
 
 IncludeDir["AuroraCoreLib"] = "AuroraCoreLib/src"
 IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
 IncludeDir["AuroraMapleLib"] = "AuroraMapleLib/src"
 
--- Includes the premake file for GLFW
+LinkDir = {}
+LinkDir["CryptoPP"] = "AuroraMapleLib/vendor/cryptopp/x64/Output/%{cfg.buildcfg}"
+
+-- Includes the premake file for 3rd party libraries
 include "AuroraEngineLib/vendor/glfw"
 
 project "AuroraCoreLib"
 	location "AuroraCoreLib"
 	kind "SharedLib"
 	language "C++"
+	cppdialect "C++20"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -47,7 +52,6 @@ project "AuroraCoreLib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -84,6 +88,7 @@ project "AuroraEngineLib"
 	location "AuroraEngineLib"
 	kind "SharedLib"
 	language "C++"
+	cppdialect "C++20"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -113,7 +118,6 @@ project "AuroraEngineLib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -148,6 +152,7 @@ project "AuroraMapleLib"
 	location "AuroraMapleLib"
 	kind "SharedLib"
 	language "C++"
+	cppdialect "C++20"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -166,16 +171,22 @@ project "AuroraMapleLib"
 		"%{IncludeDir.AuroraCoreLib}",
 		"%{IncludeDir.AuroraMapleLib}",
 		"%{IncludeDir.SPDLog}",
-		"%{IncludeDir.Boost}"
+		"%{IncludeDir.Boost}",
+		"%{IncludeDir.CryptoPP}"
+	}
+
+	libdirs
+	{
+		"%{LinkDir.CryptoPP}"
 	}
 
 	links
 	{
-		"AuroraCoreLib"
+		"AuroraCoreLib",
+		"cryptlib.lib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -210,6 +221,7 @@ project "AuroraMapleClient"
 	location "AuroraMapleClient"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++20"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -225,18 +237,25 @@ project "AuroraMapleClient"
 		"%{IncludeDir.AuroraCoreLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
-		"%{IncludeDir.SPDLog}"
+		"%{IncludeDir.SPDLog}",
+		"%{IncludeDir.Boost}",
+		"%{IncludeDir.CryptoPP}"
+	}
+
+	libdirs
+	{
+		"%{LinkDir.CryptoPP}"
 	}
 
 	links
 	{
 		"AuroraCoreLib",
 		"AuroraEngineLib",
-		"AuroraMapleLib"
+		"AuroraMapleLib",
+		"cryptlib.lib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -262,6 +281,7 @@ project "AuroraMapleServer"
 	location "AuroraMapleServer"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++20"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -277,18 +297,25 @@ project "AuroraMapleServer"
 		"%{IncludeDir.AuroraCoreLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
-		"%{IncludeDir.SPDLog}"
+		"%{IncludeDir.SPDLog}",
+		"%{IncludeDir.Boost}",
+		"%{IncludeDir.CryptoPP}"
+	}
+
+	libdirs
+	{
+		"%{LinkDir.CryptoPP}"
 	}
 
 	links
 	{
 		"AuroraCoreLib",
 		"AuroraEngineLib",
-		"AuroraMapleLib"
+		"AuroraMapleLib",
+		"cryptlib.lib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -314,6 +341,7 @@ project "AuroraUnitTesting"
 	location "AuroraUnitTesting"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++20"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -329,18 +357,25 @@ project "AuroraUnitTesting"
 		"%{IncludeDir.AuroraCoreLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
-		"%{IncludeDir.SPDLog}"
+		"%{IncludeDir.SPDLog}",
+		"%{IncludeDir.Boost}",
+		"%{IncludeDir.CryptoPP}"
+	}
+
+	libdirs
+	{
+		"%{LinkDir.CryptoPP}"
 	}
 
 	links
 	{
 		"AuroraCoreLib",
 		"AuroraEngineLib",
-		"AuroraMapleLib"
+		"AuroraMapleLib",
+		"cryptlib.lib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 

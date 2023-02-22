@@ -2,6 +2,8 @@
 
 #include <Aurora.h>
 
+#include "Master.hpp"
+
 class Server : public Aurora::Application
 {
   public:

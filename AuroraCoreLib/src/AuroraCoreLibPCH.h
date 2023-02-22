@@ -12,12 +12,9 @@
 #include <vector>
 
 
-#ifdef PA_PLATFORM_WINDOWS
-  #include <Windows.h>
-#endif
-
+//#ifdef PA_PLATFORM_WINDOWS
+//#endif
 //#ifdef AE_PLATFORM_MAC
 //#endif
-//
 //#ifdef AE_PLATFORM_LINUX
 //#endif

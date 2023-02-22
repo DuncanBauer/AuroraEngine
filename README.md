@@ -14,6 +14,7 @@ Project Aurora is a long-term development project to create a MapleStory Private
 
 ## Dependencies:
 * [boost_1_81_0](https://github.com/boostorg/boost)
+* [cryptopp](https://github.com/weidai11/cryptopp)
 * [glfw](https://github.com/glfw/glfw)
 * [premake](https://github.com/premake/premake-core)
 * [spdlog](https://github.com/gabime/spdlog)
