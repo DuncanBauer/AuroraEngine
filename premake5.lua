@@ -16,6 +16,7 @@ IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
 IncludeDir["CryptoPP"] = "AuroraMapleLib/vendor"
 IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["SPDLog"] = "AuroraCoreLib/vendor/spdlog/include"
+IncludeDir["YAMLcpp"] = "AuroraCoreLib/vendor/yaml-cpp/include"
 
 IncludeDir["AuroraCoreLib"] = "AuroraCoreLib/src"
 IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
@@ -23,6 +24,7 @@ IncludeDir["AuroraMapleLib"] = "AuroraMapleLib/src"
 
 LinkDir = {}
 LinkDir["CryptoPP"] = "AuroraMapleLib/vendor/cryptopp/x64/Output/%{cfg.buildcfg}"
+LinkDir["YAMLcpp"] = "AuroraCoreLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
 
 -- Includes the premake file for 3rd party libraries
 include "AuroraEngineLib/vendor/glfw"
@@ -48,11 +50,17 @@ project "AuroraCoreLib"
 	includedirs
 	{
 		"%{IncludeDir.AuroraCoreLib}",
-		"%{IncludeDir.SPDLog}"
+		"%{IncludeDir.SPDLog}",
+		"%{IncludeDir.YAMLcpp}"
+	}
+
+	libdirs
+	{
+		"%{LinkDir.YAMLcpp}"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -73,16 +81,33 @@ project "AuroraCoreLib"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
+
+		links
+		{
+			"yaml-cppd.lib"
+		}
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
+
+		links
+		{
+			"yaml-cpp.lib"
+		}
 
 	filter "configurations:Dist"
 		defines "PA_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
+		links
+		{
+			"yaml-cpp.lib"
+		}
 
 project "AuroraEngineLib"
 	location "AuroraEngineLib"
@@ -118,7 +143,7 @@ project "AuroraEngineLib"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -137,14 +162,17 @@ project "AuroraEngineLib"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PA_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 		
@@ -187,7 +215,7 @@ project "AuroraMapleLib"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -206,14 +234,17 @@ project "AuroraMapleLib"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PA_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 		
@@ -256,7 +287,7 @@ project "AuroraMapleClient"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -266,14 +297,17 @@ project "AuroraMapleClient"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PA_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 		
@@ -316,7 +350,7 @@ project "AuroraMapleServer"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -326,14 +360,17 @@ project "AuroraMapleServer"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PA_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 
@@ -376,7 +413,7 @@ project "AuroraUnitTesting"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -386,12 +423,15 @@ project "AuroraUnitTesting"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PA_DIST"
+		buildoptions "/MD"
 		optimize "On"

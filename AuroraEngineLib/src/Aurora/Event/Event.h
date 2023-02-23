@@ -11,7 +11,7 @@ namespace Aurora
     None = 0,
     WindowClosed, WindowResized, WindowMaximized, WindowMinimized, WindowGainedFocus, WindowLostFocus, WindowMoved,
     AppTicked, AppUpdate, AppRender,
-    KeyPressed, KeyReleased, KeyClicked,
+    KeyPressed, KeyReleased,
     MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
   };
 
@@ -33,7 +33,7 @@ namespace Aurora
 
   class AURORA_ENGINE_API Event
   {
-    //friend class EventDispatcher;
+    friend class EventDispatcher;
   
     public:
       virtual EventType GetEventType() const = 0;

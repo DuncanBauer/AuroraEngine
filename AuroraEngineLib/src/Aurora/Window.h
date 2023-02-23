@@ -35,8 +35,7 @@ namespace Aurora
     virtual bool IsVSync() const = 0;
 
     static Window* Create(const WindowProperties& props = WindowProperties());
+
   private:
-
   };
-
 }

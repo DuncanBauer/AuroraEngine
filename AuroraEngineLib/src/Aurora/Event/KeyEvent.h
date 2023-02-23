@@ -1,37 +1,35 @@
 #pragma once
 
-//#include "AuroraPCH.h"
-
 // Engine
 #include "Event.h"
-#include "Aurora/Core/KeyCodes.h"
+#include "KeyCodes.h"
 
 namespace Aurora
 {
   class AURORA_ENGINE_API KeyEvent : public Event
   {
     public:
-      inline int GetKeyCode() const { return KeyCode; }
+      inline int GetKey() const { return Key; }
 
       EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
     protected:
-      KeyEvent(int _KeyCode) : KeyCode(_KeyCode) {}
-      int KeyCode;
+      KeyEvent(int _Key) : Key(_Key) {}
+      int Key;
   };
 
   class AURORA_ENGINE_API KeyPressedEvent : public KeyEvent
   {
     public:
-      KeyPressedEvent(int _KeyCode, int _RepeatCount) 
-        : KeyEvent(_KeyCode), RepeatCount(_RepeatCount) {}
+      KeyPressedEvent(int _Key, int _RepeatCount) 
+        : KeyEvent(_Key), RepeatCount(_RepeatCount) {}
 
       int GetRepeatCount() { return RepeatCount; }
 
-      std::string ToString() 
+      std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "KeyPressedEvent: " << KeyCode << ", " << RepeatCount << '\n';
+        ss << "KeyPressedEvent: " << Key << ", " << RepeatCount;
         return ss.str();
       }
 
@@ -44,35 +42,16 @@ namespace Aurora
   class AURORA_ENGINE_API KeyReleasedEvent : public KeyEvent
   {
     public:
-      KeyReleasedEvent(int _KeyCode, int _Duration)
-        : KeyEvent(_KeyCode), Duration(_Duration) {}
+      KeyReleasedEvent(int _Key)
+        : KeyEvent(_Key) {}
 
-      std::string ToString()
+      std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "KeyReleasedEvent: " << KeyCode << ", " << Duration << '\n';
+        ss << "KeyReleasedEvent: " << Key;
         return ss.str();
       }
 
       EVENT_CLASS_TYPE(KeyReleased)
-
-    private:
-      int Duration = 0;
-  };
-
-  class AURORA_ENGINE_API KeyClickedEvent : public KeyEvent
-  {
-    public:
-      KeyClickedEvent(int _KeyCode)
-        : KeyEvent(_KeyCode) {}
-
-      std::string ToString()
-      {
-        std::stringstream ss;
-        ss << "KeyClickedEvent: " << KeyCode << '\n';
-        return ss.str();
-      }
-
-      EVENT_CLASS_TYPE(KeyClicked)
   };
 }

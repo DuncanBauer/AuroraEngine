@@ -32,8 +32,10 @@ namespace Aurora
       struct WindowData
       {
         std::string Title;
-        unsigned int Width, Height;
+        unsigned int Width, Height, Focused, Maximized, Iconified;
+        int Xpos, Ypos;
         bool VSync;
+
         EventCallbackFn EventCallback;
       };
 

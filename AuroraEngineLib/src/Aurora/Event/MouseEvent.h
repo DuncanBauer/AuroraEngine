@@ -3,22 +3,23 @@
 // Engine
 #include "Event.h"
 
-#include <Core/MouseCodes.h>
+#include "MouseCodes.h"
 
 namespace Aurora
 {
   class AURORA_ENGINE_API MouseMovedEvent : public Event
   {
     public:
-      MouseMovedEvent(const float x, const float y) {}
+      MouseMovedEvent(const double x, const double y) 
+        : X(x), Y(y) {}
 
-      float GetX() const { return X; }
-      float GetY() const { return Y; }
+      double GetX() const { return X; }
+      double GetY() const { return Y; }
 
-      std::string ToString()
+      std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "MouseScrolledEvent: " << X << ", " << Y << '\n';
+        ss << "MouseMovedEvent: " << X << ", " << Y;
         return ss.str();
       }
 
@@ -26,29 +27,30 @@ namespace Aurora
       EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
     private:
-      float X, Y;
+      double X, Y;
   };
 
   class AURORA_ENGINE_API MouseScrolledEvent : public Event
   {
     public:
-      MouseScrolledEvent(float _XOffset, float _YOffset) 
+      MouseScrolledEvent(const double _XOffset, const double _YOffset)
         : XOffset(_XOffset), YOffset(_YOffset) {}
 
-      float GetXOffset() { return XOffset; }
-      float GetYOffset() { return YOffset; }
+      double GetXOffset() { return XOffset; }
+      double GetYOffset() { return YOffset; }
 
-      std::string ToString()
+      std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "MouseScrolledEvent: " << XOffset << ", " << YOffset << '\n';
+        ss << "MouseScrolledEvent: " << XOffset << ", " << YOffset;
         return ss.str();
       }
 
       EVENT_CLASS_TYPE(MouseScrolled)
-    
+      EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+
     private:
-      float XOffset, YOffset;
+      double XOffset, YOffset;
   };
 
   class AURORA_ENGINE_API MouseButtonEvent : public Event
@@ -90,7 +92,7 @@ namespace Aurora
       std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "MouseButtonPressedEvent: " << MouseButton;
+        ss << "MouseButtonReleasedEvent: " << MouseButton;
         return ss.str();
       }
 
