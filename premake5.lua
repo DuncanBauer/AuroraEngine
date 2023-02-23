@@ -99,11 +99,6 @@ project "AuroraCoreLib"
 			"yaml-cpp.lib"
 		}
 
-	filter "configurations:Dist"
-		defines "PA_DIST"
-		buildoptions "/MD"
-		optimize "On"
-
 		links
 		{
 			"yaml-cpp.lib"
@@ -167,11 +162,6 @@ project "AuroraEngineLib"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
-
-	filter "configurations:Dist"
-		defines "PA_DIST"
 		buildoptions "/MD"
 		optimize "On"
 
@@ -242,11 +232,6 @@ project "AuroraMapleLib"
 		buildoptions "/MD"
 		optimize "On"
 
-	filter "configurations:Dist"
-		defines "PA_DIST"
-		buildoptions "/MD"
-		optimize "On"
-
 		
 project "AuroraMapleClient"
 	location "AuroraMapleClient"
@@ -302,11 +287,6 @@ project "AuroraMapleClient"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
-
-	filter "configurations:Dist"
-		defines "PA_DIST"
 		buildoptions "/MD"
 		optimize "On"
 
@@ -368,11 +348,6 @@ project "AuroraMapleServer"
 		buildoptions "/MD"
 		optimize "On"
 
-	filter "configurations:Dist"
-		defines "PA_DIST"
-		buildoptions "/MD"
-		optimize "On"
-
 
 project "AuroraUnitTesting"
 	location "AuroraUnitTesting"
@@ -428,10 +403,5 @@ project "AuroraUnitTesting"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
-
-	filter "configurations:Dist"
-		defines "PA_DIST"
 		buildoptions "/MD"
 		optimize "On"
