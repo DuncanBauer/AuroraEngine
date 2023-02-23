@@ -4,6 +4,6 @@
 [submodule "AuroraEngineLib/vendor/glfw"]
 	path = AuroraEngineLib/vendor/glfw
 	url = https://github.com/duncanbauer/glfw.git
-[submodule "AuroraMapleLib/vendor/cryptopp"]
-	path = AuroraMapleLib/vendor/cryptopp
-	url = https://github.com/weidai11/cryptopp
+[submodule "AuroraCoreLib/vendor/yaml-cpp"]
+	path = AuroraCoreLib/vendor/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp
