@@ -2,15 +2,15 @@
 
 #include "Aurora.h"
 
-#include <Core/Log.h>
+#include <Util.h>
 
 #ifdef PA_PLATFORM_WINDOWS
 
-extern Aurora::Application* Aurora::CreateApplication();
+extern Aurora::Engine::Application* Aurora::Engine::CreateApplication();
 
 int main(int argc, char** argv)
 {
-  Aurora::Core::Log::Init();
+  Aurora::Util::Log::Init();
 
   //AE_ENGINE_INFO("INFO");
   //AE_ENGINE_TRACE("TRACE");
@@ -25,7 +25,7 @@ int main(int argc, char** argv)
   //AE_ERROR("ERROR Var={0}", x++);
   //AE_CRITICAL("CRITICAL Var={0}", x++);
 
-  auto app = Aurora::CreateApplication();
+  auto app = Aurora::Engine::CreateApplication();
   app->Run();
   delete app;
 }

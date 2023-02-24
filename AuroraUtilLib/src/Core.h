@@ -2,10 +2,10 @@
 
 #ifdef PA_PLATFORM_WINDOWS
 
-  #ifdef PA_CORE_BUILD_DLL
-    #define AURORA_CORE_API _declspec(dllexport)
+  #ifdef PA_UTIL_BUILD_DLL
+    #define AURORA_UTIL_API _declspec(dllexport)
   #else
-    #define AURORA_CORE_API _declspec(dllimport)
+    #define AURORA_UTIL_API _declspec(dllimport)
   #endif
   
   #ifdef PA_ENGINE_BUILD_DLL

@@ -11,7 +11,7 @@
 #include <utility>
 #include <vector>
 
-#include <Core/Core.h>
+#include <Core.h>
 
 //#ifdef PA_PLATFORM_WINDOWS
 //#endif

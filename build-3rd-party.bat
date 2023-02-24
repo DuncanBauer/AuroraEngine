@@ -1,5 +1,5 @@
 :: Compile yaml-cpp with CMake
-cd AuroraCoreLib/vendor/yaml-cpp
+cd AuroraUtilLib/vendor/yaml-cpp
 if not exist build\ (
     mkdir build
 )
@@ -8,7 +8,7 @@ cmake ..
 cmake --build . --target ALL_BUILD --config Debug
 cd ../../../../
 
-cd AuroraCoreLib/vendor/yaml-cpp
+cd AuroraUtilLib/vendor/yaml-cpp
 if not exist build\ (
     mkdir build
 )
@@ -29,3 +29,6 @@ if not exist x64\Output\Release (
     MSBuild cryptest.sln /p:Configuration=Release /p:Platform=x64
 )
 cd ../../../
+
+::MSBuild ProjectAurora.sln /p:Configuration=Debug /p:Platform=x64
+::MSBuild ProjectAurora.sln /p:Configuration=Release /p:Platform=x64

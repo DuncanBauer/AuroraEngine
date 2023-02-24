@@ -1,7 +1,10 @@
 #pragma once
 
 // For use by applications 
-#include "Aurora/Application.h"
+#include "Aurora/Core/Application.h"
+
+#include "Aurora/Core/Layer/Layer.h"
+#include "Aurora/Core/Layer/LayerStack.h"
 
 
 /****************************
@@ -9,4 +12,4 @@
 *        ENTRY POINT
 *
 ****************************/
-#include "Aurora/EntryPoint.h"
+#include "Aurora/Core/EntryPoint.h"

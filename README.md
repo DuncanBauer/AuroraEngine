@@ -6,7 +6,7 @@ Project Aurora is a long-term development project to create a MapleStory Private
 ```
 
 ## API:
-* [AuroraCoreLib](https://duncanbauer.github.io/AuroraCoreLib)
+* [AuroraUtilLib](https://duncanbauer.github.io/AuroraUtilLib)
 * [AuroraMapleLib](https://duncanbauer.github.io/AuroraMapleLib)
 * [AuroraEngineLib](https://duncanbauer.github.io/AuroraEngineLib)
 
@@ -22,9 +22,10 @@ Project Aurora is a long-term development project to create a MapleStory Private
 ### Mac
 
 ### Common
-* [cmake]()
+* [cmake](https://cmake.org)
 * [premake](https://github.com/premake/premake-core)
 * [boost_1_81_0](https://github.com/boostorg/boost)
 * [cryptopp](https://github.com/weidai11/cryptopp)
+* [glad](glad.dav1d.de)
 * [glfw](https://github.com/glfw/glfw)
 * [spdlog](https://github.com/gabime/spdlog)

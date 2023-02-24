@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include <Core/Core.h>
+#include <Core.h>
 
 
 //#ifdef PA_PLATFORM_WINDOWS

@@ -2,16 +2,33 @@
 
 #include <Aurora.h>
 
-class Client : public Aurora::Application
+// C++
+#include <iostream>
+
+
+class ExampleLayer : public Aurora::Engine::Layer
+{
+  void OnUpdate(Aurora::Util::DeltaTime t) override
+  {
+    PA_CLIENT_TRACE("ExampleLayer::OnUpdate");
+  }
+
+  void OnEvent(Aurora::Engine::Event& e) override
+  {
+    PA_CLIENT_TRACE("ExampleLayer::OnEvent");
+  }
+};
+
+class Client : public Aurora::Engine::Application
 {
   public:
     Client();
     virtual ~Client();
 
-    virtual void Run();
+    void Run();
 };
 
-Aurora::Application* Aurora::CreateApplication()
+Aurora::Engine::Application* Aurora::Engine::CreateApplication()
 {
   return new Client();
 }

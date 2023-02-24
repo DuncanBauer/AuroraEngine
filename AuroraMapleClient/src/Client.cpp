@@ -2,7 +2,7 @@
 
 Client::Client()
 {
-
+  PushLayer(new ExampleLayer());
 }
 
 Client::~Client()

@@ -5,117 +5,125 @@
 #include <iostream>
 
 // Events
-#include "Aurora/Event/ApplicationEvent.h"
-#include "Aurora/Event/KeyEvent.h"
-#include "Aurora/Event/MouseEvent.h"
+#include "Aurora/Core/Event/ApplicationEvent.h"
+#include "Aurora/Core/Event/KeyEvent.h"
+#include "Aurora/Core/Event/MouseEvent.h"
 
-#include <Core/Log.h>
+#include <Util.h>
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 
 namespace Aurora
 {
-  static bool GLFWInitialized = false;
-
-  Window* Window::Create(const WindowProperties& props)
+  namespace Engine
   {
-    return new WindowsWindow(props);
-  }
+    static bool GLFWInitialized = false;
 
-  WindowsWindow::WindowsWindow(const WindowProperties& props)
-  {
-    Init(props);
-  }
-
-  WindowsWindow::~WindowsWindow()
-  {
-    Shutdown();
-  }
-
-  void WindowsWindow::Init(const WindowProperties& props)
-  {
-    m_Props.Title = props.Title;
-    m_Props.Width = props.Width;
-    m_Props.Height = props.Height;
-  
-    PA_ENGINE_INFO("Creating Windows {0} ({1}, {2})", m_Props.Title, m_Props.Width, m_Props.Height);
-  
-    if (!GLFWInitialized)
+    Window* Window::Create(const WindowProperties& props)
     {
-      int success = glfwInit();
-      PA_ENGINE_ASSERT(success, "Could not initialized GLFW!")
-
-      glfwSetErrorCallback([](int error_code, const char* description)
-      {
-        PA_ENGINE_ERROR("GLFW ERROR: ({0}): {1}", error_code, description);
-      });
-
-      GLFWInitialized = true;
+      return new WindowsWindow(props);
     }
 
-    m_Window = glfwCreateWindow((int)m_Props.Width, (int)m_Props.Height, m_Props.Title.c_str(), nullptr, nullptr);
-    glfwMakeContextCurrent(m_Window);
-    glfwSetWindowUserPointer(m_Window, &m_Props);
-    SetVSync(true);
-
-    /******************
-    * 
-    *  GLFW Callbacks
-    *
-    ******************/
-    // Window Callbacks
-    glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+    WindowsWindow::WindowsWindow(const WindowProperties& props)
     {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-      WindowClosedEvent e;
-      data.EventCallback(e);
-    });
+      Init(props);
+    }
 
-    glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+    WindowsWindow::~WindowsWindow()
     {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-      data.Width = width;
-      data.Height = height;
-      
-      WindowResizedEvent e(width, height);
-      data.EventCallback(e);
-    });
+      Shutdown();
+    }
 
-    glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused)
+    void WindowsWindow::Init(const WindowProperties& props)
     {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-      data.Focused = focused;
+      m_Props.Title = props.Title;
+      m_Props.Width = props.Width;
+      m_Props.Height = props.Height;
 
-      if (focused == GLFW_TRUE)
+      PA_ENGINE_INFO("Creating Window {0} ({1}, {2})", m_Props.Title, m_Props.Width, m_Props.Height);
+
+      if (!GLFWInitialized)
       {
-        WindowGainedFocusEvent e(focused);
-        data.EventCallback(e);
-      }
-      else if (focused == GLFW_FALSE)
-      {
-        WindowLostFocusEvent e(focused);
-        data.EventCallback(e);
-      }
-    });
+        int success = glfwInit();
+        PA_ENGINE_ASSERT(success, "Could not initialized GLFW!")
 
-    glfwSetWindowMaximizeCallback(m_Window, [](GLFWwindow* window, int maximized)
-    {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-      data.Maximized = maximized;
+        glfwSetErrorCallback([](int error_code, const char* description)
+        {
+          PA_ENGINE_ERROR("GLFW ERROR: ({0}): {1}", error_code, description);
+        });
 
-      if (maximized == GLFW_TRUE)
-      {
-        WindowMaximizedEvent e(maximized);
-        data.EventCallback(e);
+        GLFWInitialized = true;
       }
-      else if (maximized == GLFW_FALSE)
-      {
-        WindowRestoredEvent e(maximized);
-        data.EventCallback(e);
-      }
-    });
 
-    // Why does glfw use Iconified instead of Minimized?
-    glfwSetWindowIconifyCallback(m_Window, [](GLFWwindow* window, int iconified)
-    {
+      m_Window = glfwCreateWindow((int)m_Props.Width, (int)m_Props.Height, m_Props.Title.c_str(), nullptr, nullptr);
+      glfwMakeContextCurrent(m_Window);
+      int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+      PA_ENGINE_ASSERT(status, "Failed to initialize Glad");
+      glfwSetWindowUserPointer(m_Window, &m_Props);
+      SetVSync(true);
+
+      /******************
+      *
+      *  GLFW Callbacks
+      *
+      ******************/
+      // Window Callbacks
+      glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        WindowClosedEvent e;
+        data.EventCallback(e);
+      });
+
+      glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        data.Width = width;
+        data.Height = height;
+
+        WindowResizedEvent e(width, height);
+        data.EventCallback(e);
+      });
+
+      glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        data.Focused = focused;
+
+        if (focused == GLFW_TRUE)
+        {
+          WindowGainedFocusEvent e(focused);
+          data.EventCallback(e);
+        }
+        else if (focused == GLFW_FALSE)
+        {
+          WindowLostFocusEvent e(focused);
+          data.EventCallback(e);
+        }
+      });
+
+      glfwSetWindowMaximizeCallback(m_Window, [](GLFWwindow* window, int maximized)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        data.Maximized = maximized;
+
+        if (maximized == GLFW_TRUE)
+        {
+          WindowMaximizedEvent e(maximized);
+          data.EventCallback(e);
+        }
+        else if (maximized == GLFW_FALSE)
+        {
+          WindowRestoredEvent e(maximized);
+          data.EventCallback(e);
+        }
+      });
+
+      // Why does glfw use Iconified instead of Minimized?
+      glfwSetWindowIconifyCallback(m_Window, [](GLFWwindow* window, int iconified)
+      {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         data.Iconified = iconified;
 
@@ -129,113 +137,113 @@ namespace Aurora
           WindowRestoredEvent e(iconified);
           data.EventCallback(e);
         }
-    });
+      });
 
-    glfwSetWindowPosCallback(m_Window, [](GLFWwindow* window, int xpos, int ypos)
-    {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-      data.Xpos = xpos;
-      data.Ypos = ypos;
-
-      WindowMovedEvent e(xpos, ypos);
-      data.EventCallback(e);
-    });
-
-    // Key Callbacks
-    glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
-    {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
-      switch (action)
+      glfwSetWindowPosCallback(m_Window, [](GLFWwindow* window, int xpos, int ypos)
       {
-        case GLFW_PRESS:
-        {
-          KeyPressedEvent e(key, 0);
-          data.EventCallback(e);
-          break;
-        }
-        case GLFW_RELEASE:
-        {
-          KeyReleasedEvent e(key);
-          data.EventCallback(e);
-          break;
-        }
-        case GLFW_REPEAT:
-        {
-          KeyPressedEvent e(key, 1);
-          data.EventCallback(e);
-          break;
-        }
-      }
-    });
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        data.Xpos = xpos;
+        data.Ypos = ypos;
 
-    // Mouse Callbacks
-    glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
-    {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        WindowMovedEvent e(xpos, ypos);
+        data.EventCallback(e);
+      });
 
-      switch (action)
+      // Key Callbacks
+      glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
       {
-        case GLFW_PRESS:
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+        switch (action)
         {
-          MouseButtonPressedEvent e(button);
-          data.EventCallback(e);
-          break;
+          case GLFW_PRESS:
+          {
+            KeyPressedEvent e(key, 0);
+            data.EventCallback(e);
+            break;
+          }
+          case GLFW_RELEASE:
+          {
+            KeyReleasedEvent e(key);
+            data.EventCallback(e);
+            break;
+          }
+          case GLFW_REPEAT:
+          {
+            KeyPressedEvent e(key, 1);
+            data.EventCallback(e);
+            break;
+          }
         }
-        case GLFW_RELEASE:
+      });
+
+      // Mouse Callbacks
+      glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+        switch (action)
         {
-          MouseButtonReleasedEvent e(button);
-          data.EventCallback(e);
-          break;
+          case GLFW_PRESS:
+          {
+            MouseButtonPressedEvent e(button);
+            data.EventCallback(e);
+            break;
+          }
+          case GLFW_RELEASE:
+          {
+            MouseButtonReleasedEvent e(button);
+            data.EventCallback(e);
+            break;
+          }
         }
-      }
-    });
+      });
 
-    glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
-    {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+      glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-      MouseScrolledEvent e(xoffset, yoffset);
-      data.EventCallback(e);
-    });
+        MouseScrolledEvent e(xoffset, yoffset);
+        data.EventCallback(e);
+      });
 
-    glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
-    {
-      WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-      
-      MouseMovedEvent e(xpos, ypos);
-      data.EventCallback(e);
-    });
-  }
+      glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-  void WindowsWindow::OnUpdate() const
-  {
-    glfwPollEvents();
-    glfwSwapBuffers(m_Window);
-  }
-
-  void WindowsWindow::Shutdown()
-  {
-    glfwDestroyWindow(m_Window);
-  }
-
-  void WindowsWindow::SetVSync(bool enabled)
-  {
-    if (enabled)
-    {
-      glfwSwapInterval(1);
-    }
-    else
-    {
-      glfwSwapInterval(0);
+        MouseMovedEvent e(xpos, ypos);
+        data.EventCallback(e);
+      });
     }
 
-    m_Props.VSync = enabled;
-  }
+    void WindowsWindow::OnUpdate() const
+    {
+      glfwPollEvents();
+      glfwSwapBuffers(m_Window);
+    }
 
-  bool WindowsWindow::IsVSync() const
-  {
-    return m_Props.VSync;
-  }
+    void WindowsWindow::Shutdown()
+    {
+      glfwDestroyWindow(m_Window);
+    }
 
+    void WindowsWindow::SetVSync(bool enabled)
+    {
+      if (enabled)
+      {
+        glfwSwapInterval(1);
+      }
+      else
+      {
+        glfwSwapInterval(0);
+      }
+
+      m_Props.VSync = enabled;
+    }
+
+    bool WindowsWindow::IsVSync() const
+    {
+      return m_Props.VSync;
+    }
+  }
 }
