@@ -16,6 +16,7 @@ IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
 IncludeDir["CryptoPP"] = "AuroraMapleLib/vendor"
 IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["GLAD"] = "AuroraEngineLib/vendor/glad/include"
+IncludeDir["ImGui"] = "AuroraEngineLib/vendor/imgui"
 IncludeDir["SPDLog"] = "AuroraUtilLib/vendor/spdlog/include"
 IncludeDir["YAMLcpp"] = "AuroraUtilLib/vendor/yaml-cpp/include"
 
@@ -30,6 +31,7 @@ LinkDir["YAMLcpp"] = "AuroraUtilLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
 -- Includes the premake file for 3rd party libraries
 include "AuroraEngineLib/vendor/glfw"
 include "AuroraEngineLib/vendor/glad"
+include "AuroraEngineLib/vendor/imgui"
 
 project "AuroraUtilLib"
 	location "AuroraUtilLib"
@@ -125,7 +127,8 @@ project "AuroraEngineLib"
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
@@ -133,6 +136,7 @@ project "AuroraEngineLib"
 		"AuroraUtilLib",
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 

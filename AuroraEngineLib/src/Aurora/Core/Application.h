@@ -23,6 +23,8 @@ namespace Aurora
         Application();
         virtual ~Application();
 
+        inline static Application& Get() { return *s_Instance; }
+
         void Run();
 
         void OnUpdate(Util::DeltaTime t);
@@ -30,6 +32,8 @@ namespace Aurora
 
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
+
+        inline Window& GetWindow() { return *m_Window; }
 
       private:
         // Event handlers
@@ -40,7 +44,9 @@ namespace Aurora
         bool m_Running = true;
         LayerStack m_LayerStack;
         float m_LastFrameTime = 0;
-        
+
+      private:
+        static Application* s_Instance;
     };
 
     Application* CreateApplication(); // To be defined in client

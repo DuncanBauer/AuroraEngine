@@ -10,3 +10,6 @@
 [submodule "AuroraUtilLib/vendor/yaml-cpp"]
 	path = AuroraUtilLib/vendor/yaml-cpp
 	url = https://github.com/duncanbauer/yaml-cpp
+[submodule "AuroraEngineLib/vendor/imgui"]
+	path = AuroraEngineLib/vendor/imgui
+	url = https://github.com/duncanbauer/imgui.git
