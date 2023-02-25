@@ -92,12 +92,12 @@ Variables:
 
     Class member:
         - Beings with m_
-    Static:
-        - Begins with sm_
-    Pointer:
-        - Begins with pm_
-    Reference:
-        - Begins with rm_
+        Static:
+            - Begins with sm_
+        Pointer:
+            - Begins with pm_
+        Reference:
+            - Begins with rm_
 ```
 
 ## API

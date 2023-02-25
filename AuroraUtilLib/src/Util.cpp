@@ -1,33 +1,56 @@
+// Aurora Engine Library, v0.0.1 ALPHA
+// Source file
+
+// For more information visit: https://github.com/DuncanBauer/ProjectAurora
+
+// Developed by Duncan Bauer and every direct or indirect contributors to the GitHub.
+// LICENSING INFORMATION
+
+// It is recommended that you don't modify any source code! It will become difficult for you to update the library.
+// Note that 'Aurora::Util::' being a namespace, you can add functions into the namespace from your own source files, without
+// modifying Util.h or Util.cpp. Discussing your changes on the GitHub Issue Tracker may lead you
+// to a better solution or official support for them.
+
+// Index of this file:
+// CODE
+//   - [SECTION] INCLUDES
+//   - [SECTION] STATIC CLASS MEMBER INITIALIZATION
+//   - [SECTION] FUNCTIONS
+
+
+
+
+
+
+
+/************************************************************************************
+* [SECTION] INCLUDES
+************************************************************************************/
+// PCH
 #include "AuroraUtilLibPCH.h"
 
+// Project Specific Headers
 #include "Util.h"
 
-#include <spdlog/sinks/stdout_color_sinks.h>
+// C++ Standard Library Headers
+
+// Third Party Library Headers
+
 
 namespace Aurora
 {
   namespace Util
   {
-    std::shared_ptr<spdlog::logger> Log::UtilLogger;
-    std::shared_ptr<spdlog::logger> Log::MapleLogger;
-    std::shared_ptr<spdlog::logger> Log::EngineLogger;
-    std::shared_ptr<spdlog::logger> Log::ProjectLogger;
+/************************************************************************************
+* [SECTION] STATIC CLASS MEMBER INITIALIZATION
+************************************************************************************/
+    std::shared_ptr<spdlog::logger> Log::sm_UtilLogger;
+    std::shared_ptr<spdlog::logger> Log::sm_MapleLogger;
+    std::shared_ptr<spdlog::logger> Log::sm_EngineLogger;
+    std::shared_ptr<spdlog::logger> Log::sm_ProjectLogger;
 
-    void Log::Init()
-    {
-      spdlog::set_pattern("%^[%T] %n: %v%$");
-
-      Log::UtilLogger = spdlog::stdout_color_mt("LibLogger");
-      Log::UtilLogger->set_level(spdlog::level::level_enum::trace);
-
-      Log::MapleLogger = spdlog::stdout_color_mt("MapleLogger");
-      Log::MapleLogger->set_level(spdlog::level::level_enum::trace);
-
-      Log::EngineLogger = spdlog::stdout_color_mt("EngineLogger");
-      Log::EngineLogger->set_level(spdlog::level::level_enum::trace);
-
-      Log::ProjectLogger = spdlog::stdout_color_mt("ProjectLogger");
-      Log::ProjectLogger->set_level(spdlog::level::level_enum::trace);
-    }
+/************************************************************************************
+* [SECTION] FUNCTIONS
+************************************************************************************/
   }
 }
