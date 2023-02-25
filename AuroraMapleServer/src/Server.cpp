@@ -3,9 +3,11 @@
 #include <iostream>
 #include <exception>
 
+#include <Aurora/ImGui/ImGuiLayer.h>
+
 Server::Server()
 {
-
+  PushOverlay(new Aurora::Engine::ImGuiLayer());
 }
 
 Server::~Server()

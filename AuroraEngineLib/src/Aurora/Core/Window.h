@@ -5,6 +5,9 @@
 #include <Core.h>
 #include "Event/Event.h"
 
+
+struct GLFWwindow;
+
 namespace Aurora
 {
   namespace Engine
@@ -25,6 +28,7 @@ namespace Aurora
         using EventCallbackFn = std::function<void(Event&)>;
 
         virtual ~Window() {}
+        inline GLFWwindow& GetGLFWwindow() { return *m_Window; }
 
         virtual void OnUpdate() const = 0;
 
@@ -37,6 +41,9 @@ namespace Aurora
         virtual bool IsVSync() const = 0;
 
         static Window* Create(const WindowProperties& props = WindowProperties());
+
+      protected:
+        GLFWwindow* m_Window;
     };
   }
 }

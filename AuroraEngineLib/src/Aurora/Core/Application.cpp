@@ -22,9 +22,6 @@ namespace Aurora
 
       m_Window = std::unique_ptr<Window>(Window::Create());
       m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-
-      unsigned int id;
-      glGenVertexArrays(1, &id);
     }
 
     Application::~Application()
@@ -40,10 +37,6 @@ namespace Aurora
         Util::DeltaTime d_time = time - m_LastFrameTime;
         m_LastFrameTime = time;
 
-        glClearColor(1, 0, 1, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
-        m_Window->OnUpdate();
-
         OnUpdate(d_time);
       }
     }
@@ -51,6 +44,9 @@ namespace Aurora
     void Application::OnUpdate(Util::DeltaTime t)
     {
       PA_ENGINE_TRACE("{0}", t.ToString());
+
+      m_Window->OnUpdate();
+
       for (Layer* layer : m_LayerStack)
       {
         layer->OnUpdate(t);

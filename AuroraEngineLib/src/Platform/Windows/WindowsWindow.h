@@ -2,8 +2,6 @@
 
 #include "Aurora/Core/Window.h"
 
-struct GLFWwindow;
-
 namespace Aurora
 {
   namespace Engine
@@ -27,8 +25,6 @@ namespace Aurora
       private:
         virtual void Init(const WindowProperties& props);
         virtual void Shutdown();
-
-        GLFWwindow* m_Window;
 
         struct WindowData
         {

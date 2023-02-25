@@ -1,5 +1,6 @@
 #include "Client.h"
 
+#include <Aurora/ImGui/ImGuiLayer.h>
 
 Client::Client()
 {

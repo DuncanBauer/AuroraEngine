@@ -4,8 +4,7 @@ workspace "ProjectAurora"
 	configurations
 	{
 		"Debug",
-		"Release",
-		"Dist"
+		"Release"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -13,10 +12,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include dirs relative to root folder
 IncludeDir = {}
 IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
+
 IncludeDir["CryptoPP"] = "AuroraMapleLib/vendor"
+
 IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["GLAD"] = "AuroraEngineLib/vendor/glad/include"
 IncludeDir["ImGui"] = "AuroraEngineLib/vendor/imgui"
+
 IncludeDir["SPDLog"] = "AuroraUtilLib/vendor/spdlog/include"
 IncludeDir["YAMLcpp"] = "AuroraUtilLib/vendor/yaml-cpp/include"
 
@@ -148,7 +150,8 @@ project "AuroraEngineLib"
 		{
 			"PA_PLATFORM_WINDOWS",
 			"PA_ASSERTS_ENABLED",
-			"PA_ENGINE_BUILD_DLL"
+			"PA_ENGINE_BUILD_DLL",
+			"IMGUI_IMPL_OPENGL_LOADER_CUSTOM"
 		}
 
 		postbuildcommands
@@ -256,9 +259,10 @@ project "AuroraMapleClient"
 		"%{IncludeDir.AuroraUtilLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
-		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.Boost}",
-		"%{IncludeDir.CryptoPP}"
+		"%{IncludeDir.CryptoPP}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.SPDLog}"
 	}
 
 	libdirs
@@ -271,6 +275,7 @@ project "AuroraMapleClient"
 		"AuroraUtilLib",
 		"AuroraEngineLib",
 		"AuroraMapleLib",
+		"ImGui",
 		"cryptlib.lib"
 	}
 
@@ -281,6 +286,7 @@ project "AuroraMapleClient"
 		defines
 		{
 			"PA_PLATFORM_WINDOWS",
+			"IMGUI_IMPL_OPENGL_LOADER_CUSTOM"
 		}
 
 	filter "configurations:Debug"

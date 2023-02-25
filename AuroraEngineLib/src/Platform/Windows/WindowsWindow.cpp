@@ -11,6 +11,9 @@
 
 #include <Util.h>
 
+#include "imgui.h"
+#include "Platform/OpenGL/imgui_impl_glfw.h" 
+#include "Platform/OpenGL/imgui_impl_opengl3.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -224,6 +227,10 @@ namespace Aurora
 
     void WindowsWindow::Shutdown()
     {
+
+      ImGui_ImplOpenGL3_Shutdown();
+      ImGui_ImplGlfw_Shutdown();
+      ImGui::DestroyContext();
       glfwDestroyWindow(m_Window);
     }
 
