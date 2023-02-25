@@ -1,42 +1,112 @@
+// Aurora Engine Library, v0.0.1 ALPHA
+// Header file
+
+// For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
+
+// Developed by Duncan Bauer and every direct or indirect contributors to the GitHub.
+// LICENSING INFORMATION
+
+// It is recommended that you don't modify any source code! It will become difficult for you to update the library.
+// Note that 'Aurora::Util::' being a namespace, you can add functions into the namespace from your own source files, without
+// modifying Util.h or Util.cpp. Discussing your changes on the GitHub Issue Tracker may lead you
+// to a better solution or official support for them.
+
+// Index of this file:
+// CODE
+//   - [SECTION] PREPROCESSOR DIRECTIVES
+//   - [SECTION] INCLUDES
+//   - [SECTION] FORWARD DECLARATIONS
+//   - [SECTION] TYPENAMES
+//   - [SECTION] CONSTANTS
+//   - [SECTION] ENUMS
+//   - [SECTION] CLASSES
+//   - [SECTION] STRUCTS
+//   - [SECTION] FUNCTIONS
+//   - [SECTION] MACROS
+
+/************************************************************************************
+* [SECTION] PREPROCESSOR DIRECTIVES
+************************************************************************************/
 #pragma once
 
+/************************************************************************************
+* [SECTION] INCLUDES
+************************************************************************************/
+// Project Specific Headers
 #include "Aurora/Core/Window.h"
+
+// C++ Standard Library Headers
+
+// Third Party Library Headers
+
+/************************************************************************************
+* [SECTION] FORWARD DECLARATIONS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] TYPENAMES
+************************************************************************************/
 
 namespace Aurora
 {
   namespace Engine
   {
+
+/************************************************************************************
+* [SECTION] CONSTANTS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] ENUMS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] STRUCTS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] CLASSES
+************************************************************************************/
     class AURORA_ENGINE_API WindowsWindow : public Window
     {
-      public:
-        WindowsWindow(const WindowProperties& props);
-        virtual ~WindowsWindow();
+    public:
+      WindowsWindow(const WindowProperties& props);
+      virtual ~WindowsWindow();
 
-        void OnUpdate() const override;
+      void OnUpdate() const override;
 
-        inline std::string GetTitle() const override { return m_Props.Title; }
-        inline unsigned int GetWidth() const override { return m_Props.Width; }
-        inline unsigned int GetHeight() const override { return m_Props.Height; }
+      inline std::string GetTitle() const override { return m_Props.Title; }
+      inline unsigned int GetWidth() const override { return m_Props.Width; }
+      inline unsigned int GetHeight() const override { return m_Props.Height; }
 
-        inline void SetEventCallback(const EventCallbackFn& callback) override { m_Props.EventCallback = callback; }
-        void SetVSync(bool enabled);
-        bool IsVSync() const;
+      inline void SetEventCallback(const EventCallbackFn& callback) override { m_Props.EventCallback = callback; }
+      void SetVSync(bool enabled);
+      bool IsVSync() const;
 
-      private:
-        virtual void Init(const WindowProperties& props);
-        virtual void Shutdown();
+    private:
+      virtual void Init(const WindowProperties& props);
+      virtual void Shutdown();
 
-        struct WindowData
-        {
-          std::string Title;
-          unsigned int Width, Height, Focused, Maximized, Iconified;
-          int Xpos, Ypos;
-          bool VSync;
+      struct WindowData
+      {
+        std::string Title;
+        unsigned int Width, Height, Focused, Maximized, Iconified;
+        int Xpos, Ypos;
+        bool VSync;
 
-          EventCallbackFn EventCallback;
-        };
+        EventCallbackFn EventCallback;
+      };
 
-        WindowData m_Props;
+      WindowData m_Props;
     };
+
+/************************************************************************************
+* [SECTION] FUNCTIONS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] MACROS
+************************************************************************************/
+
   }
 }

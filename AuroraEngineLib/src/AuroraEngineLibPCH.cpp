@@ -14,7 +14,7 @@
 // Index of this file:
 // CODE
 //   - [SECTION] INCLUDES
-//   - [SECTION] STATIC CLASS MEMBER INITIALIZATION
+//   - [SECTION] STATIC VARIABLE INITIALIZATION
 //   - [SECTION] FUNCTIONS
 
 
@@ -36,7 +36,7 @@
 // Third Party Library Headers
 
 /************************************************************************************
-* [SECTION] STATIC CLASS MEMBER INITIALIZATION
+* [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
 
 /************************************************************************************

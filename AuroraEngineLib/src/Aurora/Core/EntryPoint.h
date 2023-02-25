@@ -1,33 +1,88 @@
+// Aurora Engine Library, v0.0.1 ALPHA
+// Header file
+
+// For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
+
+// Developed by Duncan Bauer and every direct or indirect contributors to the GitHub.
+// LICENSING INFORMATION
+
+// It is recommended that you don't modify any source code! It will become difficult for you to update the library.
+// Note that 'Aurora::Util::' being a namespace, you can add functions into the namespace from your own source files, without
+// modifying Util.h or Util.cpp. Discussing your changes on the GitHub Issue Tracker may lead you
+// to a better solution or official support for them.
+
+// Index of this file:
+// CODE
+//   - [SECTION] PREPROCESSOR DIRECTIVES
+//   - [SECTION] INCLUDES
+//   - [SECTION] FORWARD DECLARATIONS
+//   - [SECTION] TYPENAMES
+//   - [SECTION] CONSTANTS
+//   - [SECTION] ENUMS
+//   - [SECTION] CLASSES
+//   - [SECTION] STRUCTS
+//   - [SECTION] FUNCTIONS
+//   - [SECTION] MACROS
+
+/************************************************************************************
+* [SECTION] PREPROCESSOR DIRECTIVES
+************************************************************************************/
 #pragma once
 
+/************************************************************************************
+* [SECTION] INCLUDES
+************************************************************************************/
+// Project Specific Headers
+#include "Util.h"
 #include "Engine.h"
 
-#include <Util.h>
+// C++ Standard Library Headers
+
+// Third Party Library Headers
 
 #ifdef PA_PLATFORM_WINDOWS
-
+/************************************************************************************
+* [SECTION] FORWARD DECLARATIONS
+************************************************************************************/
 extern Aurora::Engine::Application* Aurora::Engine::CreateApplication();
 
+/************************************************************************************
+* [SECTION] TYPENAMES
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] CONSTANTS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] ENUMS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] STRUCTS
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] CLASSES
+************************************************************************************/
+
+/************************************************************************************
+* [SECTION] FUNCTIONS
+************************************************************************************/
 int main(int argc, char** argv)
 {
   Aurora::Util::Log::Init();
-
-  //AE_ENGINE_INFO("INFO");
-  //AE_ENGINE_TRACE("TRACE");
-  //AE_ENGINE_WARN("WARN");
-  //AE_ENGINE_ERROR("ERROR");
-  //AE_ENGINE_CRITICAL("CRITICAL");
-
-  //int x = 1;
-  //AE_INFO("INFO Var={0}", x++);
-  //AE_TRACE("TRACE Var={0}", x++);
-  //AE_WARN("WARN Var={0}", x++);
-  //AE_ERROR("ERROR Var={0}", x++);
-  //AE_CRITICAL("CRITICAL Var={0}", x++);
 
   auto app = Aurora::Engine::CreateApplication();
   app->Run();
   delete app;
 }
+
+/************************************************************************************
+* [SECTION] MACROS
+************************************************************************************/
+
+
+
 
 #endif

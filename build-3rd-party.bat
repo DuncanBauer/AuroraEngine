@@ -29,6 +29,3 @@ if not exist x64\Output\Release (
     MSBuild cryptest.sln /p:Configuration=Release /p:Platform=x64
 )
 cd ../../../
-
-::MSBuild ProjectAurora.sln /p:Configuration=Debug /p:Platform=x64
-::MSBuild ProjectAurora.sln /p:Configuration=Release /p:Platform=x64

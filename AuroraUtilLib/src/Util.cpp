@@ -14,7 +14,7 @@
 // Index of this file:
 // CODE
 //   - [SECTION] INCLUDES
-//   - [SECTION] STATIC CLASS MEMBER INITIALIZATION
+//   - [SECTION] STATIC VARAIBLE INITIALIZATION
 //   - [SECTION] FUNCTIONS
 
 
@@ -42,7 +42,7 @@ namespace Aurora
   namespace Util
   {
 /************************************************************************************
-* [SECTION] STATIC CLASS MEMBER INITIALIZATION
+* [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
     std::shared_ptr<spdlog::logger> Log::sm_UtilLogger;
     std::shared_ptr<spdlog::logger> Log::sm_MapleLogger;
