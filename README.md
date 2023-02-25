@@ -1,27 +1,42 @@
+## Table of Contents:
+- [Project Aurora](#project-aurora)
+  - [About:](#about)
+  - [License:](#license)
+  - [API:](#api)
+  - [Build:](#build)
+    - [Build-Tools:](#build-tools)
+    - [Installation:](#installation)
+  - [3rd-Party-Dependencies:](#3rd-party-dependencies)
+
 # Project Aurora
-
-## About: {#About}
+## About:
 ```
-Project Aurora is a long-term development project to create a MapleStory Private Server using a custom made Game Engine.
+Project Aurora is a long-term development project to create a custom Game Engine.
 ```
 
-## API: {#API}
-* [AuroraUtilLib](https://duncanbauer.github.io/AuroraUtilLib)
-* [AuroraEngineLib](https://duncanbauer.github.io/AuroraEngineLib)
-* [AuroraMapleLib](https://duncanbauer.github.io/AuroraMapleLib)
+## License:
+```
+```
 
-## Build Instructions:
-### Build Tools:
-* [cmake](https://cmake.org)
-* [premake](https://github.com/premake/premake-core)
+## API:
+- [AuroraUtilLib](https://duncanbauer.github.io/AuroraUtilLib)
+- [AuroraEngineLib](https://duncanbauer.github.io/AuroraEngineLib)
+- [AuroraMapleLib](https://duncanbauer.github.io/AuroraMapleLib)
+
+## Build:
+### Build-Tools:
+- [cmake](https://cmake.org)
+- [premake](https://github.com/premake/premake-core)
 
 For Windows:
-* [msbuild]()
+- [msbuild]()
 For Linux:
 For Mac:
-* [xcode]()
+- [xcode]()
 
-## 3rd Party Dependencies:
+### Installation:
+
+## 3rd-Party-Dependencies:
 * [boost_1_81_0](https://github.com/boostorg/boost)
 * [cryptopp](https://github.com/weidai11/cryptopp)
 * [glad](glad.dav1d.de)
