@@ -1,23 +1,39 @@
 #pragma once
 
-#include <Core.h>
+// Aurora Utilities Library, v0.0.1 ALPHA
 
-#include <chrono>
+// Help:
+// Read README.MD at https://github.com/duncanbauer/projectaurora
+
+#include <Core.h>
 
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
-
 
 namespace Aurora
 {
   namespace Util
   {
+    /********************************************************************************
+    * [CLASS] Time
+    *********************************************************************************
+    *
+    * A light-weight static class that returns the current time.
+    *
+    ********************************************************************************/
     class AURORA_UTIL_API Time
     {
       public:
-        static inline float GetTime() 
+        static inline float GetTimeSeconds()
         {
           std::chrono::seconds s = std::chrono::duration_cast<std::chrono::seconds>(
+            std::chrono::system_clock::now().time_since_epoch());
+          return s.count();
+        }
+
+        static inline float GetTimeMilliseconds()
+        {
+          std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::system_clock::now().time_since_epoch());
           return s.count();
         }
@@ -49,34 +65,18 @@ namespace Aurora
     class AURORA_UTIL_API Log
     {
       public:
-        static inline std::shared_ptr<spdlog::logger>& GetLibLogger() { return LibLogger; }
-        static inline std::shared_ptr<spdlog::logger>& GetEngineLogger() { return EngineLogger; }
-        static inline std::shared_ptr<spdlog::logger>& GetClientLogger() { return ClientLogger; }
-
         static void Init();
+        
+        static inline std::shared_ptr<spdlog::logger>& GetUtilLogger()   { return UtilLogger; }
+        static inline std::shared_ptr<spdlog::logger>& GetMapleLogger()  { return MapleLogger; }
+        static inline std::shared_ptr<spdlog::logger>& GetEngineLogger() { return EngineLogger; }
+        static inline std::shared_ptr<spdlog::logger>& GetProjectLogger() { return ProjectLogger; }
 
       private:
-        static std::shared_ptr<spdlog::logger> LibLogger;
+        static std::shared_ptr<spdlog::logger> UtilLogger;
+        static std::shared_ptr<spdlog::logger> MapleLogger;
         static std::shared_ptr<spdlog::logger> EngineLogger;
-        static std::shared_ptr<spdlog::logger> ClientLogger;
+        static std::shared_ptr<spdlog::logger> ProjectLogger;
      };
   }
 }
-
-#define PA_LIB_INFO(...)     ::Aurora::Util::Log::GetLibLogger()->info(__VA_ARGS__)
-#define PA_LIB_TRACE(...)    ::Aurora::Util::Log::GetLibLogger()->trace(__VA_ARGS__)
-#define PA_LIB_WARN(...)     ::Aurora::Util::Log::GetLibLogger()->warn(__VA_ARGS__)
-#define PA_LIB_ERROR(...)    ::Aurora::Util::Log::GetLibLogger()->error(__VA_ARGS__)
-#define PA_LIB_CRITICAL(...) ::Aurora::Util::Log::GetLibLogger()->critical(__VA_ARGS__)
-
-#define PA_ENGINE_INFO(...)     ::Aurora::Util::Log::GetEngineLogger()->info(__VA_ARGS__)
-#define PA_ENGINE_TRACE(...)    ::Aurora::Util::Log::GetEngineLogger()->trace(__VA_ARGS__)
-#define PA_ENGINE_WARN(...)     ::Aurora::Util::Log::GetEngineLogger()->warn(__VA_ARGS__)
-#define PA_ENGINE_ERROR(...)    ::Aurora::Util::Log::GetEngineLogger()->error(__VA_ARGS__)
-#define PA_ENGINE_CRITICAL(...) ::Aurora::Util::Log::GetEngineLogger()->critical(__VA_ARGS__)
-
-#define PA_CLIENT_INFO(...)         ::Aurora::Util::Log::GetClientLogger()->info(__VA_ARGS__)
-#define PA_CLIENT_TRACE(...)        ::Aurora::Util::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define PA_CLIENT_WARN(...)         ::Aurora::Util::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define PA_CLIENT_ERROR(...)        ::Aurora::Util::Log::GetClientLogger()->error(__VA_ARGS__)
-#define PA_CLIENT_CRITICAL(...)     ::Aurora::Util::Log::GetClientLogger()->critical(__VA_ARGS__)

@@ -8,22 +8,26 @@ namespace Aurora
 {
   namespace Util
   {
-    std::shared_ptr<spdlog::logger> Log::LibLogger;
+    std::shared_ptr<spdlog::logger> Log::UtilLogger;
+    std::shared_ptr<spdlog::logger> Log::MapleLogger;
     std::shared_ptr<spdlog::logger> Log::EngineLogger;
-    std::shared_ptr<spdlog::logger> Log::ClientLogger;
+    std::shared_ptr<spdlog::logger> Log::ProjectLogger;
 
     void Log::Init()
     {
       spdlog::set_pattern("%^[%T] %n: %v%$");
 
-      Log::LibLogger = spdlog::stdout_color_mt("LibLogger");
-      Log::LibLogger->set_level(spdlog::level::level_enum::trace);
+      Log::UtilLogger = spdlog::stdout_color_mt("LibLogger");
+      Log::UtilLogger->set_level(spdlog::level::level_enum::trace);
+
+      Log::MapleLogger = spdlog::stdout_color_mt("MapleLogger");
+      Log::MapleLogger->set_level(spdlog::level::level_enum::trace);
 
       Log::EngineLogger = spdlog::stdout_color_mt("EngineLogger");
       Log::EngineLogger->set_level(spdlog::level::level_enum::trace);
 
-      Log::ClientLogger = spdlog::stdout_color_mt("ClientLogger");
-      Log::ClientLogger->set_level(spdlog::level::level_enum::trace);
+      Log::ProjectLogger = spdlog::stdout_color_mt("ProjectLogger");
+      Log::ProjectLogger->set_level(spdlog::level::level_enum::trace);
     }
   }
 }
