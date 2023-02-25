@@ -14,6 +14,7 @@
     - [Read First](#read-first)
     - [How to Update](#how-to-update)
     - [Getting Started](#getting-started)
+    - [Naming Conventions](#naming-conventions)
   - [API](#api)
     - [Releases](#releases)
     - [Changelog](#changelog)
@@ -58,8 +59,46 @@ Project Aurora is a long-term development project to create a custom Game Engine
 
 ## Programmer Guide
 ### Read First
+```
+```
+
 ### How to Update
+```
+```
+
 ### Getting Started
+```
+```
+
+### Naming Conventions
+```
+Classes:
+- Capitalized
+- CamelCase
+
+Functions:
+- Capitalized
+- CamelCase
+
+Variables:
+- Uncaptialized
+- CamelCase
+    Static:
+        - Begins with s_
+    Pointer:
+        - Begins with p_
+    Reference:
+        - Begins with r_
+
+    Class member:
+        - Beings with m_
+    Static:
+        - Begins with sm_
+    Pointer:
+        - Begins with pm_
+    Reference:
+        - Begins with rm_
+```
 
 ## API
 - [AuroraUtilLib](https://duncanbauer.github.io/AuroraUtilLib)
