@@ -1,4 +1,4 @@
-// Aurora Util Library, v0.0.1 ALPHA
+// Aurora Engine Library, v0.0.1 ALPHA
 // Header file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
@@ -28,32 +28,28 @@
 ************************************************************************************/
 #pragma once
 
-// Define dllexport and dllimport for Windows
-#ifdef PA_PLATFORM_WINDOWS
-  #ifdef PA_UTIL_BUILD_DLL
-    #define AURORA_UTIL_API _declspec(dllexport)
-  #else
-    #define AURORA_UTIL_API _declspec(dllimport)
-  #endif
-  #ifdef PA_ENGINE_BUILD_DLL
-    #define AURORA_ENGINE_API _declspec(dllexport)
-  #else
-    #define AURORA_ENGINE_API _declspec(dllimport)
-  #endif
-  #ifdef PA_MAPLE_BUILD_DLL
-    #define AURORA_MAPLE_API _declspec(dllexport)
-  #else
-    #define AURORA_MAPLE_API _declspec(dllimport)
-  #endif
-#else
-  #error PROJECT AURORA ONLY SUPPORTS WINDOWS!
-#endif
+// Library Version
+// (Integer encoded as XYYZZ for use in #if preprocessor conditionals, e.g. '#if AURORA_UTIL_VERSION_NUM > 12345')
+#define AURORA_ENGINE_VERSION     "0.0.01 ALPHA"
+#define AURORA_ENGINE_VERSION_NUM 00001
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
 // Project Specific Headers
+#include "Aurora/Core/Application.h"
+#include "Aurora/Core/Event/Event.h"
+#include "Aurora/Core/Layer/Layer.h"
+#include "Aurora/Core/ImGui/ImGuiLayer.h"
+#include "Aurora/Core/Layer/LayerStack.h"
+
+/****************************
+* ENTRY POINT
+****************************/
+#include "Aurora/Core/EntryPoint.h"
+
 // C++ Standard Library Headers
+
 // Third Party Library Headers
 
 /************************************************************************************
@@ -83,21 +79,3 @@
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
-// Bitwise macros
-// BIT macro that takes a single argument x and performs a bitwise left shift operation
-// on the integer value 1 by x bits. The result of this operation is a binary number
-// where the bit at position x is set to 1 and all other bits are set to 0.
-#define BIT(x) (1 << x)
-
-// Assert Macros for Project Aurora Libraries and projects made with Project Aurora Libraries
-#ifdef PA_ASSERTS_ENABLED
-  #define PA_UTIL_ASSERT(x, ...)    { if(!(x)) { PA_UTIL_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-  #define PA_MAPLE_ASSERT(x, ...)   { if(!(x)) { PA_MAPLE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-  #define PA_ENGINE_ASSERT(x, ...)  { if(!(x)) { PA_ENGINE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-  #define PA_PROJECT_ASSERT(x, ...) { if(!(x)) { PA_PROJECT_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#else
-  #define PA_UTIL_ASSERT(x, ...)
-  #define PA_MAPLE_ASSERT(x, ...)
-  #define PA_ENGINE_ASSERT(x, ...)
-  #define PA_PROJECT_ASSERT(x, ...)
-#endif

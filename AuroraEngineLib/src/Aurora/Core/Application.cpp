@@ -33,7 +33,7 @@ namespace Aurora
     {
       while (m_Running)
       {
-        float time = Util::Time::GetTime();
+        float time = Util::Time::GetTimeSeconds();
         Util::DeltaTime d_time = time - m_LastFrameTime;
         m_LastFrameTime = time;
 

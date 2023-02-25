@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Aurora.h>
+#include "Engine.h"
 
 // C++
 #include <iostream>
@@ -10,12 +10,12 @@ class ExampleLayer : public Aurora::Engine::Layer
 {
   void OnUpdate(Aurora::Util::DeltaTime t) override
   {
-    PA_CLIENT_TRACE("ExampleLayer::OnUpdate");
+    PA_PROJECT_TRACE("ExampleLayer::OnUpdate");
   }
 
   void OnEvent(Aurora::Engine::Event& e) override
   {
-    PA_CLIENT_TRACE("ExampleLayer::OnEvent");
+    PA_PROJECT_TRACE("ExampleLayer::OnEvent");
   }
 };
 

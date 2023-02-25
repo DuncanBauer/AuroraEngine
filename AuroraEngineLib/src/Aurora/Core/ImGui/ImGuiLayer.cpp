@@ -62,7 +62,7 @@ namespace Aurora
       int x = static_cast<int>(io.DisplaySize.x);
       int y = static_cast<int>(io.DisplaySize.y);
 
-      float time = Util::Time::GetTime();
+      float time = Util::Time::GetTimeSeconds();
       io.DeltaTime = m_Time > 0.0 ? (time - m_Time) : (1.0f / 60.0f);
       m_Time = time;
 
