@@ -71,13 +71,19 @@ namespace Aurora
     {
       public:
         Layer() {}
+        Layer(bool _blocking) : m_Blocking(_blocking) {}
         virtual ~Layer() = default;
-        virtual void OnUpdate(Util::DeltaTime t) {}
-        virtual void OnEvent(Event& e) {}
-        virtual void OnRender() {}
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
+
+        virtual void OnUpdate(Util::DeltaTime t) {}
+        virtual void OnEvent(Event& e) {}
+
+        bool IsBlocking() const { return m_Blocking; }
+
+    private:
+      bool m_Blocking = false;
     };
 
 /************************************************************************************

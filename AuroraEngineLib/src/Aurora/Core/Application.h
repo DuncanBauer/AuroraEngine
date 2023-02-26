@@ -93,16 +93,15 @@ namespace Aurora
       inline Window& GetWindow() { return *m_Window; }
 
     private:
-      // Event handlers
       bool OnWindowClosed(WindowClosedEvent& e);
       bool OnWindowResized(WindowResizedEvent& e);
 
+    private:
       std::unique_ptr<Window> m_Window;
       bool m_Running = true;
       LayerStack m_LayerStack;
       float m_LastFrameTime = 0;
 
-    private:
       static Application* s_Instance;
     };
 
@@ -114,7 +113,6 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
   }
 }
 

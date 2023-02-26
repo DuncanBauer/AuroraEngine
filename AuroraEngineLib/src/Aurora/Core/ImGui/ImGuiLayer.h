@@ -33,6 +33,10 @@
 * [SECTION] INCLUDES
 ************************************************************************************/
 // Project Specific Headers
+#include "Aurora/Core/Event/Event.h"
+#include "Aurora/Core/Event/ApplicationEvent.h"
+#include "Aurora/Core/Event/MouseEvent.h"
+#include "Aurora/Core/Event/KeyEvent.h"
 #include "Aurora/Core/Layer/Layer.h"
 
 // C++ Standard Library Headers
@@ -42,6 +46,8 @@
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+struct GLFWwindow;
+struct GLFWmonitor;
 
 /************************************************************************************
 * [SECTION] TYPENAMES
@@ -75,8 +81,29 @@ namespace Aurora
         void OnAttach();
         void OnDetach();
 
+        void Begin();
+        void End();
+
         void OnUpdate(Aurora::Util::DeltaTime t) override;
         void OnEvent(Aurora::Engine::Event& e) override;
+
+      private:
+        bool OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e);
+        bool OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e);
+        bool OnWindowClosed(Aurora::Engine::WindowClosedEvent& e);
+        bool OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e);
+        bool OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e);
+        bool OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e);
+        bool OnWindowMoved(Aurora::Engine::WindowMovedEvent& e);
+        bool OnWindowResized(Aurora::Engine::WindowResizedEvent& e);
+        
+        bool OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e);
+        bool OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e);
+        bool OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e);
+        bool OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e);
+        
+        bool OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e);
+        bool OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e);
 
       private:
         float m_Time = 0.0f;

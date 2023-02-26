@@ -60,7 +60,7 @@ namespace Aurora
       s_Instance = this;
 
       m_Window = std::unique_ptr<Window>(Window::Create());
-      m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+      m_Window->SetEventCallback(BIND_EVENT_FN(Application, OnEvent));
     }
 
     Application::~Application()
@@ -94,9 +94,11 @@ namespace Aurora
 
     void Application::OnEvent(Event& e)
     {
+      PA_ENGINE_TRACE("{0}", e);
+     
       EventDispatcher dispatcher(e);
-      dispatcher.Dispatch<WindowClosedEvent>(BIND_EVENT_FN(OnWindowClosed));
-      dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FN(OnWindowResized));
+      dispatcher.Dispatch<WindowClosedEvent>(BIND_EVENT_FN(Application, OnWindowClosed));
+      dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FN(Application, OnWindowResized));
 
       auto rit = m_LayerStack.rbegin();
       while (rit != m_LayerStack.rend())
@@ -104,8 +106,6 @@ namespace Aurora
         (*rit)->OnEvent(e);
         rit++;
       }
-
-      PA_ENGINE_TRACE("{0}", e);
     }
 
     void Application::PushLayer(Layer* layer)

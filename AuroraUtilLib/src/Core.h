@@ -101,3 +101,6 @@
   #define PA_ENGINE_ASSERT(x, ...)
   #define PA_PROJECT_ASSERT(x, ...)
 #endif
+
+// Event binding macros
+#define BIND_EVENT_FN(x, y) std::bind(&x::y, this, std::placeholders::_1)

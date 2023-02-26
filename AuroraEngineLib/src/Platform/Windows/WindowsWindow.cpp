@@ -262,9 +262,6 @@ namespace Aurora
     void WindowsWindow::Shutdown()
     {
 
-      ImGui_ImplOpenGL3_Shutdown();
-      ImGui_ImplGlfw_Shutdown();
-      ImGui::DestroyContext();
       glfwDestroyWindow(m_Window);
     }
 
