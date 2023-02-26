@@ -70,34 +70,34 @@ namespace Aurora
     class AURORA_ENGINE_API KeyEvent : public Event
     {
     public:
-      inline int GetKey() const { return Key; }
+      inline int GetKey() const { return m_Key; }
 
       EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
     protected:
-      KeyEvent(int _Key) : Key(_Key) {}
-      int Key;
+      KeyEvent(int _Key) : m_Key(_Key) {}
+      int m_Key;
     };
 
     class AURORA_ENGINE_API KeyPressedEvent : public KeyEvent
     {
     public:
       KeyPressedEvent(int _Key, int _RepeatCount)
-        : KeyEvent(_Key), RepeatCount(_RepeatCount) {}
+        : KeyEvent(_Key), m_RepeatCount(_RepeatCount) {}
 
-      int GetRepeatCount() { return RepeatCount; }
+      int GetRepeatCount() { return m_RepeatCount; }
 
       std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "KeyPressedEvent: " << Key << ", " << RepeatCount;
+        ss << "KeyPressedEvent: " << m_Key << ", " << m_RepeatCount;
         return ss.str();
       }
 
       EVENT_CLASS_TYPE(KeyPressed)
 
     private:
-      int RepeatCount = 0;
+      int m_RepeatCount = 0;
     };
 
     class AURORA_ENGINE_API KeyReleasedEvent : public KeyEvent
@@ -109,7 +109,7 @@ namespace Aurora
       std::string ToString() const override
       {
         std::stringstream ss;
-        ss << "KeyReleasedEvent: " << Key;
+        ss << "KeyReleasedEvent: " << m_Key;
         return ss.str();
       }
 

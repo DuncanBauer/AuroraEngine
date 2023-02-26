@@ -101,27 +101,27 @@ namespace Aurora
       }
 
     protected:
-      bool Handled = false;
+      bool m_Handled = false;
     };
 
     class EventDispatcher
     {
     public:
-      EventDispatcher(Event& _event) : Event(_event) { }
+      EventDispatcher(Event& _event) : m_Event(_event) { }
 
       template<typename T, typename F>
       bool Dispatch(const F& func)
       {
-        if (Event.GetEventType() == T::GetStaticType())
+        if (m_Event.GetEventType() == T::GetStaticType())
         {
-          Event.Handled |= func(static_cast<T&>(Event));
+          m_Event.m_Handled |= func(static_cast<T&>(m_Event));
           return true;
         }
         return false;
       }
 
     private:
-      Event& Event;
+      Event& m_Event;
     };
 
 /************************************************************************************

@@ -40,6 +40,7 @@
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h" 
 #include "backends/imgui_impl_opengl3.h"
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace Aurora
@@ -213,14 +214,15 @@ namespace Aurora
     bool ImGuiLayer::OnWindowMoved(Aurora::Engine::WindowMovedEvent& e)
     {
       ImGuiIO& io = ImGui::GetIO();
-      
       return IsBlocking();
     }
 
     bool ImGuiLayer::OnWindowResized(Aurora::Engine::WindowResizedEvent& e)
     {
       ImGuiIO& io = ImGui::GetIO();
-
+      io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+      io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+      glViewport(0, 0, e.GetWidth(), e.GetWidth());
       return IsBlocking();
     }
  
