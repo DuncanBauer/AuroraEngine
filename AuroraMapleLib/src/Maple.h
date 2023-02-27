@@ -30,7 +30,7 @@
 
 // Library Version
 // (Integer encoded as XYYZZ for use in #if preprocessor conditionals, e.g. '#if AURORA_UTIL_VERSION_NUM > 12345')
-#define AURORA_MAPLE_VERSION     "0.0.01 ALPHA"
+#define AURORA_MAPLE_VERSION     "0.0.1 ALPHA"
 #define AURORA_MAPLE_VERSION_NUM 00001
 
 /************************************************************************************

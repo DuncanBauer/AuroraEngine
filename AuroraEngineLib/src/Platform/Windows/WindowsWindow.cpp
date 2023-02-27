@@ -212,6 +212,13 @@ namespace Aurora
         }
       });
 
+      glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int key)
+      {
+        WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+        KeyTypedEvent e(key);
+        data.EventCallback(e);
+      });
+
       // Mouse Callbacks
       glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
       {

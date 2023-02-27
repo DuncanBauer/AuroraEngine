@@ -76,7 +76,7 @@ namespace Aurora
       None = 0,
       WindowClosed, WindowResized, WindowMaximized, WindowMinimized, WindowGainedFocus, WindowLostFocus, WindowMoved,
       AppTicked, AppUpdate, AppRender,
-      KeyPressed, KeyReleased,
+      KeyPressed, KeyReleased, KeyTyped,
       MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
     };
 

@@ -56,7 +56,11 @@ namespace Aurora
     ImGuiLayer::ImGuiLayer() : Layer()
     {
     }
-    
+
+    ImGuiLayer::ImGuiLayer(bool _blocking) : Layer(_blocking)
+    {
+    }
+
     ImGuiLayer::~ImGuiLayer() 
     {
     }
@@ -69,9 +73,9 @@ namespace Aurora
       ImGuiIO& io = ImGui::GetIO();
       io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
       io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
-      io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
-      io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-      io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+      io.ConfigFlags  |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+      io.ConfigFlags  |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+      io.ConfigFlags  |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 
       ImGui::StyleColorsDark();
       ImGuiStyle& style = ImGui::GetStyle();
@@ -150,123 +154,151 @@ namespace Aurora
       PA_ENGINE_TRACE("ImGuiLayer::{0}", e);
       
       EventDispatcher dispatcher(e);
-      dispatcher.Dispatch<WindowGainedFocusEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowGainedFocus));
-      dispatcher.Dispatch<WindowLostFocusEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowLoseFocus));
-      dispatcher.Dispatch<WindowClosedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowClosed));
-      dispatcher.Dispatch<WindowMaximizedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowMaximized));
-      dispatcher.Dispatch<WindowMinimizedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowMinimized));
-      dispatcher.Dispatch<WindowRestoredEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowRestored));
-      dispatcher.Dispatch<WindowMovedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowMoved));
-      dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowResized));
+    // Handled in GLFW and OPENGL backends
+      //dispatcher.Dispatch<WindowGainedFocusEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowGainedFocus));
+      //dispatcher.Dispatch<WindowLostFocusEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowLoseFocus));
+      //dispatcher.Dispatch<WindowClosedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowClosed));
+      //dispatcher.Dispatch<WindowMaximizedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowMaximized));
+      //dispatcher.Dispatch<WindowMinimizedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowMinimized));
+      //dispatcher.Dispatch<WindowRestoredEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowRestored));
+      //dispatcher.Dispatch<WindowMovedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowMoved));
+      //dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowResized));
 
-      dispatcher.Dispatch<MouseButtonPressedEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseButtonPressedEvent));
-      dispatcher.Dispatch<MouseButtonReleasedEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseButtonReleasedEvent));
-      dispatcher.Dispatch<MouseMovedEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseMovedEvent));
-      dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseScrolledEvent));
+      //dispatcher.Dispatch<MouseButtonPressedEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseButtonPressedEvent));
+      //dispatcher.Dispatch<MouseButtonReleasedEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseButtonReleasedEvent));
+      //dispatcher.Dispatch<MouseMovedEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseMovedEvent));
+      //dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FN(ImGuiLayer, OnMouseScrolledEvent));
 
-      dispatcher.Dispatch<KeyPressedEvent>(BIND_EVENT_FN(ImGuiLayer, OnKeyboardButtonPressedEvent));
-      dispatcher.Dispatch<KeyReleasedEvent>(BIND_EVENT_FN(ImGuiLayer, OnKeyboardButtonReleasedEvent));
+      //dispatcher.Dispatch<KeyPressedEvent>(BIND_EVENT_FN(ImGuiLayer, OnKeyboardButtonPressedEvent));
+      //dispatcher.Dispatch<KeyReleasedEvent>(BIND_EVENT_FN(ImGuiLayer, OnKeyboardButtonReleasedEvent));
+      //dispatcher.Dispatch<KeyTypedEvent>(BIND_EVENT_FN(ImGuiLayer, OnKeyboardButtonTypedEvent));
     }
 
-    bool ImGuiLayer::OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      
-      return IsBlocking();
-    }
+  // Handled in GLFW and OPENGL backends
+    //bool ImGuiLayer::OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnWindowClosed(Aurora::Engine::WindowClosedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnWindowClosed(Aurora::Engine::WindowClosedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnWindowMoved(Aurora::Engine::WindowMovedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnWindowMoved(Aurora::Engine::WindowMovedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
 
-    bool ImGuiLayer::OnWindowResized(Aurora::Engine::WindowResizedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
-      io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
-      glViewport(0, 0, e.GetWidth(), e.GetWidth());
-      return IsBlocking();
-    }
+    //  return IsBlocking();
+    //}
+
+    //bool ImGuiLayer::OnWindowResized(Aurora::Engine::WindowResizedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+    //  io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+    //  glViewport(0, 0, e.GetWidth(), e.GetWidth());
+    //  
+    //  return IsBlocking();
+    //}
  
-    bool ImGuiLayer::OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.MouseDown[e.GetMouseButton()] = true;
-      return IsBlocking();
-    }
-    
-    bool ImGuiLayer::OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.MouseDown[e.GetMouseButton()] = false;
-      return IsBlocking();
-    }
-    
-    bool ImGuiLayer::OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.MouseWheelH += e.GetXOffset();
-      io.MouseWheel += e.GetYOffset();
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  io.MouseDown[e.GetMouseButton()] = true;
+    //  return IsBlocking();
+    //}
+    //
+    //bool ImGuiLayer::OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  io.MouseDown[e.GetMouseButton()] = false;
+    //  return IsBlocking();
+    //}
+    //
+    //bool ImGuiLayer::OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  io.MouseWheelH += e.GetXOffset();
+    //  io.MouseWheel += e.GetYOffset();
+    //  
+    //  return IsBlocking();
+    //}
 
-    bool ImGuiLayer::OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.MousePos = ImVec2(e.GetX(), e.GetY());
-      return IsBlocking();
-    }
-    
-    bool ImGuiLayer::OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.KeysDown[e.GetKey()] = true;
-      return IsBlocking();
-    }
-    
-    bool ImGuiLayer::OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e)
-    {
-      ImGuiIO& io = ImGui::GetIO();
-      io.KeysDown[e.GetKey()] = false;
-      return IsBlocking();
-    }
+    //bool ImGuiLayer::OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  io.MousePos = ImVec2(e.GetX(), e.GetY());
+    //  return IsBlocking();
+    //}
+    //
+    //bool ImGuiLayer::OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  
+    //  io.KeysDown[e.GetKey()] = true;
+    //  io.KeyCtrl  = io.KeysDown[Key::LeftControl || Key::RightControl];
+    //  io.KeyAlt   = io.KeysDown[Key::LeftAlt     || Key::RightAlt];
+    //  io.KeyShift = io.KeysDown[Key::LeftShift   || Key::RightShift];
+    //  io.KeySuper = io.KeysDown[Key::LeftSuper   || Key::RightSuper];
+
+    //  return IsBlocking();
+    //}
+    //
+    //bool ImGuiLayer::OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+    //  io.KeysDown[e.GetKey()] = false;
+    //  return IsBlocking();
+    //}
+
+    //// For typing into input boxes
+    //bool ImGuiLayer::OnKeyboardButtonTypedEvent(Aurora::Engine::KeyTypedEvent& e)
+    //{
+    //  ImGuiIO& io = ImGui::GetIO();
+
+    //  int keycode = e.GetKey();
+    //  if (keycode > 0 && keycode < 0x10000)
+    //  {
+    //    io.AddInputCharacter((unsigned short)keycode);
+    //  }
+
+    //  return IsBlocking();
+    //}
 #pragma endregion
   }
 }

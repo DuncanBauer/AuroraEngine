@@ -32,7 +32,7 @@
 #pragma region Preprocessor
 // Library Version
 // (Integer encoded as XYYZZ for use in #if preprocessor conditionals, e.g. '#if IMGUI_VERSION_NUM > 12345')
-#define AURORA_UTIL_VERSION     "0.0.01 ALPHA"
+#define AURORA_UTIL_VERSION     "0.0.1 ALPHA"
 #define AURORA_UTIL_VERSION_NUM 00001
 #pragma endregion
 
@@ -59,22 +59,32 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+#pragma region Forward Declaration
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
+#pragma region Typenames
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
+#pragma region Constants
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
+#pragma region Enums
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
+#pragma region Structs
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CLASSES
@@ -180,38 +190,71 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
 #pragma region Macros
-// SPDLog Macros for the Project Aurora Util Library
-#define PA_UTIL_INFO(...)     ::Aurora::Util::Log::GetUtilLogger()->info(__VA_ARGS__)
-#define PA_UTIL_TRACE(...)    ::Aurora::Util::Log::GetUtilLogger()->trace(__VA_ARGS__)
-#define PA_UTIL_WARN(...)     ::Aurora::Util::Log::GetUtilLogger()->warn(__VA_ARGS__)
-#define PA_UTIL_ERROR(...)    ::Aurora::Util::Log::GetUtilLogger()->error(__VA_ARGS__)
-#define PA_UTIL_CRITICAL(...) ::Aurora::Util::Log::GetUtilLogger()->critical(__VA_ARGS__)
 
-// SPDLog Macros for the Project Aurora Maple Library
-#define PA_MAPLE_INFO(...)     ::Aurora::Util::Log::GetMapleLogger()->info(__VA_ARGS__)
-#define PA_MAPLE_TRACE(...)    ::Aurora::Util::Log::GetMapleLogger()->trace(__VA_ARGS__)
-#define PA_MAPLE_WARN(...)     ::Aurora::Util::Log::GetMapleLogger()->warn(__VA_ARGS__)
-#define PA_MAPLE_ERROR(...)    ::Aurora::Util::Log::GetMapleLogger()->error(__VA_ARGS__)
-#define PA_MAPLE_CRITICAL(...) ::Aurora::Util::Log::GetMapleLogger()->critical(__VA_ARGS__)
+#ifdef PA_DEBUG
+  // SPDLog Macros for the Project Aurora Util Library
+  #define PA_UTIL_INFO(...)     ::Aurora::Util::Log::GetUtilLogger()->info(__VA_ARGS__)
+  #define PA_UTIL_TRACE(...)    ::Aurora::Util::Log::GetUtilLogger()->trace(__VA_ARGS__)
+  #define PA_UTIL_WARN(...)     ::Aurora::Util::Log::GetUtilLogger()->warn(__VA_ARGS__)
+  #define PA_UTIL_ERROR(...)    ::Aurora::Util::Log::GetUtilLogger()->error(__VA_ARGS__)
+  #define PA_UTIL_CRITICAL(...) ::Aurora::Util::Log::GetUtilLogger()->critical(__VA_ARGS__)
 
-// SPDLog Macros for the Project Aurora Engine Library
-#define PA_ENGINE_INFO(...)     ::Aurora::Util::Log::GetEngineLogger()->info(__VA_ARGS__)
-#define PA_ENGINE_TRACE(...)    ::Aurora::Util::Log::GetEngineLogger()->trace(__VA_ARGS__)
-#define PA_ENGINE_WARN(...)     ::Aurora::Util::Log::GetEngineLogger()->warn(__VA_ARGS__)
-#define PA_ENGINE_ERROR(...)    ::Aurora::Util::Log::GetEngineLogger()->error(__VA_ARGS__)
-#define PA_ENGINE_CRITICAL(...) ::Aurora::Util::Log::GetEngineLogger()->critical(__VA_ARGS__)
+  // SPDLog Macros for the Project Aurora Maple Library
+  #define PA_MAPLE_INFO(...)     ::Aurora::Util::Log::GetMapleLogger()->info(__VA_ARGS__)
+  #define PA_MAPLE_TRACE(...)    ::Aurora::Util::Log::GetMapleLogger()->trace(__VA_ARGS__)
+  #define PA_MAPLE_WARN(...)     ::Aurora::Util::Log::GetMapleLogger()->warn(__VA_ARGS__)
+  #define PA_MAPLE_ERROR(...)    ::Aurora::Util::Log::GetMapleLogger()->error(__VA_ARGS__)
+  #define PA_MAPLE_CRITICAL(...) ::Aurora::Util::Log::GetMapleLogger()->critical(__VA_ARGS__)
 
-// SPDLog Macros for projects made with the Project Aurora Libraries 
-#define PA_PROJECT_INFO(...)     ::Aurora::Util::Log::GetProjectLogger()->info(__VA_ARGS__)
-#define PA_PROJECT_TRACE(...)    ::Aurora::Util::Log::GetProjectLogger()->trace(__VA_ARGS__)
-#define PA_PROJECT_WARN(...)     ::Aurora::Util::Log::GetProjectLogger()->warn(__VA_ARGS__)
-#define PA_PROJECT_ERROR(...)    ::Aurora::Util::Log::GetProjectLogger()->error(__VA_ARGS__)
-#define PA_PROJECT_CRITICAL(...) ::Aurora::Util::Log::GetProjectLogger()->critical(__VA_ARGS__)
+  // SPDLog Macros for the Project Aurora Engine Library
+  #define PA_ENGINE_INFO(...)     ::Aurora::Util::Log::GetEngineLogger()->info(__VA_ARGS__)
+  #define PA_ENGINE_TRACE(...)    ::Aurora::Util::Log::GetEngineLogger()->trace(__VA_ARGS__)
+  #define PA_ENGINE_WARN(...)     ::Aurora::Util::Log::GetEngineLogger()->warn(__VA_ARGS__)
+  #define PA_ENGINE_ERROR(...)    ::Aurora::Util::Log::GetEngineLogger()->error(__VA_ARGS__)
+  #define PA_ENGINE_CRITICAL(...) ::Aurora::Util::Log::GetEngineLogger()->critical(__VA_ARGS__)
+
+  // SPDLog Macros for projects made with the Project Aurora Libraries 
+  #define PA_PROJECT_INFO(...)     ::Aurora::Util::Log::GetProjectLogger()->info(__VA_ARGS__)
+  #define PA_PROJECT_TRACE(...)    ::Aurora::Util::Log::GetProjectLogger()->trace(__VA_ARGS__)
+  #define PA_PROJECT_WARN(...)     ::Aurora::Util::Log::GetProjectLogger()->warn(__VA_ARGS__)
+  #define PA_PROJECT_ERROR(...)    ::Aurora::Util::Log::GetProjectLogger()->error(__VA_ARGS__)
+  #define PA_PROJECT_CRITICAL(...) ::Aurora::Util::Log::GetProjectLogger()->critical(__VA_ARGS__)
+#else
+  // SPDLog Macros for the Project Aurora Util Library
+  #define PA_UTIL_INFO(...)
+  #define PA_UTIL_TRACE(...)
+  #define PA_UTIL_WARN(...)
+  #define PA_UTIL_ERROR(...)
+  #define PA_UTIL_CRITICAL(...)
+
+  // SPDLog Macros for the Project Aurora Maple Library
+  #define PA_MAPLE_INFO(...)
+  #define PA_MAPLE_TRACE(...)
+  #define PA_MAPLE_WARN(...)
+  #define PA_MAPLE_ERROR(...)
+  #define PA_MAPLE_CRITICAL(...)
+
+  // SPDLog Macros for the Project Aurora Engine Library
+  #define PA_ENGINE_INFO(...)
+  #define PA_ENGINE_TRACE(...)
+  #define PA_ENGINE_WARN(...)
+  #define PA_ENGINE_ERROR(...)
+  #define PA_ENGINE_CRITICAL(...)
+
+  // SPDLog Macros for projects made with the Project Aurora Libraries 
+  #define PA_PROJECT_INFO(...)
+  #define PA_PROJECT_TRACE(...)
+  #define PA_PROJECT_WARN(...)
+  #define PA_PROJECT_ERROR(...)
+  #define PA_PROJECT_CRITICAL(...) 
+#endif
 
 #pragma endregion
   }

@@ -37,6 +37,7 @@
 #pragma region Includes
 // Project Specific Headers
 #include "Engine.h"
+#include "Maple.h"
 
 // C++ Standard Library Headers
 
@@ -79,7 +80,6 @@ public:
 
   void Run();
 };
-
 #pragma endregion
 
 /************************************************************************************

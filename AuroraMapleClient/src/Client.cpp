@@ -24,9 +24,11 @@
 // PCH
 
 // Project Specific Header
+//#include "Core.h"
 #include "Client.h"
 
 // C++ Headers
+#include <iostream>
 
 // Third Party Library Headers
 #pragma endregion
@@ -43,7 +45,7 @@
 #pragma region Functions
 Client::Client()
 {
-  PushOverlay(new Aurora::Engine::ImGuiLayer());
+  PushOverlay(new Aurora::Engine::ImGuiLayer(true));
 }
 
 Client::~Client()
@@ -53,7 +55,14 @@ Client::~Client()
 
 void Client::Run()
 {
+#ifdef PA_DEBUG
   printf("Client running\n");
-  while (true);
+  std::cout << "Util Version: " << AURORA_UTIL_VERSION << '\n';
+  std::cout << "Engine Version: " << AURORA_ENGINE_VERSION << '\n';
+  std::cout << "Maple Version: " << AURORA_MAPLE_VERSION << '\n';
+  std::cin.ignore(1000, '\n');
+#endif
+
+  Application::Run();
 }
 #pragma endregion

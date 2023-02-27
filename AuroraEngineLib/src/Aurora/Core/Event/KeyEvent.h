@@ -131,6 +131,22 @@ namespace Aurora
 
       EVENT_CLASS_TYPE(KeyReleased)
     };
+
+    class AURORA_ENGINE_API KeyTypedEvent : public KeyEvent
+    {
+    public:
+      KeyTypedEvent(int _Key)
+        : KeyEvent(_Key) {}
+
+      std::string ToString() const override
+      {
+        std::stringstream ss;
+        ss << "KeyTypedEvent: " << m_Key;
+        return ss.str();
+      }
+
+      EVENT_CLASS_TYPE(KeyTyped)
+    };
 #pragma endregion
 
 /************************************************************************************

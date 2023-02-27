@@ -92,6 +92,7 @@ namespace Aurora
     {
       public:
         ImGuiLayer();
+        ImGuiLayer(bool _blocking);
         ~ImGuiLayer();
 
         void OnAttach();
@@ -104,22 +105,24 @@ namespace Aurora
         void OnEvent(Aurora::Engine::Event& e) override;
 
       private:
-        bool OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e);
-        bool OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e);
-        bool OnWindowClosed(Aurora::Engine::WindowClosedEvent& e);
-        bool OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e);
-        bool OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e);
-        bool OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e);
-        bool OnWindowMoved(Aurora::Engine::WindowMovedEvent& e);
-        bool OnWindowResized(Aurora::Engine::WindowResizedEvent& e);
-        
-        bool OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e);
-        bool OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e);
-        bool OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e);
-        bool OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e);
-        
-        bool OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e);
-        bool OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e);
+      // Handled in GLFW and OPENGL backends
+        //bool OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e);
+        //bool OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e);
+        //bool OnWindowClosed(Aurora::Engine::WindowClosedEvent& e);
+        //bool OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e);
+        //bool OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e);
+        //bool OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e);
+        //bool OnWindowMoved(Aurora::Engine::WindowMovedEvent& e);
+        //bool OnWindowResized(Aurora::Engine::WindowResizedEvent& e);
+        //
+        //bool OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e);
+        //bool OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e);
+        //bool OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e);
+        //bool OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e);
+        //
+        //bool OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e);
+        //bool OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e);
+        //bool OnKeyboardButtonTypedEvent(Aurora::Engine::KeyTypedEvent& e);
 
       private:
         float m_Time = 0.0f;

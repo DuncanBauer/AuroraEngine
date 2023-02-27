@@ -98,7 +98,7 @@ namespace Aurora
 
       inline static Application& Get() { return *s_Instance; }
 
-      void Run();
+      virtual void Run();
 
       void OnUpdate(Util::DeltaTime t);
       void OnEvent(Event& e);
