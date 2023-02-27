@@ -1,4 +1,4 @@
-// Aurora Engine Library, v0.0.1 ALPHA
+// Aurora Util Library
 // Header file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
@@ -24,19 +24,22 @@
 //   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
 
+#pragma once
+
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
-
+#pragma region Preprocessor
 // Library Version
 // (Integer encoded as XYYZZ for use in #if preprocessor conditionals, e.g. '#if IMGUI_VERSION_NUM > 12345')
 #define AURORA_UTIL_VERSION     "0.0.01 ALPHA"
 #define AURORA_UTIL_VERSION_NUM 00001
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // Project Specific Headers
 #include <Core.h>
 
@@ -47,7 +50,12 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#pragma endregion
 
+namespace Aurora
+{
+  namespace Util
+  {
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
@@ -56,10 +64,6 @@
 * [SECTION] TYPENAMES
 ************************************************************************************/
 
-namespace Aurora
-{
-  namespace Util
-  {
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
@@ -75,7 +79,7 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
-
+#pragma region Classes
     /********************************************************************************
     * [CLASS] Time
     *********************************************************************************
@@ -171,6 +175,7 @@ namespace Aurora
         static std::shared_ptr<spdlog::logger> sm_EngineLogger;
         static std::shared_ptr<spdlog::logger> sm_ProjectLogger;
     };
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
@@ -179,6 +184,7 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
+#pragma region Macros
 // SPDLog Macros for the Project Aurora Util Library
 #define PA_UTIL_INFO(...)     ::Aurora::Util::Log::GetUtilLogger()->info(__VA_ARGS__)
 #define PA_UTIL_TRACE(...)    ::Aurora::Util::Log::GetUtilLogger()->trace(__VA_ARGS__)
@@ -206,5 +212,7 @@ namespace Aurora
 #define PA_PROJECT_WARN(...)     ::Aurora::Util::Log::GetProjectLogger()->warn(__VA_ARGS__)
 #define PA_PROJECT_ERROR(...)    ::Aurora::Util::Log::GetProjectLogger()->error(__VA_ARGS__)
 #define PA_PROJECT_CRITICAL(...) ::Aurora::Util::Log::GetProjectLogger()->critical(__VA_ARGS__)
+
+#pragma endregion
   }
 }

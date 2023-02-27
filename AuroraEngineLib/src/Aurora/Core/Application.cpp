@@ -1,4 +1,4 @@
-// Aurora Engine Library, v0.0.1 ALPHA
+// Aurora Engine Library
 // Source file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora
@@ -17,15 +17,10 @@
 //   - [SECTION] STATIC VARIABLE INITIALIZATION
 //   - [SECTION] FUNCTIONS
 
-
-
-
-
-
-
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // PCH
 #include "AuroraEngineLibPCH.h"
 
@@ -41,6 +36,7 @@
 
 // GLFW
 #include <GLFW/glfw3.h>
+#pragma endregion
 
 namespace Aurora
 {
@@ -49,11 +45,14 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
+#pragma region Static Initialization
     Application* Application::s_Instance = nullptr;
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
     Application::Application()
     {
       PA_ENGINE_ASSERT(!s_Instance, "Application already exists!")
@@ -130,5 +129,6 @@ namespace Aurora
     {
       return true;
     }
+#pragma endregion
   }
 }

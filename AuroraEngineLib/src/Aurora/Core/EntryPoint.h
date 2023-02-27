@@ -24,14 +24,18 @@
 //   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
 
+#pragma once
+
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
+#pragma region Preprocessor
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // Project Specific Headers
 #include "Util.h"
 #include "Engine.h"
@@ -39,36 +43,50 @@
 // C++ Standard Library Headers
 
 // Third Party Library Headers
+#pragma endregion
 
 #ifdef PA_PLATFORM_WINDOWS
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+#pragma region Forward Declarations
 extern Aurora::Engine::Application* Aurora::Engine::CreateApplication();
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
+#pragma region Typenames
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
+#pragma region Constants
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
+#pragma region Enums
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
+#pragma region Structs
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
+#pragma region Classes
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
 int main(int argc, char** argv)
 {
   Aurora::Util::Log::Init();
@@ -77,12 +95,12 @@ int main(int argc, char** argv)
   app->Run();
   delete app;
 }
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
-
-
-
+#pragma region Macros
+#pragma endregion
 
 #endif

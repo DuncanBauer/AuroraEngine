@@ -24,14 +24,18 @@
 //   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
 
+#pragma once
+
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
+#pragma region Preprocessor
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // Project Specific Headers
 #include "Aurora/Core/Event/Event.h"
 #include "Aurora/Core/Event/ApplicationEvent.h"
@@ -42,16 +46,21 @@
 // C++ Standard Library Headers
 
 // Third Party Library Headers
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+#pragma region Forward Declarations
 struct GLFWwindow;
 struct GLFWmonitor;
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
+#pragma region Typenames
+#pragma endregion
 
 namespace Aurora
 {
@@ -60,18 +69,25 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
+#pragma region Constants
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
+#pragma region Enums
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
+#pragma region Structs
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
+#pragma region Classes
     class AURORA_ENGINE_API ImGuiLayer : public Layer
     {
       public:
@@ -108,13 +124,18 @@ namespace Aurora
       private:
         float m_Time = 0.0f;
     };
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
+#pragma region Macros
+#pragma endregion
   }
 }

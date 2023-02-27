@@ -17,15 +17,10 @@
 //   - [SECTION] STATIC VARAIBLE INITIALIZATION
 //   - [SECTION] FUNCTIONS
 
-
-
-
-
-
-
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // PCH
 #include "AuroraUtilLibPCH.h"
 
@@ -35,7 +30,7 @@
 // C++ Standard Library Headers
 
 // Third Party Library Headers
-
+#pragma endregion
 
 namespace Aurora
 {
@@ -44,13 +39,17 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
+#pragma region StaticInitilization
     std::shared_ptr<spdlog::logger> Log::sm_UtilLogger;
     std::shared_ptr<spdlog::logger> Log::sm_MapleLogger;
     std::shared_ptr<spdlog::logger> Log::sm_EngineLogger;
     std::shared_ptr<spdlog::logger> Log::sm_ProjectLogger;
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
+#pragma endregion
   }
 }

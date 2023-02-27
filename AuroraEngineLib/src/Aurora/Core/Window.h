@@ -24,14 +24,18 @@
 //   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
 
+#pragma once
+
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
+#pragma region Preprocessor
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // Project Specific Headers
 #include "Core.h"
 #include "Event/Event.h"
@@ -39,15 +43,20 @@
 // C++ Standard Library Headers
 
 // Third Party Library Headers
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+#pragma region Forward Declarations
 struct GLFWwindow;
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
+#pragma region Typenames
+#pragma endregion
 
 namespace Aurora
 {
@@ -56,14 +65,19 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
+#pragma region Constants
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
+#pragma region Enums
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
+#pragma region Structs
     struct WindowProperties
     {
       std::string Title;
@@ -73,10 +87,12 @@ namespace Aurora
       WindowProperties(std::string _title = "Aurora Engine", unsigned int _width = 1280, unsigned int _height = 760)
         : Title(_title), Width(_width), Height(_height) {};
     };
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
+#pragma region Classes
     class AURORA_ENGINE_API Window
     {
     public:
@@ -100,13 +116,18 @@ namespace Aurora
     protected:
       GLFWwindow* m_Window;
     };
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
+#pragma region Macros
+#pragma endregion
   }
 }

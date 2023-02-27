@@ -14,31 +14,11 @@
 // Index of this file:
 // CODE
 //   - [SECTION] INCLUDES
-//   - [SECTION] STATIC VARIABLE INITIALIZATION
-//   - [SECTION] FUNCTIONS
-
-
-
-
-
-
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // PCH
 #include "AuroraEngineLibPCH.h"
-
-// Project Specific Header
-
-// C++ Headers
-
-// Third Party Library Headers
-
-/************************************************************************************
-* [SECTION] STATIC VARIABLE INITIALIZATION
-************************************************************************************/
-
-/************************************************************************************
-* [SECTION] FUNCTIONS
-************************************************************************************/
+#pragma endregion

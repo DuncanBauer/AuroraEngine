@@ -1,4 +1,4 @@
-// Aurora Engine Library, v0.0.1 ALPHA
+// Aurora Engine Library
 // Source file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora
@@ -17,15 +17,10 @@
 //   - [SECTION] STATIC VARIABLE INITIALIZATION
 //   - [SECTION] FUNCTIONS
 
-
-
-
-
-
-
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // PCH
 #include "AuroraEngineLibPCH.h"
 
@@ -42,6 +37,7 @@
 #include "backends/imgui_impl_opengl3.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#pragma endregion
 
 namespace Aurora
 {
@@ -50,11 +46,14 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
+#pragma region Static Initialization
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
-    ImGuiLayer::ImGuiLayer() : Layer() 
+#pragma region Functions
+    ImGuiLayer::ImGuiLayer() : Layer()
     {
     }
     
@@ -268,5 +267,6 @@ namespace Aurora
       io.KeysDown[e.GetKey()] = false;
       return IsBlocking();
     }
+#pragma endregion
   }
 }

@@ -14,20 +14,14 @@
 // Index of this file:
 // CODE
 //   - [SECTION] PREPROCESSOR DIRECTIVES
-//   - [SECTION] INCLUDES
-//   - [SECTION] FORWARD DECLARATIONS
-//   - [SECTION] TYPENAMES
-//   - [SECTION] CONSTANTS
-//   - [SECTION] CLASSES
-//   - [SECTION] STRUCTS
-//   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
+
+#pragma once
 
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
-
+#pragma region Preprocessor
 // Define dllexport and dllimport for Windows
 #ifdef PA_PLATFORM_WINDOWS
   #ifdef PA_UTIL_BUILD_DLL
@@ -48,41 +42,12 @@
 #else
   #error PROJECT AURORA ONLY SUPPORTS WINDOWS!
 #endif
-
-/************************************************************************************
-* [SECTION] INCLUDES
-************************************************************************************/
-// Project Specific Headers
-// C++ Standard Library Headers
-// Third Party Library Headers
-
-/************************************************************************************
-* [SECTION] FORWARD DECLARATIONS
-************************************************************************************/
-
-/************************************************************************************
-* [SECTION] TYPENAMES
-************************************************************************************/
-
-/************************************************************************************
-* [SECTION] CONSTANTS
-************************************************************************************/
-
-/************************************************************************************
-* [SECTION] CLASSES
-************************************************************************************/
-
-/************************************************************************************
-* [SECTION] STRUCTS
-************************************************************************************/
-
-/************************************************************************************
-* [SECTION] FUNCTIONS
-************************************************************************************/
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
+#pragma region Macros
 // Bitwise macros
 // BIT macro that takes a single argument x and performs a bitwise left shift operation
 // on the integer value 1 by x bits. The result of this operation is a binary number
@@ -104,3 +69,4 @@
 
 // Event binding macros
 #define BIND_EVENT_FN(x, y) std::bind(&x::y, this, std::placeholders::_1)
+#pragma endregion

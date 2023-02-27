@@ -1,4 +1,4 @@
-// Aurora Engine Library, v0.0.1 ALPHA
+// Aurora Engine Library
 // Header file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
@@ -24,14 +24,18 @@
 //   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
 
+#pragma once
+
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
+#pragma region Preprocessor
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // Project Specific Headers
 #include "Util.h"
 #include "Aurora/Core/Event/Event.h"
@@ -39,14 +43,19 @@
 // C++ Standard Library Headers
 
 // Third Party Library Headers
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+#pragma region Forward Declarations
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
+#pragma region Typenames
+#pragma endregion
 
 namespace Aurora
 {
@@ -55,18 +64,25 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
+#pragma region Constants
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
+#pragma region Enums
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
+#pragma region Structs
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
+#pragma region Classes
     class Layer
     {
       public:
@@ -85,14 +101,19 @@ namespace Aurora
     private:
       bool m_Blocking = false;
     };
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
+#pragma region Macros
+#pragma endregion
   }
 }
 

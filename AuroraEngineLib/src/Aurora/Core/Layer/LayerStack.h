@@ -1,4 +1,4 @@
-// Aurora Engine Library, v0.0.1 ALPHA
+// Aurora Engine Library
 // Header file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
@@ -24,14 +24,18 @@
 //   - [SECTION] FUNCTIONS
 //   - [SECTION] MACROS
 
+#pragma once
+
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma once
+#pragma region Preprocessor
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // Project Specific Headers
 #include "Core.h"
 #include "Layer.h"
@@ -40,14 +44,19 @@
 #include <vector>
 
 // Third Party Library Headers
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
+#pragma region Forward Declarations
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
+#pragma region Typenames
+#pragma endregion
 
 namespace Aurora
 {
@@ -56,18 +65,25 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
+#pragma region Constants
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
+#pragma region Enums
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
+#pragma region Structs
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
+#pragma region Classes
     class AURORA_ENGINE_API LayerStack
     {
       public:
@@ -128,13 +144,18 @@ namespace Aurora
         std::vector<Layer*> Layers;
         unsigned int LayerIterIndex = 0;
     };
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functionss
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
+#pragma region Macros
+#pragma endregion
   }
 }

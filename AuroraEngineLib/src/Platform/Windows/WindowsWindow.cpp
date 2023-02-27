@@ -17,15 +17,10 @@
 //   - [SECTION] STATIC VARIABLE INITIALIZATION
 //   - [SECTION] FUNCTIONS
 
-
-
-
-
-
-
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
+#pragma region Includes
 // PCH
 #include "AuroraEngineLibPCH.h"
 
@@ -44,7 +39,7 @@
 #include "Platform/OpenGL/imgui_impl_opengl3.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
+#pragma endregion
 
 namespace Aurora
 {
@@ -53,11 +48,14 @@ namespace Aurora
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
+#pragma region Static Initialization
     static bool GLFWInitialized = false;
+#pragma endregion
 
 /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
+#pragma region Functions
     Window* Window::Create(const WindowProperties& props)
     {
       return new WindowsWindow(props);
@@ -283,5 +281,6 @@ namespace Aurora
     {
       return m_Props.VSync;
     }
+#pragma endregion
   }
 }

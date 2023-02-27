@@ -9,8 +9,8 @@ namespace Aurora
     class AURORA_MAPLE_API WzObject
     {
       public:
-        WzObject();
-        ~WzObject();
+        WzObject() {}
+        ~WzObject() {}
 
         std::string name;
       private:
