@@ -66,7 +66,6 @@ project "AuroraUtilLib"
 	}
 
 	filter "system:windows"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -87,7 +86,8 @@ project "AuroraUtilLib"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
+		staticruntime "Off"
 		symbols "On"
 
 		links
@@ -97,7 +97,8 @@ project "AuroraUtilLib"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
+		staticruntime "Off"
 		optimize "On"
 
 		links
@@ -143,7 +144,6 @@ project "AuroraEngineLib"
 	}
 
 	filter "system:windows"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -163,12 +163,14 @@ project "AuroraEngineLib"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
+		staticruntime "Off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
+		staticruntime "Off"
 		optimize "On"
 
 		
@@ -211,7 +213,6 @@ project "AuroraMapleLib"
 	}
 
 	filter "system:windows"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -230,12 +231,14 @@ project "AuroraMapleLib"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
+		staticruntime "Off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
+		staticruntime "Off"
 		optimize "On"
 
 		
@@ -280,7 +283,6 @@ project "AuroraMapleClient"
 	}
 
 	filter "system:windows"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -291,12 +293,14 @@ project "AuroraMapleClient"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
+		staticruntime "Off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
+		staticruntime "Off"
 		optimize "On"
 
 		
@@ -339,7 +343,6 @@ project "AuroraMapleServer"
 	}
 
 	filter "system:windows"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -349,12 +352,14 @@ project "AuroraMapleServer"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
+		staticruntime "Off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
+		staticruntime "Off"
 		optimize "On"
 
 
@@ -397,7 +402,6 @@ project "AuroraUnitTesting"
 	}
 
 	filter "system:windows"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -407,10 +411,12 @@ project "AuroraUnitTesting"
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
+		staticruntime "Off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
+		staticruntime "Off"
 		optimize "On"

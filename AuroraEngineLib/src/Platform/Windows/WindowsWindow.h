@@ -88,19 +88,24 @@ namespace Aurora
         WindowsWindow(const WindowProperties& props);
         virtual ~WindowsWindow();
 
-        void OnUpdate() const override;
+        virtual void OnUpdate() const override;
 
-        inline std::string  GetTitle()  const override { return m_Props.Title; }
-        inline unsigned int GetWidth()  const override { return m_Props.Width; }
-        inline unsigned int GetHeight() const override { return m_Props.Height; }
+        virtual inline std::string  GetTitle()  const override { return m_Props.Title; }
+        virtual inline unsigned int GetWidth()  const override { return m_Props.Width; }
+        virtual inline unsigned int GetHeight() const override { return m_Props.Height; }
 
-        inline void SetEventCallback(const EventCallbackFn& callback) override { m_Props.EventCallback = callback; }
-        void SetVSync(bool enabled);
-        bool IsVSync() const;
+        virtual inline void SetEventCallback(const EventCallbackFn& callback) override { m_Props.EventCallback = callback; }
+        virtual void SetVSync(bool enabled);
+        virtual bool IsVSync() const;
+
+        virtual inline void* GetNativeWindow() const { return m_Window; }
+
+      protected:
+        GLFWwindow* m_Window;
 
       private:
-        virtual void Init(const WindowProperties& props);
-        virtual void Shutdown();
+        void Init(const WindowProperties& props);
+        void Shutdown();
 
         struct WindowData
         {

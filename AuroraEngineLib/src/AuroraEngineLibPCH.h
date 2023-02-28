@@ -18,16 +18,16 @@
 
 #pragma once
 
+#pragma region Preprocessor
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma region Preprocessor
 #pragma endregion
 
+#pragma region Includes
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
-#pragma region Includes
 // Project Specific Headers
 #include <Core.h>
 

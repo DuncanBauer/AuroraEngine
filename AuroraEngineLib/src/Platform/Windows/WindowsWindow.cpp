@@ -45,17 +45,17 @@ namespace Aurora
 {
   namespace Engine
   {
+#pragma region Static Initialization
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
-#pragma region Static Initialization
     static bool GLFWInitialized = false;
 #pragma endregion
 
-/************************************************************************************
+#pragma region Functions
+    /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
-#pragma region Functions
     Window* Window::Create(const WindowProperties& props)
     {
       return new WindowsWindow(props);
@@ -79,6 +79,7 @@ namespace Aurora
 
       PA_ENGINE_INFO("Creating Window {0} ({1}, {2})", m_Props.Title, m_Props.Width, m_Props.Height);
 
+      // Init GLFW
       if (!GLFWInitialized)
       {
         int success = glfwInit();
@@ -92,6 +93,7 @@ namespace Aurora
         GLFWInitialized = true;
       }
 
+      // Initialize Window
       m_Window = glfwCreateWindow((int)m_Props.Width, (int)m_Props.Height, m_Props.Title.c_str(), nullptr, nullptr);
       glfwMakeContextCurrent(m_Window);
       int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);

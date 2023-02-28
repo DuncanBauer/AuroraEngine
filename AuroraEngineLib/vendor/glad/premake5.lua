@@ -18,8 +18,14 @@ project "GLAD"
     }
 
     filter "system:windows"
-        staticruntime "On"
         systemversion "latest"
 
-    filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+    filter "configurations:Debug"
+        runtime "Debug"
+        staticruntime "On"
+        symbols "On"
+
+	filter "configurations:Release"
+        runtime "Release"
+        staticruntime "On"
+        optimize "On"

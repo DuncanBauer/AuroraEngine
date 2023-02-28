@@ -1,7 +1,7 @@
-// Aurora Engine Library, v0.0.1 ALPHA
+// Aurora Engine Lib
 // Header file
 
-// For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
+// For more information visit: https://github.com/DuncanBauer/ProjectAurora
 
 // Developed by Duncan Bauer and every direct or indirect contributors to the GitHub.
 // LICENSING INFORMATION
@@ -26,106 +26,83 @@
 
 #pragma once
 
+#pragma region Preprocessor
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma region Preprocessor
 #pragma endregion
 
+#pragma region Includes
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
-#pragma region Includes
 // Project Specific Headers
-#include "Core.h"
-#include "Event/Event.h"
+#include "Aurora/Core/Input.h"
 
 // C++ Standard Library Headers
 
 // Third Party Library Headers
 #pragma endregion
 
+#pragma region ForwardDeclarations
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
-#pragma region Forward Declarations
-struct GLFWwindow;
 #pragma endregion
 
+#pragma region Typenames
 /************************************************************************************
 * [SECTION] TYPENAMES
 ************************************************************************************/
-#pragma region Typenames
 #pragma endregion
 
 namespace Aurora
 {
   namespace Engine
   {
+#pragma region Constants
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
-#pragma region Constants
 #pragma endregion
 
+#pragma region Enums
 /************************************************************************************
 * [SECTION] ENUMS
 ************************************************************************************/
-#pragma region Enums
 #pragma endregion
 
+#pragma region Structs
 /************************************************************************************
 * [SECTION] STRUCTS
 ************************************************************************************/
-#pragma region Structs
-    struct WindowProperties
-    {
-      std::string Title;
-      unsigned int Width;
-      unsigned int Height;
-
-      WindowProperties(std::string _title = "Aurora Engine", unsigned int _width = 1280, unsigned int _height = 760)
-        : Title(_title), Width(_width), Height(_height) {};
-    };
 #pragma endregion
 
+#pragma region Classes
 /************************************************************************************
 * [SECTION] CLASSES
 ************************************************************************************/
-#pragma region Classes
-    class AURORA_ENGINE_API Window
+    class AURORA_ENGINE_API WindowsInput : public Input
     {
-      public:
-        using EventCallbackFn = std::function<void(Event&)>;
-
-        virtual ~Window() {}
-
-        virtual void OnUpdate() const = 0;
-
-        virtual std::string GetTitle() const = 0;
-        virtual unsigned int GetWidth() const = 0;
-        virtual unsigned int GetHeight() const = 0;
-
-        virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
-        virtual void SetVSync(bool enabled) = 0;
-        virtual bool IsVSync() const = 0;
-
-        virtual void* GetNativeWindow() const = 0;
-
-        static Window* Create(const WindowProperties& props = WindowProperties());
+      protected:
+        virtual bool IsKeyPressedImpl(int key) override;
+        virtual bool IsMouseButtonPressedImpl(int button) override;
+        virtual std::pair<float, float> GetMousePosImpl() override;
+        virtual float GetMouseXImpl() override;
+        virtual float GetMouseYImpl() override;
     };
 #pragma endregion
 
-/************************************************************************************
+#pragma region Functions
+    /************************************************************************************
 * [SECTION] FUNCTIONS
 ************************************************************************************/
-#pragma region Functions
 #pragma endregion
 
+#pragma region Macros
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
-#pragma region Macros
 #pragma endregion
   }
 }

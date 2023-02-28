@@ -27,6 +27,7 @@
 // Project Specific Header
 #include "Util.h"
 #include "Application.h"
+#include "Input.h"
 
 // C++ Headers
 
@@ -76,6 +77,9 @@ namespace Aurora
         m_LastFrameTime = time;
 
         OnUpdate(d_time);
+
+        auto [x, y] = Input::GetMousePos();
+        PA_ENGINE_TRACE("Mouse Position: {0} {1}", x, y);
       }
     }
 
