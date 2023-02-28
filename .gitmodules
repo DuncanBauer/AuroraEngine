@@ -13,3 +13,6 @@
 [submodule "AuroraUtilLib/vendor/yaml-cpp"]
 	path = AuroraUtilLib/vendor/yaml-cpp
 	url = https://github.com/DuncanBauer/yaml-cpp
+[submodule "AuroraEngineLib/vendor/glm"]
+	path = AuroraEngineLib/vendor/glm
+	url = https://github.com/g-truc/glm

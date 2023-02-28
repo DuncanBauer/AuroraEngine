@@ -53,6 +53,7 @@ Project Aurora is a long-term development project to create a custom Game Engine
 - [cryptopp](https://github.com/weidai11/cryptopp)
 - [glad](glad.dav1d.de)
 - [glfw](https://github.com/glfw/glfw)
+- [glm](https://github.com/g-truc/glm)
 - [imgui](https://github.com/ocornut/imgui)
 - [spdlog](https://github.com/gabime/spdlog)
 - [yaml-cpp](https://github.com/jbeder/yaml-cpp)

@@ -56,7 +56,6 @@ namespace Aurora
 #pragma region Functions
     Application::Application()
     {
-      PA_ENGINE_ASSERT(!s_Instance, "Application already exists!")
       s_Instance = this;
 
       m_Window = std::unique_ptr<Window>(Window::Create());
@@ -79,14 +78,11 @@ namespace Aurora
         OnUpdate(d_time);
 
         auto [x, y] = Input::GetMousePos();
-        PA_ENGINE_TRACE("Mouse Position: {0} {1}", x, y);
       }
     }
 
     void Application::OnUpdate(Util::DeltaTime t)
     {
-      PA_ENGINE_TRACE("{0}", t.ToString());
-
       m_Window->OnUpdate();
 
       for (Layer* layer : m_LayerStack)
@@ -97,8 +93,6 @@ namespace Aurora
 
     void Application::OnEvent(Event& e)
     {
-      PA_ENGINE_TRACE("{0}", e);
-     
       EventDispatcher dispatcher(e);
       dispatcher.Dispatch<WindowClosedEvent>(BIND_EVENT_FN(Application, OnWindowClosed));
       dispatcher.Dispatch<WindowResizedEvent>(BIND_EVENT_FN(Application, OnWindowResized));

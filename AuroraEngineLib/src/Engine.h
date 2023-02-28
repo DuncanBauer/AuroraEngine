@@ -42,7 +42,12 @@
 #pragma region Includes
 // Project Specific Headers
 #include "Aurora/Core/Application.h"
+
+#include "Aurora/Core/Input.h"
 #include "Aurora/Core/Event/Event.h"
+#include "Aurora/Core/Event/KeyCodes.h"
+#include "Aurora/Core/Event/MouseCodes.h"
+
 #include "Aurora/Core/Layer/Layer.h"
 #include "Aurora/Core/ImGui/ImGuiLayer.h"
 #include "Aurora/Core/Layer/LayerStack.h"

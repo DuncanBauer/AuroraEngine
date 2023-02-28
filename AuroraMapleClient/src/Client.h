@@ -72,13 +72,37 @@
 * [SECTION] CLASSES
 ************************************************************************************/
 #pragma region Classes
+class ExampleLayer : public Aurora::Engine::Layer
+{
+  public:
+    ExampleLayer(bool _blocking) : Layer(_blocking) {}
+    virtual ~ExampleLayer() = default;
+
+    virtual void OnUpdate(Aurora::Util::DeltaTime t) override {}
+
+    virtual void OnEvent(Aurora::Engine::Event& event) 
+    {
+      if (event.GetEventType() == Aurora::Engine::EventType::KeyPressed)
+      {
+        Aurora::Engine::KeyPressedEvent& e = (Aurora::Engine::KeyPressedEvent&)event;
+        switch (e.GetKey())
+        {
+          case Aurora::Engine::Key::Tab:
+            PA_PROJECT_CRITICAL("Tab key pressed");
+            break;
+        }
+        PA_PROJECT_TRACE("{0}", (char)e.GetKey());
+      }
+    }
+};
+
 class Client : public Aurora::Engine::Application
 {
-public:
-  Client();
-  virtual ~Client();
+  public:
+    Client();
+    virtual ~Client();
 
-  void Run();
+    void Run();
 };
 #pragma endregion
 

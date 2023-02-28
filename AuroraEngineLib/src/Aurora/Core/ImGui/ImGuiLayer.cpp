@@ -139,8 +139,6 @@ namespace Aurora
     
     void ImGuiLayer::OnUpdate(Aurora::Util::DeltaTime t)
     {
-      PA_ENGINE_TRACE("ImGuiLayer::OnUpdate");
-
       Begin();
 
       static bool show_demo = false;
@@ -151,8 +149,6 @@ namespace Aurora
 
     void ImGuiLayer::OnEvent(Aurora::Engine::Event& e)
     {
-      PA_ENGINE_TRACE("ImGuiLayer::{0}", e);
-      
       EventDispatcher dispatcher(e);
     // Handled in GLFW and OPENGL backends
       //dispatcher.Dispatch<WindowGainedFocusEvent>(BIND_EVENT_FN(ImGuiLayer, OnWindowGainedFocus));

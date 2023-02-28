@@ -53,7 +53,7 @@ namespace Aurora
     {
       auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
       auto state = glfwGetKey(window, key);
-      return state == GLFW_PRESS || GLFW_REPEAT;
+      return (state == GLFW_PRESS);
     }
 
     bool WindowsInput::IsMouseButtonPressedImpl(int button)

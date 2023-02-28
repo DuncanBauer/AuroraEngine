@@ -17,6 +17,7 @@ IncludeDir["CryptoPP"] = "AuroraMapleLib/vendor"
 
 IncludeDir["GLFW"] = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["GLAD"] = "AuroraEngineLib/vendor/glad/include"
+IncludeDir["glm"] = "AuroraEngineLib/vendor/glm"
 IncludeDir["ImGui"] = "AuroraEngineLib/vendor/imgui"
 
 IncludeDir["SPDLog"] = "AuroraUtilLib/vendor/spdlog/include"
@@ -27,7 +28,7 @@ IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
 IncludeDir["AuroraMapleLib"] = "AuroraMapleLib/src"
 
 LinkDir = {}
-LinkDir["CryptoPP"] = "AuroraMapleLib/vendor/cryptopp/x64/Output/%{cfg.buildcfg}"
+LinkDir["CryptoPP"] = "AuroraMapleLib/vendor/cryptopp/x64/DLL_Output/%{cfg.buildcfg}"
 LinkDir["YAMLcpp"] = "AuroraUtilLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
 
 -- Includes the premake file for 3rd party libraries
@@ -131,6 +132,7 @@ project "AuroraEngineLib"
 		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.glm}",
 		"%{IncludeDir.ImGui}"
 	}
 
@@ -209,7 +211,7 @@ project "AuroraMapleLib"
 	links
 	{
 		"AuroraUtilLib",
-		"cryptlib.lib"
+		"cryptopp.dll"
 	}
 
 	filter "system:windows"
@@ -265,6 +267,7 @@ project "AuroraMapleClient"
 		"%{IncludeDir.Boost}",
 		"%{IncludeDir.CryptoPP}",
 		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
 		"%{IncludeDir.SPDLog}"
 	}
 
@@ -279,7 +282,7 @@ project "AuroraMapleClient"
 		"AuroraEngineLib",
 		"AuroraMapleLib",
 		"ImGui",
-		"cryptlib.lib"
+		"cryptopp.dll"
 	}
 
 	filter "system:windows"
@@ -339,7 +342,7 @@ project "AuroraMapleServer"
 		"AuroraUtilLib",
 		"AuroraEngineLib",
 		"AuroraMapleLib",
-		"cryptlib.lib"
+		"cryptopp.dll"
 	}
 
 	filter "system:windows"
@@ -398,7 +401,7 @@ project "AuroraUnitTesting"
 		"AuroraUtilLib",
 		"AuroraEngineLib",
 		"AuroraMapleLib",
-		"cryptlib.lib"
+		"cryptopp.dll"
 	}
 
 	filter "system:windows"

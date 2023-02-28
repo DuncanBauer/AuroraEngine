@@ -77,8 +77,6 @@ namespace Aurora
       m_Props.Width = props.Width;
       m_Props.Height = props.Height;
 
-      PA_ENGINE_INFO("Creating Window {0} ({1}, {2})", m_Props.Title, m_Props.Width, m_Props.Height);
-
       // Init GLFW
       if (!GLFWInitialized)
       {
