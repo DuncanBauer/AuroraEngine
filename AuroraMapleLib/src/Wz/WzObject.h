@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Core.h>
+#include <string>
 
 namespace Aurora
 {
@@ -9,10 +10,10 @@ namespace Aurora
     class AURORA_MAPLE_API WzObject
     {
       public:
-        WzObject() {}
-        ~WzObject() {}
+        WzObject(std::string name);
+        ~WzObject();
 
-        std::string name;
+        std::string m_Name;
       private:
       };
   }
