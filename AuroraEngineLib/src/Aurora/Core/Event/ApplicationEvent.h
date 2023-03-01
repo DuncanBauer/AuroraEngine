@@ -82,23 +82,38 @@ namespace Aurora
 * [SECTION] CLASSES
 ************************************************************************************/
 #pragma region Classes
-    class AURORA_ENGINE_API WindowClosedEvent : public Event
+    class AURORA_ENGINE_API WindowEvent : public Event
     {
-      public:
-        WindowClosedEvent() = default;
+    public:
+      WindowEvent() = default;
 
-        std::string ToString() const override
-        {
-          std::stringstream ss;
-          ss << "WindowClosedEvent";
-          return ss.str();
-        }
+      std::string ToString() const override
+      {
+        std::stringstream ss;
+        ss << "WindowEvent";
+        return ss.str();
+      }
 
-        EVENT_CLASS_TYPE(WindowClosed)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class AURORA_ENGINE_API WindowResizedEvent : public Event
+    class AURORA_ENGINE_API WindowClosedEvent : public WindowEvent
+    {
+    public:
+      WindowClosedEvent() = default;
+
+      std::string ToString() const override
+      {
+        std::stringstream ss;
+        ss << "WindowClosedEvent";
+        return ss.str();
+      }
+
+      EVENT_CLASS_TYPE(WindowClosed)
+        EVENT_CLASS_CATEGORY(EventCategoryApplication)
+    };
+
+    class AURORA_ENGINE_API WindowResizedEvent : public WindowEvent
     {
       public:
         WindowResizedEvent(unsigned int _width, unsigned int _height) : m_Width(_width), m_Height(_height) {};
@@ -120,7 +135,7 @@ namespace Aurora
         unsigned int m_Width, m_Height;
     };
 
-    class AURORA_ENGINE_API WindowMaximizedEvent : public Event
+    class AURORA_ENGINE_API WindowMaximizedEvent : public WindowEvent
     {
       public:
         WindowMaximizedEvent(unsigned int _maximized) : m_Maximized(_maximized) {};
@@ -139,7 +154,7 @@ namespace Aurora
         unsigned int m_Maximized;
     };
 
-    class AURORA_ENGINE_API WindowMinimizedEvent : public Event
+    class AURORA_ENGINE_API WindowMinimizedEvent : public WindowEvent
     {
       public:
         WindowMinimizedEvent(unsigned int _minimized) : m_Minimized(_minimized) {};
@@ -158,7 +173,7 @@ namespace Aurora
         unsigned int m_Minimized;
     };
 
-    class AURORA_ENGINE_API WindowRestoredEvent : public Event
+    class AURORA_ENGINE_API WindowRestoredEvent : public WindowEvent
     {
       public:
         WindowRestoredEvent(unsigned int _restored) : m_Restored(_restored) {};
@@ -177,7 +192,7 @@ namespace Aurora
         unsigned int m_Restored;
     };
 
-    class AURORA_ENGINE_API WindowGainedFocusEvent : public Event
+    class AURORA_ENGINE_API WindowGainedFocusEvent : public WindowEvent
     {
       public:
         WindowGainedFocusEvent(int _focus) : m_Focused(_focus) {};
@@ -196,7 +211,7 @@ namespace Aurora
         unsigned int m_Focused;
     };
 
-    class AURORA_ENGINE_API WindowLostFocusEvent : public Event
+    class AURORA_ENGINE_API WindowLostFocusEvent : public WindowEvent
     {
       public:
         WindowLostFocusEvent(int _focus) : m_Focused(_focus) {};
@@ -215,7 +230,7 @@ namespace Aurora
         unsigned int m_Focused;
     };
 
-    class AURORA_ENGINE_API WindowMovedEvent : public Event
+    class AURORA_ENGINE_API WindowMovedEvent : public WindowEvent
     {
       public:
         WindowMovedEvent(int _xpos, int _ypos) : m_Xpos(_xpos), m_Ypos(_ypos) {};
@@ -234,7 +249,22 @@ namespace Aurora
         int m_Xpos, m_Ypos;
     };
 
-    class AURORA_ENGINE_API AppTickedEvent : public Event
+    class AURORA_ENGINE_API AppEvent : public Event
+    {
+    public:
+      AppEvent() = default;
+
+      std::string ToString() const override
+      {
+        std::stringstream ss;
+        ss << "AppEvent";
+        return ss.str();
+      }
+
+      EVENT_CLASS_CATEGORY(EventCategoryApplication)
+    };
+
+    class AURORA_ENGINE_API AppTickedEvent : public AppEvent
     {
       public:
         AppTickedEvent() = default;
@@ -250,10 +280,10 @@ namespace Aurora
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class AURORA_ENGINE_API AppUpdateEvent : public Event
+    class AURORA_ENGINE_API AppUpdatedEvent : public AppEvent
     {
       public:
-        AppUpdateEvent() = default;
+        AppUpdatedEvent() = default;
 
         std::string ToString() const override
         {
@@ -266,10 +296,10 @@ namespace Aurora
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class AURORA_ENGINE_API AppRenderEvent : public Event
+    class AURORA_ENGINE_API AppRenderedEvent : public AppEvent
     {
       public:
-        AppRenderEvent() = default;
+        AppRenderedEvent() = default;
 
         std::string ToString() const override
         {
