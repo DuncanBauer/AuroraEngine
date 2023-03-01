@@ -59,8 +59,6 @@
 
 namespace Aurora
 {
-  namespace Engine
-  {
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
@@ -161,5 +159,4 @@ namespace Aurora
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 #pragma endregion
-  }
 }

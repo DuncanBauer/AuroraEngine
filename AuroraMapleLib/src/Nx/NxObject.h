@@ -1,18 +1,15 @@
 #pragma once
 
-#include <Core.h>
+#include "Maple.h"
 
-namespace Aurora
+namespace Maple
 {
-  namespace Maple
+  class AURORA_MAPLE_API NxObject
   {
-    class AURORA_MAPLE_API NxObject
-    {
-    public:
-      NxObject() {}
-      ~NxObject() {}
+  public:
+    NxObject() {}
+    ~NxObject() {}
 
-    private:
-    };
-  }
+  private:
+  };
 }

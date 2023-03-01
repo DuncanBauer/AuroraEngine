@@ -1,13 +1,10 @@
 #include "AuroraMapleLibPCH.h"
 #include "WzObject.h"
 
-namespace Aurora
+namespace Maple
 {
-  namespace Maple
+  WzObject::WzObject(std::string name) : m_Name(name)
   {
-    WzObject::WzObject(std::string name) : m_Name(name)
-    {
 
-    }
   }
 }

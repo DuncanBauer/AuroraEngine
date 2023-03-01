@@ -42,8 +42,6 @@
 
 namespace Aurora
 {
-  namespace Engine
-  {
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
@@ -131,5 +129,4 @@ namespace Aurora
       return true;
     }
 #pragma endregion
-  }
 }

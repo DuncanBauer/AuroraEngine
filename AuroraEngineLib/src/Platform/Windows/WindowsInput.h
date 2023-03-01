@@ -58,8 +58,6 @@
 
 namespace Aurora
 {
-  namespace Engine
-  {
 #pragma region Constants
 /************************************************************************************
 * [SECTION] CONSTANTS
@@ -104,5 +102,4 @@ namespace Aurora
 * [SECTION] MACROS
 ************************************************************************************/
 #pragma endregion
-  }
 }

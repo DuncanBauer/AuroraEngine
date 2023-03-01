@@ -72,7 +72,7 @@
 * [SECTION] CLASSES
 ************************************************************************************/
 #pragma region Classes
-class ExampleLayer : public Aurora::Engine::Layer
+class ExampleLayer : public Aurora::Layer
 {
   public:
     ExampleLayer(bool _blocking) : Layer(_blocking) {}
@@ -80,14 +80,14 @@ class ExampleLayer : public Aurora::Engine::Layer
 
     virtual void OnUpdate() override {}
     virtual void OnImGuiRender() override {}
-    virtual void OnEvent(Aurora::Engine::Event& event) 
+    virtual void OnEvent(Aurora::Event& event) 
     {
-      if (event.GetEventType() == Aurora::Engine::EventType::KeyPressed)
+      if (event.GetEventType() == Aurora::EventType::KeyPressed)
       {
-        Aurora::Engine::KeyPressedEvent& e = (Aurora::Engine::KeyPressedEvent&)event;
+        Aurora::KeyPressedEvent& e = (Aurora::KeyPressedEvent&)event;
         switch (e.GetKey())
         {
-          case Aurora::Engine::Key::Tab:
+          case Aurora::Key::Tab:
             PA_PROJECT_CRITICAL("Tab key pressed");
             break;
         }
@@ -96,7 +96,7 @@ class ExampleLayer : public Aurora::Engine::Layer
     }
 };
 
-class Client : public Aurora::Engine::Application
+class Client : public Aurora::Application
 {
   public:
     Client();
@@ -110,7 +110,7 @@ class Client : public Aurora::Engine::Application
 * [SECTION] FUNCTIONS
 ************************************************************************************/
 #pragma region Functions
-Aurora::Engine::Application* Aurora::Engine::CreateApplication()
+Aurora::Application* Aurora::CreateApplication()
 {
   return new Client();
 }

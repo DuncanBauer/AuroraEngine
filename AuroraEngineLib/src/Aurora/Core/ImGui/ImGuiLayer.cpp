@@ -41,8 +41,6 @@
 
 namespace Aurora
 {
-  namespace Engine
-  {
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
@@ -140,7 +138,7 @@ namespace Aurora
       End();
     }
 
-    void ImGuiLayer::OnEvent(Aurora::Engine::Event& e)
+    void ImGuiLayer::OnEvent(Aurora::Event& e)
     {
       EventDispatcher dispatcher(e);
     // Handled in GLFW and OPENGL backends
@@ -164,56 +162,56 @@ namespace Aurora
     }
 
   // Handled in GLFW and OPENGL backends
-    //bool ImGuiLayer::OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e)
+    //bool ImGuiLayer::OnWindowGainedFocus(Aurora::WindowGainedFocusEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e)
+    //bool ImGuiLayer::OnWindowLoseFocus(Aurora::WindowLostFocusEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowClosed(Aurora::Engine::WindowClosedEvent& e)
+    //bool ImGuiLayer::OnWindowClosed(Aurora::WindowClosedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e)
+    //bool ImGuiLayer::OnWindowMaximized(Aurora::WindowMaximizedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e)
+    //bool ImGuiLayer::OnWindowMinimized(Aurora::WindowMinimizedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e)
+    //bool ImGuiLayer::OnWindowRestored(Aurora::WindowRestoredEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowMoved(Aurora::Engine::WindowMovedEvent& e)
+    //bool ImGuiLayer::OnWindowMoved(Aurora::WindowMovedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
 
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnWindowResized(Aurora::Engine::WindowResizedEvent& e)
+    //bool ImGuiLayer::OnWindowResized(Aurora::WindowResizedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
@@ -224,21 +222,21 @@ namespace Aurora
     //  return IsBlocking();
     //}
  
-    //bool ImGuiLayer::OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e)
+    //bool ImGuiLayer::OnMouseButtonPressedEvent(Aurora::MouseButtonPressedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  io.MouseDown[e.GetMouseButton()] = true;
     //  return IsBlocking();
     //}
     //
-    //bool ImGuiLayer::OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e)
+    //bool ImGuiLayer::OnMouseButtonReleasedEvent(Aurora::MouseButtonReleasedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  io.MouseDown[e.GetMouseButton()] = false;
     //  return IsBlocking();
     //}
     //
-    //bool ImGuiLayer::OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e)
+    //bool ImGuiLayer::OnMouseScrolledEvent(Aurora::MouseScrolledEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
@@ -248,14 +246,14 @@ namespace Aurora
     //  return IsBlocking();
     //}
 
-    //bool ImGuiLayer::OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e)
+    //bool ImGuiLayer::OnMouseMovedEvent(Aurora::MouseMovedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  io.MousePos = ImVec2(e.GetX(), e.GetY());
     //  return IsBlocking();
     //}
     //
-    //bool ImGuiLayer::OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e)
+    //bool ImGuiLayer::OnKeyboardButtonPressedEvent(Aurora::KeyPressedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  
@@ -268,7 +266,7 @@ namespace Aurora
     //  return IsBlocking();
     //}
     //
-    //bool ImGuiLayer::OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e)
+    //bool ImGuiLayer::OnKeyboardButtonReleasedEvent(Aurora::KeyReleasedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
     //  io.KeysDown[e.GetKey()] = false;
@@ -276,7 +274,7 @@ namespace Aurora
     //}
 
     //// For typing into input boxes
-    //bool ImGuiLayer::OnKeyboardButtonTypedEvent(Aurora::Engine::KeyTypedEvent& e)
+    //bool ImGuiLayer::OnKeyboardButtonTypedEvent(Aurora::KeyTypedEvent& e)
     //{
     //  ImGuiIO& io = ImGui::GetIO();
 
@@ -289,5 +287,4 @@ namespace Aurora
     //  return IsBlocking();
     //}
 #pragma endregion
-  }
 }

@@ -49,7 +49,7 @@
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
 #pragma region Forward Declarations
-extern Aurora::Engine::Application* Aurora::Engine::CreateApplication();
+extern Aurora::Application* Aurora::CreateApplication();
 #pragma endregion
 
 /************************************************************************************
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 {
   Aurora::Log::Init();
 
-  auto app = Aurora::Engine::CreateApplication();
+  auto app = Aurora::CreateApplication();
   app->Run();
   delete app;
 }

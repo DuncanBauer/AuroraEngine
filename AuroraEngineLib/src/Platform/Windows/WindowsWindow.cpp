@@ -43,8 +43,6 @@
 
 namespace Aurora
 {
-  namespace Engine
-  {
 #pragma region Static Initialization
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
@@ -289,5 +287,4 @@ namespace Aurora
       return m_Props.VSync;
     }
 #pragma endregion
-  }
 }

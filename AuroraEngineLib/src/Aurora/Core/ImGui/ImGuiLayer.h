@@ -64,8 +64,6 @@ struct GLFWmonitor;
 
 namespace Aurora
 {
-  namespace Engine
-  {
 /************************************************************************************
 * [SECTION] CONSTANTS
 ************************************************************************************/
@@ -103,27 +101,27 @@ namespace Aurora
 
         void OnUpdate() override;
         void OnImGuiRender() override;
-        void OnEvent(Aurora::Engine::Event& e) override;
+        void OnEvent(Aurora::Event& e) override;
 
       private:
       // Handled in GLFW and OPENGL backends
-        //bool OnWindowGainedFocus(Aurora::Engine::WindowGainedFocusEvent& e);
-        //bool OnWindowLoseFocus(Aurora::Engine::WindowLostFocusEvent& e);
-        //bool OnWindowClosed(Aurora::Engine::WindowClosedEvent& e);
-        //bool OnWindowMaximized(Aurora::Engine::WindowMaximizedEvent& e);
-        //bool OnWindowMinimized(Aurora::Engine::WindowMinimizedEvent& e);
-        //bool OnWindowRestored(Aurora::Engine::WindowRestoredEvent& e);
-        //bool OnWindowMoved(Aurora::Engine::WindowMovedEvent& e);
-        //bool OnWindowResized(Aurora::Engine::WindowResizedEvent& e);
+        //bool OnWindowGainedFocus(Aurora::WindowGainedFocusEvent& e);
+        //bool OnWindowLoseFocus(Aurora::WindowLostFocusEvent& e);
+        //bool OnWindowClosed(Aurora::WindowClosedEvent& e);
+        //bool OnWindowMaximized(Aurora::WindowMaximizedEvent& e);
+        //bool OnWindowMinimized(Aurora::WindowMinimizedEvent& e);
+        //bool OnWindowRestored(Aurora::WindowRestoredEvent& e);
+        //bool OnWindowMoved(Aurora::WindowMovedEvent& e);
+        //bool OnWindowResized(Aurora::WindowResizedEvent& e);
         //
-        //bool OnMouseButtonPressedEvent(Aurora::Engine::MouseButtonPressedEvent& e);
-        //bool OnMouseButtonReleasedEvent(Aurora::Engine::MouseButtonReleasedEvent& e);
-        //bool OnMouseScrolledEvent(Aurora::Engine::MouseScrolledEvent& e);
-        //bool OnMouseMovedEvent(Aurora::Engine::MouseMovedEvent& e);
+        //bool OnMouseButtonPressedEvent(Aurora::MouseButtonPressedEvent& e);
+        //bool OnMouseButtonReleasedEvent(Aurora::MouseButtonReleasedEvent& e);
+        //bool OnMouseScrolledEvent(Aurora::MouseScrolledEvent& e);
+        //bool OnMouseMovedEvent(Aurora::MouseMovedEvent& e);
         //
-        //bool OnKeyboardButtonPressedEvent(Aurora::Engine::KeyPressedEvent& e);
-        //bool OnKeyboardButtonReleasedEvent(Aurora::Engine::KeyReleasedEvent& e);
-        //bool OnKeyboardButtonTypedEvent(Aurora::Engine::KeyTypedEvent& e);
+        //bool OnKeyboardButtonPressedEvent(Aurora::KeyPressedEvent& e);
+        //bool OnKeyboardButtonReleasedEvent(Aurora::KeyReleasedEvent& e);
+        //bool OnKeyboardButtonTypedEvent(Aurora::KeyTypedEvent& e);
 
       private:
         float m_Time = 0.0f;
@@ -141,5 +139,4 @@ namespace Aurora
 ************************************************************************************/
 #pragma region Macros
 #pragma endregion
-  }
 }

@@ -4,7 +4,7 @@
 
 #include "Master.hpp"
 
-class Server : public Aurora::Engine::Application
+class Server : public Aurora::Application
 {
   public:
     Server();
@@ -13,7 +13,7 @@ class Server : public Aurora::Engine::Application
     virtual void Run();
 };
 
-Aurora::Engine::Application* Aurora::Engine::CreateApplication()
+Aurora::Application* Aurora::CreateApplication()
 {
   return new Server();
 }

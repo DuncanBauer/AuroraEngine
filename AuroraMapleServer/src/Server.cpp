@@ -5,7 +5,7 @@
 
 Server::Server()
 {
-  PushOverlay(new Aurora::Engine::ImGuiLayer());
+  PushOverlay(new Aurora::ImGuiLayer());
 }
 
 Server::~Server()
