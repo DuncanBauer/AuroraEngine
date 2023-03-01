@@ -37,7 +37,7 @@
 ************************************************************************************/
 #pragma region Includes
 // Project Specific Headers
-// Aurora Engine
+// Aurora Engine  
 #include "Core.h"
 #include "Util.h"
 #include "Window.h"

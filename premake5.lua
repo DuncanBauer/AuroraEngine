@@ -152,8 +152,7 @@ project "AuroraEngineLib"
 		{
 			"PA_PLATFORM_WINDOWS",
 			"PA_ASSERTS_ENABLED",
-			"PA_ENGINE_BUILD_DLL",
-			"IMGUI_IMPL_OPENGL_LOADER_CUSTOM"
+			"PA_ENGINE_BUILD_DLL"
 		}
 
 		postbuildcommands
@@ -290,8 +289,7 @@ project "AuroraMapleClient"
 
 		defines
 		{
-			"PA_PLATFORM_WINDOWS",
-			"IMGUI_IMPL_OPENGL_LOADER_CUSTOM"
+			"PA_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"

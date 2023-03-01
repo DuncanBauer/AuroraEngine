@@ -35,8 +35,8 @@
 
 // Third Party Library Headers
 #include "imgui.h"
-#include "Platform/OpenGL/imgui_impl_glfw.h" 
-#include "Platform/OpenGL/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_glfw.h" 
+#include "backends/imgui_impl_opengl3.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #pragma endregion
