@@ -1,4 +1,4 @@
-// Aurora Util Library, v0.0.1 ALPHA
+// Aurora Engine Library
 // Header file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
@@ -7,7 +7,7 @@
 // LICENSING INFORMATION
 
 // It is recommended that you don't modify any source code! It will become difficult for you to update the library.
-// Note that 'Aurora::Util::' being a namespace, you can add functions into the namespace from your own source files, without
+// Note that 'Aurora::' being a namespace, you can add functions into the namespace from your own source files, without
 // modifying Util.h or Util.cpp. Discussing your changes on the GitHub Issue Tracker may lead you
 // to a better solution or official support for them.
 
@@ -24,20 +24,10 @@
 #pragma region Preprocessor
 // Define dllexport and dllimport for Windows
 #ifdef PA_PLATFORM_WINDOWS
-  #ifdef PA_UTIL_BUILD_DLL
-    #define AURORA_UTIL_API _declspec(dllexport)
-  #else
-    #define AURORA_UTIL_API _declspec(dllimport)
-  #endif
   #ifdef PA_ENGINE_BUILD_DLL
     #define AURORA_ENGINE_API _declspec(dllexport)
   #else
     #define AURORA_ENGINE_API _declspec(dllimport)
-  #endif
-  #ifdef PA_MAPLE_BUILD_DLL
-    #define AURORA_MAPLE_API _declspec(dllexport)
-  #else
-    #define AURORA_MAPLE_API _declspec(dllimport)
   #endif
 #else
   #error PROJECT AURORA ONLY SUPPORTS WINDOWS!

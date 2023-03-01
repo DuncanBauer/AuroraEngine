@@ -1,4 +1,4 @@
-// Aurora Util Library
+// Aurora Engine Library
 // Header file
 
 // For more information visit: https://github.com/DuncanBauer/ProjectAurora#table-of-contents
@@ -7,7 +7,7 @@
 // LICENSING INFORMATION
 
 // It is recommended that you don't modify any source code! It will become difficult for you to update the library.
-// Note that 'Aurora::Util::' being a namespace, you can add functions into the namespace from your own source files, without
+// Note that 'Aurora::' being a namespace, you can add functions into the namespace from your own source files, without
 // modifying Util.h or Util.cpp. Discussing your changes on the GitHub Issue Tracker may lead you
 // to a better solution or official support for them.
 
@@ -41,7 +41,7 @@
 ************************************************************************************/
 #pragma region Includes
 // Project Specific Headers
-#include <Core.h>
+#include "Core.h"
 
 // C++ Standard Library Headers
 
@@ -54,8 +54,6 @@
 
 namespace Aurora
 {
-  namespace Util
-  {
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
@@ -96,7 +94,7 @@ namespace Aurora
     * The Time class provides static methods to obtain the current time since the UNIX
     * epoch in both seconds and milliseconds.
     ********************************************************************************/
-    class AURORA_UTIL_API Time
+    class AURORA_ENGINE_API Time
     {
       public:
         static inline float GetTimeSeconds()
@@ -122,7 +120,7 @@ namespace Aurora
     * a value to it. The duration is stored as a private member variable m_Time in
     * seconds, and can be initialized with a default value of 0.0 seconds.
     ********************************************************************************/
-    class AURORA_UTIL_API DeltaTime
+    class AURORA_ENGINE_API DeltaTime
     {
       public:
         DeltaTime(float _time = 0.0f) : m_Time(_time) {}
@@ -154,7 +152,7 @@ namespace Aurora
     * The Log class provides a logging mechanism, with methods for initializing and
     * obtaining logger objects for different parts of an application.
     ********************************************************************************/
-    class AURORA_UTIL_API Log
+    class AURORA_ENGINE_API Log
     {
       public:
         static void Init()
@@ -200,32 +198,32 @@ namespace Aurora
 
 #ifdef PA_DEBUG
   // SPDLog Macros for the Project Aurora Util Library
-  #define PA_UTIL_INFO(...)     ::Aurora::Util::Log::GetUtilLogger()->info(__VA_ARGS__)
-  #define PA_UTIL_TRACE(...)    ::Aurora::Util::Log::GetUtilLogger()->trace(__VA_ARGS__)
-  #define PA_UTIL_WARN(...)     ::Aurora::Util::Log::GetUtilLogger()->warn(__VA_ARGS__)
-  #define PA_UTIL_ERROR(...)    ::Aurora::Util::Log::GetUtilLogger()->error(__VA_ARGS__)
-  #define PA_UTIL_CRITICAL(...) ::Aurora::Util::Log::GetUtilLogger()->critical(__VA_ARGS__)
+  #define PA_UTIL_INFO(...)     ::Aurora::Log::GetUtilLogger()->info(__VA_ARGS__)
+  #define PA_UTIL_TRACE(...)    ::Aurora::Log::GetUtilLogger()->trace(__VA_ARGS__)
+  #define PA_UTIL_WARN(...)     ::Aurora::Log::GetUtilLogger()->warn(__VA_ARGS__)
+  #define PA_UTIL_ERROR(...)    ::Aurora::Log::GetUtilLogger()->error(__VA_ARGS__)
+  #define PA_UTIL_CRITICAL(...) ::Aurora::Log::GetUtilLogger()->critical(__VA_ARGS__)
 
   // SPDLog Macros for the Project Aurora Maple Library
-  #define PA_MAPLE_INFO(...)     ::Aurora::Util::Log::GetMapleLogger()->info(__VA_ARGS__)
-  #define PA_MAPLE_TRACE(...)    ::Aurora::Util::Log::GetMapleLogger()->trace(__VA_ARGS__)
-  #define PA_MAPLE_WARN(...)     ::Aurora::Util::Log::GetMapleLogger()->warn(__VA_ARGS__)
-  #define PA_MAPLE_ERROR(...)    ::Aurora::Util::Log::GetMapleLogger()->error(__VA_ARGS__)
-  #define PA_MAPLE_CRITICAL(...) ::Aurora::Util::Log::GetMapleLogger()->critical(__VA_ARGS__)
+  #define PA_MAPLE_INFO(...)     ::Aurora::Log::GetMapleLogger()->info(__VA_ARGS__)
+  #define PA_MAPLE_TRACE(...)    ::Aurora::Log::GetMapleLogger()->trace(__VA_ARGS__)
+  #define PA_MAPLE_WARN(...)     ::Aurora::Log::GetMapleLogger()->warn(__VA_ARGS__)
+  #define PA_MAPLE_ERROR(...)    ::Aurora::Log::GetMapleLogger()->error(__VA_ARGS__)
+  #define PA_MAPLE_CRITICAL(...) ::Aurora::Log::GetMapleLogger()->critical(__VA_ARGS__)
 
   // SPDLog Macros for the Project Aurora Engine Library
-  #define PA_ENGINE_INFO(...)     ::Aurora::Util::Log::GetEngineLogger()->info(__VA_ARGS__)
-  #define PA_ENGINE_TRACE(...)    ::Aurora::Util::Log::GetEngineLogger()->trace(__VA_ARGS__)
-  #define PA_ENGINE_WARN(...)     ::Aurora::Util::Log::GetEngineLogger()->warn(__VA_ARGS__)
-  #define PA_ENGINE_ERROR(...)    ::Aurora::Util::Log::GetEngineLogger()->error(__VA_ARGS__)
-  #define PA_ENGINE_CRITICAL(...) ::Aurora::Util::Log::GetEngineLogger()->critical(__VA_ARGS__)
+  #define PA_ENGINE_INFO(...)     ::Aurora::Log::GetEngineLogger()->info(__VA_ARGS__)
+  #define PA_ENGINE_TRACE(...)    ::Aurora::Log::GetEngineLogger()->trace(__VA_ARGS__)
+  #define PA_ENGINE_WARN(...)     ::Aurora::Log::GetEngineLogger()->warn(__VA_ARGS__)
+  #define PA_ENGINE_ERROR(...)    ::Aurora::Log::GetEngineLogger()->error(__VA_ARGS__)
+  #define PA_ENGINE_CRITICAL(...) ::Aurora::Log::GetEngineLogger()->critical(__VA_ARGS__)
 
   // SPDLog Macros for projects made with the Project Aurora Libraries 
-  #define PA_PROJECT_INFO(...)     ::Aurora::Util::Log::GetProjectLogger()->info(__VA_ARGS__)
-  #define PA_PROJECT_TRACE(...)    ::Aurora::Util::Log::GetProjectLogger()->trace(__VA_ARGS__)
-  #define PA_PROJECT_WARN(...)     ::Aurora::Util::Log::GetProjectLogger()->warn(__VA_ARGS__)
-  #define PA_PROJECT_ERROR(...)    ::Aurora::Util::Log::GetProjectLogger()->error(__VA_ARGS__)
-  #define PA_PROJECT_CRITICAL(...) ::Aurora::Util::Log::GetProjectLogger()->critical(__VA_ARGS__)
+  #define PA_PROJECT_INFO(...)     ::Aurora::Log::GetProjectLogger()->info(__VA_ARGS__)
+  #define PA_PROJECT_TRACE(...)    ::Aurora::Log::GetProjectLogger()->trace(__VA_ARGS__)
+  #define PA_PROJECT_WARN(...)     ::Aurora::Log::GetProjectLogger()->warn(__VA_ARGS__)
+  #define PA_PROJECT_ERROR(...)    ::Aurora::Log::GetProjectLogger()->error(__VA_ARGS__)
+  #define PA_PROJECT_CRITICAL(...) ::Aurora::Log::GetProjectLogger()->critical(__VA_ARGS__)
 #else
   // SPDLog Macros for the Project Aurora Util Library
   #define PA_UTIL_INFO(...)
@@ -257,5 +255,4 @@ namespace Aurora
 #endif
 
 #pragma endregion
-  }
 }

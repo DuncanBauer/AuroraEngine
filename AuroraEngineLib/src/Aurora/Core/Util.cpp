@@ -7,7 +7,7 @@
 // LICENSING INFORMATION
 
 // It is recommended that you don't modify any source code! It will become difficult for you to update the library.
-// Note that 'Aurora::Util::' being a namespace, you can add functions into the namespace from your own source files, without
+// Note that 'Aurora::' being a namespace, you can add functions into the namespace from your own source files, without
 // modifying Util.h or Util.cpp. Discussing your changes on the GitHub Issue Tracker may lead you
 // to a better solution or official support for them.
 
@@ -22,7 +22,7 @@
 ************************************************************************************/
 #pragma region Includes
 // PCH
-#include "AuroraUtilLibPCH.h"
+#include "AuroraEngineLibPCH.h"
 
 // Project Specific Headers
 #include "Util.h"
@@ -34,16 +34,14 @@
 
 namespace Aurora
 {
-  namespace Util
-  {
 /************************************************************************************
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
 #pragma region StaticInitilization
-    std::shared_ptr<spdlog::logger> Log::sm_UtilLogger;
-    std::shared_ptr<spdlog::logger> Log::sm_MapleLogger;
-    std::shared_ptr<spdlog::logger> Log::sm_EngineLogger;
-    std::shared_ptr<spdlog::logger> Log::sm_ProjectLogger;
+  std::shared_ptr<spdlog::logger> Log::sm_UtilLogger;
+  std::shared_ptr<spdlog::logger> Log::sm_MapleLogger;
+  std::shared_ptr<spdlog::logger> Log::sm_EngineLogger;
+  std::shared_ptr<spdlog::logger> Log::sm_ProjectLogger;
 #pragma endregion
 
 /************************************************************************************
@@ -51,5 +49,4 @@ namespace Aurora
 ************************************************************************************/
 #pragma region Functions
 #pragma endregion
-  }
 }

@@ -20,92 +20,20 @@ IncludeDir["GLAD"] = "AuroraEngineLib/vendor/glad/include"
 IncludeDir["glm"] = "AuroraEngineLib/vendor/glm"
 IncludeDir["ImGui"] = "AuroraEngineLib/vendor/imgui"
 
-IncludeDir["SPDLog"] = "AuroraUtilLib/vendor/spdlog/include"
-IncludeDir["YAMLcpp"] = "AuroraUtilLib/vendor/yaml-cpp/include"
+IncludeDir["SPDLog"] = "AuroraEngineLib/vendor/spdlog/include"
+IncludeDir["YAMLcpp"] = "AuroraEngineLib/vendor/yaml-cpp/include"
 
-IncludeDir["AuroraUtilLib"] = "AuroraUtilLib/src"
 IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
 IncludeDir["AuroraMapleLib"] = "AuroraMapleLib/src"
 
 LinkDir = {}
 LinkDir["CryptoPP"] = "AuroraMapleLib/vendor/cryptopp/x64/DLL_Output/%{cfg.buildcfg}"
-LinkDir["YAMLcpp"] = "AuroraUtilLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
+LinkDir["YAMLcpp"] = "AuroraEngineLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
 
 -- Includes the premake file for 3rd party libraries
 include "AuroraEngineLib/vendor/glfw"
 include "AuroraEngineLib/vendor/glad"
 include "AuroraEngineLib/vendor/imgui"
-
-project "AuroraUtilLib"
-	location "AuroraUtilLib"
-	kind "SharedLib"
-	language "C++"
-	cppdialect "C++20"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	pchheader "AuroraUtilLibPCH.h"
-	pchsource "AuroraUtilLib/src/AuroraUtilLibPCH.cpp"
-
-	files
-	{
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.h"
-	}
-
-	includedirs
-	{
-		"%{IncludeDir.AuroraUtilLib}",
-		"%{IncludeDir.SPDLog}",
-		"%{IncludeDir.YAMLcpp}"
-	}
-
-	libdirs
-	{
-		"%{LinkDir.YAMLcpp}"
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-		defines
-		{
-			"PA_PLATFORM_WINDOWS",
-			"PA_ASSERTS_ENABLED",
-			"PA_UTIL_BUILD_DLL"
-		}
-
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraEngineLib"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleLib"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer"),
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraUnitTesting")
-		}
-
-	filter "configurations:Debug"
-		defines "PA_DEBUG"
-		runtime "Debug"
-		staticruntime "Off"
-		symbols "On"
-
-		links
-		{
-			"yaml-cppd.lib"
-		}
-
-	filter "configurations:Release"
-		defines "PA_RELEASE"
-		runtime "Release"
-		staticruntime "Off"
-		optimize "On"
-
-		links
-		{
-			"yaml-cpp.lib"
-		}
 
 project "AuroraEngineLib"
 	location "AuroraEngineLib"
@@ -127,18 +55,22 @@ project "AuroraEngineLib"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraUtilLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.YAMLcpp}"
+	}
+
+	libdirs
+	{
+		"%{LinkDir.YAMLcpp}"
 	}
 
 	links
 	{
-		"AuroraUtilLib",
 		"GLFW",
 		"GLAD",
 		"ImGui",
@@ -167,12 +99,20 @@ project "AuroraEngineLib"
 		runtime "Debug"
 		staticruntime "Off"
 		symbols "On"
+		links
+		{
+			"yaml-cppd.lib"
+		}
 
 	filter "configurations:Release"
 		defines "PA_RELEASE"
 		runtime "Release"
 		staticruntime "Off"
 		optimize "On"
+		links
+		{
+			"yaml-cpp.lib"
+		}
 
 		
 project "AuroraMapleLib"
@@ -195,11 +135,10 @@ project "AuroraMapleLib"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraUtilLib}",
 		"%{IncludeDir.AuroraMapleLib}",
-		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.Boost}",
-		"%{IncludeDir.CryptoPP}"
+		"%{IncludeDir.CryptoPP}",
+		"%{IncludeDir.SPDLog}"
 	}
 
 	libdirs
@@ -209,7 +148,6 @@ project "AuroraMapleLib"
 
 	links
 	{
-		"AuroraUtilLib",
 		"cryptopp.dll"
 	}
 
@@ -260,7 +198,6 @@ project "AuroraMapleClient"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraUtilLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
 		"%{IncludeDir.Boost}",
@@ -277,7 +214,6 @@ project "AuroraMapleClient"
 
 	links
 	{
-		"AuroraUtilLib",
 		"AuroraEngineLib",
 		"AuroraMapleLib",
 		"ImGui",
@@ -322,7 +258,6 @@ project "AuroraMapleServer"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraUtilLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
 		"%{IncludeDir.SPDLog}",
@@ -337,7 +272,6 @@ project "AuroraMapleServer"
 
 	links
 	{
-		"AuroraUtilLib",
 		"AuroraEngineLib",
 		"AuroraMapleLib",
 		"cryptopp.dll"
@@ -381,7 +315,6 @@ project "AuroraUnitTesting"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraUtilLib}",
 		"%{IncludeDir.AuroraEngineLib}",
 		"%{IncludeDir.AuroraMapleLib}",
 		"%{IncludeDir.SPDLog}",
@@ -396,7 +329,6 @@ project "AuroraUnitTesting"
 
 	links
 	{
-		"AuroraUtilLib",
 		"AuroraEngineLib",
 		"AuroraMapleLib",
 		"cryptopp.dll"
