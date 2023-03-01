@@ -46,7 +46,6 @@
 Client::Client()
 {
   PushLayer(new ExampleLayer(true));
-  PushOverlay(new Aurora::Engine::ImGuiLayer(true));
 }
 
 Client::~Client()

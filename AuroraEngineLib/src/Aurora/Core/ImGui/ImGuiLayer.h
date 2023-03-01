@@ -91,9 +91,9 @@ namespace Aurora
     class AURORA_ENGINE_API ImGuiLayer : public Layer
     {
       public:
-        ImGuiLayer();
-        ImGuiLayer(bool _blocking);
-        ~ImGuiLayer();
+        ImGuiLayer() {}
+        ImGuiLayer(bool _blocking) : Layer(_blocking) {}
+        ~ImGuiLayer() {}
 
         void OnAttach();
         void OnDetach();
@@ -101,7 +101,8 @@ namespace Aurora
         void Begin();
         void End();
 
-        void OnUpdate(Aurora::Util::DeltaTime t) override;
+        void OnUpdate() override;
+        void OnImGuiRender() override;
         void OnEvent(Aurora::Engine::Event& e) override;
 
       private:

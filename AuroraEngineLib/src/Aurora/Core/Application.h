@@ -60,6 +60,7 @@ namespace Aurora
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
 #pragma region Forward Declarations
+    class ImGuiLayer;
 #pragma endregion
 
 /************************************************************************************
@@ -96,9 +97,9 @@ namespace Aurora
       Application();
       virtual ~Application();
 
-      inline static Application& Get() { return *s_Instance; }
+      inline static Application& Get() { return *ps_Instance; }
 
-      virtual void Run();
+      void Run();
 
       void OnUpdate(Util::DeltaTime t);
       void OnEvent(Event& e);
@@ -106,19 +107,20 @@ namespace Aurora
       void PushLayer(Layer* layer);
       void PushOverlay(Layer* overlay);
 
-      inline Window& GetWindow() { return *m_Window; }
+      inline Window& GetWindow() { return *pm_Window; }
 
     private:
       bool OnWindowClosed(WindowClosedEvent& e);
       bool OnWindowResized(WindowResizedEvent& e);
 
     private:
-      std::unique_ptr<Window> m_Window;
+      std::unique_ptr<Window> pm_Window;
+      ImGuiLayer* pm_ImGuiLayer;
       bool m_Running = true;
       LayerStack m_LayerStack;
       float m_LastFrameTime = 0;
 
-      static Application* s_Instance;
+      static Application* ps_Instance;
     };
 #pragma endregion
 

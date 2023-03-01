@@ -28,6 +28,7 @@
 #include "Util.h"
 #include "Application.h"
 #include "Input.h"
+#include "ImGui/ImGuiLayer.h"
 
 // C++ Headers
 
@@ -47,7 +48,7 @@ namespace Aurora
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
 #pragma region Static Initialization
-    Application* Application::s_Instance = nullptr;
+    Application* Application::ps_Instance = nullptr;
 #pragma endregion
 
 /************************************************************************************
@@ -56,15 +57,17 @@ namespace Aurora
 #pragma region Functions
     Application::Application()
     {
-      s_Instance = this;
+      ps_Instance = this;
 
-      m_Window = std::unique_ptr<Window>(Window::Create());
-      m_Window->SetEventCallback(BIND_EVENT_FN(Application, OnEvent));
+      pm_Window = std::unique_ptr<Window>(Window::Create());
+      pm_Window->SetEventCallback(BIND_EVENT_FN(Application, OnEvent));
+
+      pm_ImGuiLayer = new ImGuiLayer(false);
+      PushOverlay(pm_ImGuiLayer);
     }
 
     Application::~Application()
     {
-
     }
 
     void Application::Run()
@@ -83,11 +86,11 @@ namespace Aurora
 
     void Application::OnUpdate(Util::DeltaTime t)
     {
-      m_Window->OnUpdate();
+      pm_Window->OnUpdate();
 
       for (Layer* layer : m_LayerStack)
       {
-        layer->OnUpdate(t);
+        layer->OnUpdate();
       }
     }
 

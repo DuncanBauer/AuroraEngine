@@ -45,7 +45,6 @@
 // Third Party Library Headers
 #pragma endregion
 
-#ifdef PA_PLATFORM_WINDOWS
 /************************************************************************************
 * [SECTION] FORWARD DECLARATIONS
 ************************************************************************************/
@@ -102,5 +101,3 @@ int main(int argc, char** argv)
 ************************************************************************************/
 #pragma region Macros
 #pragma endregion
-
-#endif

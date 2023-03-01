@@ -53,18 +53,6 @@ namespace Aurora
 * [SECTION] FUNCTIONS
 ************************************************************************************/
 #pragma region Functions
-    ImGuiLayer::ImGuiLayer() : Layer()
-    {
-    }
-
-    ImGuiLayer::ImGuiLayer(bool _blocking) : Layer(_blocking)
-    {
-    }
-
-    ImGuiLayer::~ImGuiLayer() 
-    {
-    }
-
     void ImGuiLayer::OnAttach() 
     {
       IMGUI_CHECKVERSION();
@@ -118,11 +106,11 @@ namespace Aurora
       int x = app.GetWindow().GetWidth();
       int y = app.GetWindow().GetHeight();
 
-      ImGui::Render();
       glfwGetFramebufferSize(glfwGetCurrentContext(), &x, &y);
       glViewport(0, 0, x, y);
       glClearColor(1, 0, 1, 1);
       glClear(GL_COLOR_BUFFER_BIT);
+      ImGui::Render();
       ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
       // Update and Render additional Platform Windows
@@ -136,8 +124,13 @@ namespace Aurora
         glfwMakeContextCurrent(backup_current_context);
       }
     }
-    
-    void ImGuiLayer::OnUpdate(Aurora::Util::DeltaTime t)
+
+    void ImGuiLayer::OnUpdate()
+    {
+      OnImGuiRender();
+    }
+
+    void ImGuiLayer::OnImGuiRender()
     {
       Begin();
 

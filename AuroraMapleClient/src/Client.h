@@ -78,8 +78,8 @@ class ExampleLayer : public Aurora::Engine::Layer
     ExampleLayer(bool _blocking) : Layer(_blocking) {}
     virtual ~ExampleLayer() = default;
 
-    virtual void OnUpdate(Aurora::Util::DeltaTime t) override {}
-
+    virtual void OnUpdate() override {}
+    virtual void OnImGuiRender() override {}
     virtual void OnEvent(Aurora::Engine::Event& event) 
     {
       if (event.GetEventType() == Aurora::Engine::EventType::KeyPressed)
