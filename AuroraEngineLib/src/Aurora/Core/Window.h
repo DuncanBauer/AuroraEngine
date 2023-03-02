@@ -99,6 +99,7 @@ namespace Aurora
         virtual ~Window() {}
 
         virtual void OnUpdate() const = 0;
+        virtual void OnRender() const = 0;
 
         virtual std::string GetTitle() const = 0;
         virtual unsigned int GetWidth() const = 0;

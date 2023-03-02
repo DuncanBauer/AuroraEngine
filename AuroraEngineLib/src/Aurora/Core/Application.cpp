@@ -28,7 +28,7 @@
 #include "Util.h"
 #include "Application.h"
 #include "Input.h"
-#include "ImGui/ImGuiLayer.h"
+#include "Layer/ImGui/ImGuiLayer.h"
 
 // C++ Headers
 
@@ -72,24 +72,40 @@ namespace Aurora
     {
       while (m_Running)
       {
-        float time = Time::GetTimeSeconds();
+        glClearColor(0.1f, 0.1f, 0.1f, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+
+        float time = (float)Time::GetTimeSeconds();
         DeltaTime d_time = time - m_LastFrameTime;
         m_LastFrameTime = time;
 
-        OnUpdate(d_time);
-
-        auto [x, y] = Input::GetMousePos();
+        OnUpdate(d_time); // This must be last apparently?
+        OnRender();
       }
     }
 
     void Application::OnUpdate(DeltaTime t)
     {
-      pm_Window->OnUpdate();
-
       for (Layer* layer : m_LayerStack)
       {
         layer->OnUpdate();
       }
+      pm_Window->OnUpdate();
+    }
+
+    void Application::OnRender()
+    {
+      // ImGui Rendering
+      pm_ImGuiLayer->Begin();
+      {
+        for (Layer* layer : m_LayerStack)
+        {
+          layer->OnImGuiRender();
+        }
+      }
+      pm_ImGuiLayer->End();
+      pm_Window->OnRender();
     }
 
     void Application::OnEvent(Event& e)

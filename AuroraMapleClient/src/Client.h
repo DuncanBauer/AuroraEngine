@@ -29,6 +29,7 @@
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
 #pragma region Preprocessor
+//#define IMGUI_API __declspec(dllimport)
 #pragma endregion
 
 /************************************************************************************
@@ -37,11 +38,11 @@
 #pragma region Includes
 // Project Specific Headers
 #include "Engine.h"
-#include "Maple.h"
 
 // C++ Standard Library Headers
 
 // Third Party Library Headers
+#include "imgui.h"
 #pragma endregion
 
 /************************************************************************************
@@ -79,7 +80,16 @@ class ExampleLayer : public Aurora::Layer
     virtual ~ExampleLayer() = default;
 
     virtual void OnUpdate() override {}
-    virtual void OnImGuiRender() override {}
+
+    virtual void OnImGuiRender() override
+    {
+      if(ImGui::Begin("Plz"))
+      {
+        ImGui::Text("ExmapleLayer Window");
+        ImGui::End();
+      }
+    }
+    
     virtual void OnEvent(Aurora::Event& event) 
     {
       if (event.GetEventType() == Aurora::EventType::KeyPressed)

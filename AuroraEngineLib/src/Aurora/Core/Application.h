@@ -99,6 +99,7 @@ namespace Aurora
 
       void Run();
 
+      void OnRender();
       void OnUpdate(DeltaTime t);
       void OnEvent(Event& e);
 

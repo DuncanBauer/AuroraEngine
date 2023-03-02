@@ -18,26 +18,76 @@
 
 #pragma once
 
+#pragma region Preprocessor
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma region Preprocessor
 // Define dllexport and dllimport for Windows
 #ifdef PA_PLATFORM_WINDOWS
-  #ifdef PA_ENGINE_BUILD_DLL
-    #define AURORA_ENGINE_API _declspec(dllexport)
+  #if PA_DYNAMIC_LINK
+    #ifdef PA_ENGINE_BUILD_DLL
+      #define AURORA_ENGINE_API _declspec(dllexport)
+    #else
+      #define AURORA_ENGINE_API _declspec(dllimport)
+    #endif
   #else
-    #define AURORA_ENGINE_API _declspec(dllimport)
+    #define AURORA_ENGINE_API
   #endif
 #else
   #error PROJECT AURORA ONLY SUPPORTS WINDOWS!
 #endif
 #pragma endregion
 
+
+#pragma region Includes
+/************************************************************************************
+* [SECTION] INCLUDES
+************************************************************************************/
+// C++ Standard Library Headers
+#include <memory>
+#pragma endregion
+
+
+#pragma region Typedefs
+/************************************************************************************
+* [SECTION] TYPEDEFS
+************************************************************************************/
+namespace Aurora
+{
+  template<typename T>
+  using Scope = std::unique_ptr<T>;
+
+  template<typename T>
+  using Ref = std::shared_ptr<T>;
+}
+#pragma endregion
+
+
+#pragma region Functions
+/************************************************************************************
+* [SECTION] FUNCTIONS
+************************************************************************************/
+namespace Aurora
+{
+  template<typename T, typename ... Args>
+  constexpr Scope<T> CreateScope(Args&& ... args)
+  {
+    return std::make_unique<T>(std::forward<Args>(args)...);
+  }
+
+  template<typename T, typename ... Args>
+  constexpr Ref<T> CreateRef(Args&& ... args)
+  {
+    return std::make_shared<T>(std::forward<Args>(args)...);
+  }
+}
+#pragma endregion
+
+
+#pragma region Macros
 /************************************************************************************
 * [SECTION] MACROS
 ************************************************************************************/
-#pragma region Macros
 // Bitwise macros
 // BIT macro that takes a single argument x and performs a bitwise left shift operation
 // on the integer value 1 by x bits. The result of this operation is a binary number

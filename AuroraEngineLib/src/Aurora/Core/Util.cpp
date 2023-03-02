@@ -38,10 +38,10 @@ namespace Aurora
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
 #pragma region StaticInitilization
-  std::shared_ptr<spdlog::logger> Log::sm_UtilLogger;
-  std::shared_ptr<spdlog::logger> Log::sm_MapleLogger;
-  std::shared_ptr<spdlog::logger> Log::sm_EngineLogger;
-  std::shared_ptr<spdlog::logger> Log::sm_ProjectLogger;
+  Ref<spdlog::logger> Log::sm_UtilLogger;
+  Ref<spdlog::logger> Log::sm_MapleLogger;
+  Ref<spdlog::logger> Log::sm_EngineLogger;
+  Ref<spdlog::logger> Log::sm_ProjectLogger;
 #pragma endregion
 
 /************************************************************************************

@@ -38,6 +38,7 @@
 #pragma region Includes
 // Project Specific Headers
 #include "Aurora/Core/Window.h"
+#include "Aurora/Core/Renderer/GraphicsContext.h"
 
 // C++ Standard Library Headers
 
@@ -87,6 +88,7 @@ namespace Aurora
         virtual ~WindowsWindow();
 
         virtual void OnUpdate() const override;
+        virtual void OnRender() const override;
 
         virtual inline std::string  GetTitle()  const override { return m_Props.Title; }
         virtual inline unsigned int GetWidth()  const override { return m_Props.Width; }
@@ -96,10 +98,11 @@ namespace Aurora
         virtual void SetVSync(bool enabled);
         virtual bool IsVSync() const;
 
-        virtual inline void* GetNativeWindow() const { return m_Window; }
+        virtual inline void* GetNativeWindow() const { return pm_Window; }
 
       protected:
-        GLFWwindow* m_Window;
+        GLFWwindow* pm_Window;
+        GraphicsContext* pm_Context;
 
       private:
         void Init(const WindowProperties& props);

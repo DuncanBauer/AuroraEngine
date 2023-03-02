@@ -15,31 +15,24 @@
 // CODE
 //   - [SECTION] PREPROCESSOR DIRECTIVES
 //   - [SECTION] INCLUDES
-//   - [SECTION] FORWARD DECLARATIONS
-//   - [SECTION] TYPENAMES
-//   - [SECTION] CONSTANTS
-//   - [SECTION] ENUMS
-//   - [SECTION] CLASSES
-//   - [SECTION] STRUCTS
-//   - [SECTION] FUNCTIONS
-//   - [SECTION] MACROS
 
 #pragma once
 
+#pragma region Preprocessor
 /************************************************************************************
 * [SECTION] PREPROCESSOR DIRECTIVES
 ************************************************************************************/
-#pragma region Preprocessor
 // Library Version
 // (Integer encoded as XYYZZ for use in #if preprocessor conditionals, e.g. '#if AURORA_UTIL_VERSION_NUM > 12345')
 #define AURORA_ENGINE_VERSION     "0.0.1 ALPHA"
 #define AURORA_ENGINE_VERSION_NUM 00001
+//#define IMGUI_API __declspec(dllexport)
 #pragma endregion
 
+#pragma region Includes
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
-#pragma region Includes
 // Project Specific Headers
 #include "Aurora/Core/Application.h"
 
@@ -49,8 +42,8 @@
 #include "Aurora/Core/Event/MouseCodes.h"
 
 #include "Aurora/Core/Layer/Layer.h"
-#include "Aurora/Core/ImGui/ImGuiLayer.h"
 #include "Aurora/Core/Layer/LayerStack.h"
+#include "Aurora/Core/Layer/ImGui/ImGuiLayer.h"
 
 /****************************
 * ENTRY POINT
@@ -60,52 +53,4 @@
 // C++ Standard Library Headers
 
 // Third Party Library Headers
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] FORWARD DECLARATIONS
-************************************************************************************/
-#pragma region ForwardDeclarations
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] TYPENAMES
-************************************************************************************/
-#pragma region Typenames
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] CONSTANTS
-************************************************************************************/
-#pragma region Constants
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] ENUMS
-************************************************************************************/
-#pragma region Enums
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] STRUCTS
-************************************************************************************/
-#pragma region Structs
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] CLASSES
-************************************************************************************/
-#pragma region Classes
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] FUNCTIONS
-************************************************************************************/
-#pragma region Functions
-#pragma endregion
-
-/************************************************************************************
-* [SECTION] MACROS
-************************************************************************************/
-#pragma region Macros
 #pragma endregion

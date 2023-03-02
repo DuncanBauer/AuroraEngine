@@ -30,6 +30,7 @@
 #include "Aurora/Core/Event/ApplicationEvent.h"
 #include "Aurora/Core/Event/KeyEvent.h"
 #include "Aurora/Core/Event/MouseEvent.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 // C++ Headers
 
@@ -37,7 +38,6 @@
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h" 
 #include "backends/imgui_impl_opengl3.h"
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #pragma endregion
 
@@ -75,6 +75,9 @@ namespace Aurora
       m_Props.Width = props.Width;
       m_Props.Height = props.Height;
 
+      PA_ENGINE_INFO("Creating Window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+
+
       // Init GLFW
       if (!GLFWInitialized)
       {
@@ -90,11 +93,11 @@ namespace Aurora
       }
 
       // Initialize Window
-      m_Window = glfwCreateWindow((int)m_Props.Width, (int)m_Props.Height, m_Props.Title.c_str(), nullptr, nullptr);
-      glfwMakeContextCurrent(m_Window);
-      int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-      PA_ENGINE_ASSERT(status, "Failed to initialize Glad");
-      glfwSetWindowUserPointer(m_Window, &m_Props);
+      pm_Window = glfwCreateWindow((int)m_Props.Width, (int)m_Props.Height, m_Props.Title.c_str(), nullptr, nullptr);
+      pm_Context = new OpenGLContext(pm_Window);
+      pm_Context->Init();
+      
+      glfwSetWindowUserPointer(pm_Window, &m_Props);
       SetVSync(true);
 
       /******************
@@ -103,14 +106,14 @@ namespace Aurora
       *
       ******************/
       // Window Callbacks
-      glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+      glfwSetWindowCloseCallback(pm_Window, [](GLFWwindow* window)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         WindowClosedEvent e;
         data.EventCallback(e);
       });
 
-      glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+      glfwSetWindowSizeCallback(pm_Window, [](GLFWwindow* window, int width, int height)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         data.Width = width;
@@ -120,7 +123,7 @@ namespace Aurora
         data.EventCallback(e);
       });
 
-      glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused)
+      glfwSetWindowFocusCallback(pm_Window, [](GLFWwindow* window, int focused)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         data.Focused = focused;
@@ -137,7 +140,7 @@ namespace Aurora
         }
       });
 
-      glfwSetWindowMaximizeCallback(m_Window, [](GLFWwindow* window, int maximized)
+      glfwSetWindowMaximizeCallback(pm_Window, [](GLFWwindow* window, int maximized)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         data.Maximized = maximized;
@@ -155,7 +158,7 @@ namespace Aurora
       });
 
       // Why does glfw use Iconified instead of Minimized?
-      glfwSetWindowIconifyCallback(m_Window, [](GLFWwindow* window, int iconified)
+      glfwSetWindowIconifyCallback(pm_Window, [](GLFWwindow* window, int iconified)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         data.Iconified = iconified;
@@ -172,7 +175,7 @@ namespace Aurora
         }
       });
 
-      glfwSetWindowPosCallback(m_Window, [](GLFWwindow* window, int xpos, int ypos)
+      glfwSetWindowPosCallback(pm_Window, [](GLFWwindow* window, int xpos, int ypos)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         data.Xpos = xpos;
@@ -183,7 +186,7 @@ namespace Aurora
       });
 
       // Key Callbacks
-      glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+      glfwSetKeyCallback(pm_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -210,7 +213,7 @@ namespace Aurora
         }
       });
 
-      glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int key)
+      glfwSetCharCallback(pm_Window, [](GLFWwindow* window, unsigned int key)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
         KeyTypedEvent e(key);
@@ -218,7 +221,7 @@ namespace Aurora
       });
 
       // Mouse Callbacks
-      glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
+      glfwSetMouseButtonCallback(pm_Window, [](GLFWwindow* window, int button, int action, int mods)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -239,7 +242,7 @@ namespace Aurora
         }
       });
 
-      glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
+      glfwSetScrollCallback(pm_Window, [](GLFWwindow* window, double xoffset, double yoffset)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -247,7 +250,7 @@ namespace Aurora
         data.EventCallback(e);
       });
 
-      glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
+      glfwSetCursorPosCallback(pm_Window, [](GLFWwindow* window, double xpos, double ypos)
       {
         WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -258,14 +261,18 @@ namespace Aurora
 
     void WindowsWindow::OnUpdate() const
     {
+    }
+
+    void WindowsWindow::OnRender() const
+    {
       glfwPollEvents();
-      glfwSwapBuffers(m_Window);
+      pm_Context->SwapBuffers();
     }
 
     void WindowsWindow::Shutdown()
     {
 
-      glfwDestroyWindow(m_Window);
+      glfwDestroyWindow(pm_Window);
     }
 
     void WindowsWindow::SetVSync(bool enabled)

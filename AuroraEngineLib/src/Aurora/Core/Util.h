@@ -47,10 +47,13 @@
 
 // Third Party Library Headers
 // SPDLog
+#pragma warning(push)
+#pragma warning(disable: 26451)
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #pragma endregion
+#pragma warning(pop)
 
 namespace Aurora
 {
@@ -97,14 +100,14 @@ namespace Aurora
     class AURORA_ENGINE_API Time
     {
       public:
-        static inline float GetTimeSeconds()
+        static inline long long GetTimeSeconds()
         {
           std::chrono::seconds s = std::chrono::duration_cast<std::chrono::seconds>(
             std::chrono::system_clock::now().time_since_epoch());
           return s.count();
         }
 
-        static inline float GetTimeMilliseconds()
+        static inline long long GetTimeMilliseconds()
         {
           std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::system_clock::now().time_since_epoch());
@@ -172,16 +175,16 @@ namespace Aurora
           Log::sm_ProjectLogger->set_level(spdlog::level::level_enum::trace);
         }
         
-        static inline std::shared_ptr<spdlog::logger>& GetUtilLogger()   { return sm_UtilLogger; }
-        static inline std::shared_ptr<spdlog::logger>& GetMapleLogger()  { return sm_MapleLogger; }
-        static inline std::shared_ptr<spdlog::logger>& GetEngineLogger() { return sm_EngineLogger; }
-        static inline std::shared_ptr<spdlog::logger>& GetProjectLogger() { return sm_ProjectLogger; }
+        static inline Ref<spdlog::logger>& GetUtilLogger()   { return sm_UtilLogger; }
+        static inline Ref<spdlog::logger>& GetMapleLogger()  { return sm_MapleLogger; }
+        static inline Ref<spdlog::logger>& GetEngineLogger() { return sm_EngineLogger; }
+        static inline Ref<spdlog::logger>& GetProjectLogger() { return sm_ProjectLogger; }
 
       private:
-        static std::shared_ptr<spdlog::logger> sm_UtilLogger;
-        static std::shared_ptr<spdlog::logger> sm_MapleLogger;
-        static std::shared_ptr<spdlog::logger> sm_EngineLogger;
-        static std::shared_ptr<spdlog::logger> sm_ProjectLogger;
+        static Ref<spdlog::logger> sm_UtilLogger;
+        static Ref<spdlog::logger> sm_MapleLogger;
+        static Ref<spdlog::logger> sm_EngineLogger;
+        static Ref<spdlog::logger> sm_ProjectLogger;
     };
 #pragma endregion
 

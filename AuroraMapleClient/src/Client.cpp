@@ -24,7 +24,6 @@
 // PCH
 
 // Project Specific Header
-//#include "Core.h"
 #include "Client.h"
 
 // C++ Headers
@@ -43,7 +42,7 @@
 * [SECTION] FUNCTIONS
 ************************************************************************************/
 #pragma region Functions
-Client::Client()
+Client::Client() : Application()
 {
   PushLayer(new ExampleLayer(true));
 }
@@ -59,7 +58,6 @@ void Client::Run()
   printf("Client running\n");
   std::cout << "Util Version: " << AURORA_UTIL_VERSION << '\n';
   std::cout << "Engine Version: " << AURORA_ENGINE_VERSION << '\n';
-  std::cout << "Maple Version: " << AURORA_MAPLE_VERSION << '\n';
   std::cin.ignore(1000, '\n');
 #endif
 

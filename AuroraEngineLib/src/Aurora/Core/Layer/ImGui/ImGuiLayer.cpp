@@ -87,9 +87,9 @@ namespace Aurora
       ImGuiIO& io = ImGui::GetIO();
       Application& app = Application::Get();
 
-      float time = Time::GetTimeSeconds();
-      io.DeltaTime = m_Time > 0.0 ? (time - m_Time) : (1.0f / 60.0f);
-      m_Time = time;
+      long long time = Time::GetTimeSeconds();
+      io.DeltaTime = m_Time > 0.0 ? ((float)time - m_Time) : (1.0f / 60.0f);
+      m_Time = (float)time;
 
       ImGui_ImplGlfw_NewFrame();
       ImGui_ImplOpenGL3_NewFrame();
@@ -100,20 +100,11 @@ namespace Aurora
     {
       ImGuiIO& io = ImGui::GetIO();
       Application& app = Application::Get();
-
-      int x = app.GetWindow().GetWidth();
-      int y = app.GetWindow().GetHeight();
-
-      glfwGetFramebufferSize(glfwGetCurrentContext(), &x, &y);
-      glViewport(0, 0, x, y);
-      glClearColor(1, 0, 1, 1);
-      glClear(GL_COLOR_BUFFER_BIT);
+      io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
+      
       ImGui::Render();
       ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-      // Update and Render additional Platform Windows
-      // (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
-      //  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
       if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
       {
         GLFWwindow* backup_current_context = glfwGetCurrentContext();
@@ -125,17 +116,12 @@ namespace Aurora
 
     void ImGuiLayer::OnUpdate()
     {
-      OnImGuiRender();
     }
 
     void ImGuiLayer::OnImGuiRender()
     {
-      Begin();
-
       static bool show_demo = false;
       ImGui::ShowDemoWindow(&show_demo);
-
-      End();
     }
 
     void ImGuiLayer::OnEvent(Aurora::Event& e)

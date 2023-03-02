@@ -81,7 +81,7 @@ namespace Aurora
 * [SECTION] CLASSES
 ************************************************************************************/
 #pragma region Classes
-    class Layer
+    class AURORA_ENGINE_API Layer
     {
       public:
         Layer() {}
