@@ -47,6 +47,8 @@
 #include "Event/MouseEvent.h"
 #include "Aurora/Core/Layer/LayerStack.h"
 
+#include "Aurora/Core/Renderer/Shader.h"
+
 // C++ Standard Library Headers
 
 // Third Party Library Headers
@@ -121,6 +123,7 @@ namespace Aurora
 
     private:
       unsigned int m_VA, m_VB, m_IB;
+      std::unique_ptr<Shader> pm_Shader;
 
       static Application* ps_Instance;
     };
