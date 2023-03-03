@@ -43,6 +43,7 @@
 
 // Third Party Library Headers
 #include "imgui.h"
+#include <gl/GL.h>
 #pragma endregion
 
 /************************************************************************************
@@ -83,9 +84,15 @@ class ExampleLayer : public Aurora::Layer
 
     virtual void OnImGuiRender() override
     {
-      if(ImGui::Begin("Plz"))
+      if(ImGui::Begin("OpenGL Renderer"))
       {
-        ImGui::Text("ExmapleLayer Window");
+        char* vendor = (char*)glGetString(GL_VENDOR);
+        char* renderer = (char*)glGetString(GL_RENDERER);
+        char* version = (char*)glGetString(GL_VERSION);
+
+        ImGui::Text("Vendor: %s", vendor);
+        ImGui::Text("Renderer: %s", renderer);
+        ImGui::Text("Version: %s", version);
         ImGui::End();
       }
     }
@@ -98,10 +105,9 @@ class ExampleLayer : public Aurora::Layer
         switch (e.GetKey())
         {
           case Aurora::Key::Tab:
-            PA_PROJECT_CRITICAL("Tab key pressed");
+            //PA_CLIENT_CRITICAL("Tab key pressed");
             break;
         }
-        PA_PROJECT_TRACE("{0}", (char)e.GetKey());
       }
     }
 };

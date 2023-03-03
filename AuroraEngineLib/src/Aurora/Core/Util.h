@@ -52,6 +52,7 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/basic_file_sink.h>
 #pragma endregion
 #pragma warning(pop)
 
@@ -160,31 +161,30 @@ namespace Aurora
       public:
         static void Init()
         {
-          spdlog::set_pattern("%^[%T] %n: %v%$");
+          std::vector<spdlog::sink_ptr> logSinks;
+          logSinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+          logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>("Aurora.log", true));
 
-          Log::sm_UtilLogger = spdlog::stdout_color_mt("LibLogger");
-          Log::sm_UtilLogger->set_level(spdlog::level::level_enum::trace);
+          logSinks[0]->set_pattern("%^[%T] %n: %v%$");
+          logSinks[1]->set_pattern("[%T] [%l] %n: %v");
 
-          Log::sm_MapleLogger = spdlog::stdout_color_mt("MapleLogger");
-          Log::sm_MapleLogger->set_level(spdlog::level::level_enum::trace);
+          sm_EngineLogger = std::make_shared<spdlog::logger>("AURORA", begin(logSinks), end(logSinks));
+          spdlog::register_logger(sm_EngineLogger);
+          sm_EngineLogger->set_level(spdlog::level::trace);
+          sm_EngineLogger->flush_on(spdlog::level::trace);
 
-          Log::sm_EngineLogger = spdlog::stdout_color_mt("EngineLogger");
-          Log::sm_EngineLogger->set_level(spdlog::level::level_enum::trace);
-
-          Log::sm_ProjectLogger = spdlog::stdout_color_mt("ProjectLogger");
-          Log::sm_ProjectLogger->set_level(spdlog::level::level_enum::trace);
+          sm_ClientLogger = std::make_shared<spdlog::logger>("CLIENT", begin(logSinks), end(logSinks));
+          spdlog::register_logger(sm_ClientLogger);
+          sm_ClientLogger->set_level(spdlog::level::trace);
+          sm_ClientLogger->flush_on(spdlog::level::trace);
         }
         
-        static inline Ref<spdlog::logger>& GetUtilLogger()   { return sm_UtilLogger; }
-        static inline Ref<spdlog::logger>& GetMapleLogger()  { return sm_MapleLogger; }
         static inline Ref<spdlog::logger>& GetEngineLogger() { return sm_EngineLogger; }
-        static inline Ref<spdlog::logger>& GetProjectLogger() { return sm_ProjectLogger; }
+        static inline Ref<spdlog::logger>& GetClientLogger() { return sm_ClientLogger; }
 
       private:
-        static Ref<spdlog::logger> sm_UtilLogger;
-        static Ref<spdlog::logger> sm_MapleLogger;
         static Ref<spdlog::logger> sm_EngineLogger;
-        static Ref<spdlog::logger> sm_ProjectLogger;
+        static Ref<spdlog::logger> sm_ClientLogger;
     };
 #pragma endregion
 
@@ -200,20 +200,6 @@ namespace Aurora
 #pragma region Macros
 
 #ifdef PA_DEBUG
-  // SPDLog Macros for the Project Aurora Util Library
-  #define PA_UTIL_INFO(...)     ::Aurora::Log::GetUtilLogger()->info(__VA_ARGS__)
-  #define PA_UTIL_TRACE(...)    ::Aurora::Log::GetUtilLogger()->trace(__VA_ARGS__)
-  #define PA_UTIL_WARN(...)     ::Aurora::Log::GetUtilLogger()->warn(__VA_ARGS__)
-  #define PA_UTIL_ERROR(...)    ::Aurora::Log::GetUtilLogger()->error(__VA_ARGS__)
-  #define PA_UTIL_CRITICAL(...) ::Aurora::Log::GetUtilLogger()->critical(__VA_ARGS__)
-
-  // SPDLog Macros for the Project Aurora Maple Library
-  #define PA_MAPLE_INFO(...)     ::Aurora::Log::GetMapleLogger()->info(__VA_ARGS__)
-  #define PA_MAPLE_TRACE(...)    ::Aurora::Log::GetMapleLogger()->trace(__VA_ARGS__)
-  #define PA_MAPLE_WARN(...)     ::Aurora::Log::GetMapleLogger()->warn(__VA_ARGS__)
-  #define PA_MAPLE_ERROR(...)    ::Aurora::Log::GetMapleLogger()->error(__VA_ARGS__)
-  #define PA_MAPLE_CRITICAL(...) ::Aurora::Log::GetMapleLogger()->critical(__VA_ARGS__)
-
   // SPDLog Macros for the Project Aurora Engine Library
   #define PA_ENGINE_INFO(...)     ::Aurora::Log::GetEngineLogger()->info(__VA_ARGS__)
   #define PA_ENGINE_TRACE(...)    ::Aurora::Log::GetEngineLogger()->trace(__VA_ARGS__)
@@ -222,26 +208,12 @@ namespace Aurora
   #define PA_ENGINE_CRITICAL(...) ::Aurora::Log::GetEngineLogger()->critical(__VA_ARGS__)
 
   // SPDLog Macros for projects made with the Project Aurora Libraries 
-  #define PA_PROJECT_INFO(...)     ::Aurora::Log::GetProjectLogger()->info(__VA_ARGS__)
-  #define PA_PROJECT_TRACE(...)    ::Aurora::Log::GetProjectLogger()->trace(__VA_ARGS__)
-  #define PA_PROJECT_WARN(...)     ::Aurora::Log::GetProjectLogger()->warn(__VA_ARGS__)
-  #define PA_PROJECT_ERROR(...)    ::Aurora::Log::GetProjectLogger()->error(__VA_ARGS__)
-  #define PA_PROJECT_CRITICAL(...) ::Aurora::Log::GetProjectLogger()->critical(__VA_ARGS__)
+  #define PA_CLIENT_INFO(...)     ::Aurora::Log::GetClientLogger()->info(__VA_ARGS__)
+  #define PA_CLIENT_TRACE(...)    ::Aurora::Log::GetClientLogger()->trace(__VA_ARGS__)
+  #define PA_CLIENT_WARN(...)     ::Aurora::Log::GetClientLogger()->warn(__VA_ARGS__)
+  #define PA_CLIENT_ERROR(...)    ::Aurora::Log::GetClientLogger()->error(__VA_ARGS__)
+  #define PA_CLIENT_CRITICAL(...) ::Aurora::Log::GetClientLogger()->critical(__VA_ARGS__)
 #else
-  // SPDLog Macros for the Project Aurora Util Library
-  #define PA_UTIL_INFO(...)
-  #define PA_UTIL_TRACE(...)
-  #define PA_UTIL_WARN(...)
-  #define PA_UTIL_ERROR(...)
-  #define PA_UTIL_CRITICAL(...)
-
-  // SPDLog Macros for the Project Aurora Maple Library
-  #define PA_MAPLE_INFO(...)
-  #define PA_MAPLE_TRACE(...)
-  #define PA_MAPLE_WARN(...)
-  #define PA_MAPLE_ERROR(...)
-  #define PA_MAPLE_CRITICAL(...)
-
   // SPDLog Macros for the Project Aurora Engine Library
   #define PA_ENGINE_INFO(...)
   #define PA_ENGINE_TRACE(...)
@@ -250,11 +222,11 @@ namespace Aurora
   #define PA_ENGINE_CRITICAL(...)
 
   // SPDLog Macros for projects made with the Project Aurora Libraries 
-  #define PA_PROJECT_INFO(...)
-  #define PA_PROJECT_TRACE(...)
-  #define PA_PROJECT_WARN(...)
-  #define PA_PROJECT_ERROR(...)
-  #define PA_PROJECT_CRITICAL(...) 
+  #define PA_CLIENT_INFO(...)
+  #define PA_CLIENT_TRACE(...)
+  #define PA_CLIENT_WARN(...)
+  #define PA_CLIENT_ERROR(...)
+  #define PA_CLIENT_CRITICAL(...) 
 #endif
 
 #pragma endregion

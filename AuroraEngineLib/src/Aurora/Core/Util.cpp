@@ -38,10 +38,8 @@ namespace Aurora
 * [SECTION] STATIC VARIABLE INITIALIZATION
 ************************************************************************************/
 #pragma region StaticInitilization
-  Ref<spdlog::logger> Log::sm_UtilLogger;
-  Ref<spdlog::logger> Log::sm_MapleLogger;
   Ref<spdlog::logger> Log::sm_EngineLogger;
-  Ref<spdlog::logger> Log::sm_ProjectLogger;
+  Ref<spdlog::logger> Log::sm_ClientLogger;
 #pragma endregion
 
 /************************************************************************************

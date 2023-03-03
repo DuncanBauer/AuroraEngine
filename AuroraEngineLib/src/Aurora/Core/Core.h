@@ -96,15 +96,11 @@ namespace Aurora
 
 // Assert Macros for Project Aurora Libraries and projects made with Project Aurora Libraries
 #ifdef PA_ASSERTS_ENABLED
-  #define PA_UTIL_ASSERT(x, ...)    { if(!(x)) { PA_UTIL_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-  #define PA_MAPLE_ASSERT(x, ...)   { if(!(x)) { PA_MAPLE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
   #define PA_ENGINE_ASSERT(x, ...)  { if(!(x)) { PA_ENGINE_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
-  #define PA_PROJECT_ASSERT(x, ...) { if(!(x)) { PA_PROJECT_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
+  #define PA_CLIENT_ASSERT(x, ...)  { if(!(x)) { PA_CLIENT_ERROR("Assertion failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
-  #define PA_UTIL_ASSERT(x, ...)
-  #define PA_MAPLE_ASSERT(x, ...)
   #define PA_ENGINE_ASSERT(x, ...)
-  #define PA_PROJECT_ASSERT(x, ...)
+  #define PA_CLIENT_ASSERT(x, ...)
 #endif
 
 // Event binding macros

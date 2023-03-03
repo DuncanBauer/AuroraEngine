@@ -119,6 +119,9 @@ namespace Aurora
       LayerStack m_LayerStack;
       float m_LastFrameTime = 0;
 
+    private:
+      unsigned int m_VA, m_VB, m_IB;
+
       static Application* ps_Instance;
     };
 #pragma endregion

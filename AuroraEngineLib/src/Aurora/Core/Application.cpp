@@ -62,6 +62,28 @@ namespace Aurora
 
       pm_ImGuiLayer = new ImGuiLayer(false);
       PushOverlay(pm_ImGuiLayer);
+
+      glGenVertexArrays(1, &m_VA);
+      glBindVertexArray(m_VA);
+
+      glGenBuffers(1, &m_VB);
+      glBindBuffer(GL_ARRAY_BUFFER, m_VB);
+
+      float vertices[3 * 3] = {
+        -0.5f, -0.5f, 0.0f,
+        0.5f,  -0.5f, 0.0f,
+        0.0f,   0.5f, 0.0f
+      };
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+      
+      glEnableVertexAttribArray(0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+      glGenBuffers(1, &m_IB);
+      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IB);
+
+      unsigned int indices[3] = {0, 1, 2};
+      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     }
 
     Application::~Application()
@@ -74,6 +96,9 @@ namespace Aurora
       {
         glClearColor(0.1f, 0.1f, 0.1f, 1);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        glBindVertexArray(m_VA);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
 
         float time = (float)Time::GetTimeSeconds();
