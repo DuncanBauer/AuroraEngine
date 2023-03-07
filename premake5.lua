@@ -7,6 +7,10 @@ workspace "ProjectAurora"
 		"Release"
 	}
 
+
+require "vscode"
+
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include dirs relative to root folder

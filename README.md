@@ -37,6 +37,7 @@ Project Aurora is a long-term development project to create a custom Game Engine
 #### Build Tools
 - [cmake](https://cmake.org)
 - [premake](https://github.com/premake/premake-core)
+  - [premake-vscode](https://github.com/ItsSunnyMonster/premake-vscode)
 
 ##### Windows
 - [msbuild]()
