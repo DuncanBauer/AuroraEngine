@@ -61,7 +61,7 @@ function m.vscode_tasks(prj)
 		_p(1, '"tasks": [{')
 			_p(2, '"type": "shell",')
 			_p(2, '"label": "%s",', build_task_name)
-			_p(2, '"command": "clear && time make -r -j`nproc`",')
+			_p(2, '"command": "clear -and time make -r -j`nproc`",')
 			_p(2, '"args": [],')
 			_p(2, '"options": {')
 				_p(3, '"cwd": "${workspaceFolder}/"')
@@ -117,7 +117,7 @@ function m.vscode_launch(prj)
 				_p(3, '}')
 			_p(2, '],')
 			_p(2, '"preLaunchTask": "%s",', build_task_name)
-			_p(2, '"miDebuggerPath": "/usr/bin/gdb"')
+			_p(2, '"miDebuggerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/bin/Hostx64/x64/cl.exe"')
 		_p(1, '}')
 		end
 		_p(1, ']')
@@ -155,15 +155,14 @@ function m.vscode_c_cpp_properties(prj)
 				end
 				
 			_p(2, '],')
---			_p(2, '"compilerPath": "/usr/bin/g++",') --TODO premake toolset
-			_p(2, '"compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe",') --TODO premake toolset
+			_p(2, '"compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.35.32215/bin/Hostx64/x64/cl.exe",') --TODO premake toolset
 			if cfg.cdialect ~= nil then
 				_p(2, '"cStandard": "%s",', cfg.cdialect:lower())
 			end
 			if cfg.cppdialect ~= nil then
 				_p(2, '"cppStandard": "%s",', cfg.cppdialect:lower())
 			end
-			_p(2, '"intelliSenseMode": "gcc-x64",') --TODO premake toolset
+			_p(2, '"intelliSenseMode": "windows-msvc-x64",') --TODO premake toolset
 			_p(2, '"compilerArgs": [')
 				-- force includes
 				local toolset = m.getcompiler(cfg)
