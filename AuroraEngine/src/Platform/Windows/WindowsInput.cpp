@@ -22,7 +22,7 @@
 * [SECTION] INCLUDES
 ************************************************************************************/
 // PCH
-#include "AuroraEngineLibPCH.h"
+#include "AuroraEnginePCH.h"
 
 // Project Specific Header
 #include "Aurora/Core/Application.h"

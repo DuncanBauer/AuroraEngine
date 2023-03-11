@@ -14,11 +14,37 @@
 // Index of this file:
 // CODE
 //   - [SECTION] INCLUDES
+//   - [SECTION] STATIC VARAIBLE INITIALIZATION
+//   - [SECTION] FUNCTIONS
 
 /************************************************************************************
 * [SECTION] INCLUDES
 ************************************************************************************/
 #pragma region Includes
 // PCH
-#include "AuroraEngineLibPCH.h"
+#include "AuroraEnginePCH.h"
+
+// Project Specific Headers
+#include "Util.h"
+
+// C++ Standard Library Headers
+
+// Third Party Library Headers
 #pragma endregion
+
+namespace Aurora
+{
+/************************************************************************************
+* [SECTION] STATIC VARIABLE INITIALIZATION
+************************************************************************************/
+#pragma region StaticInitilization
+  Ref<spdlog::logger> Log::sm_EngineLogger;
+  Ref<spdlog::logger> Log::sm_ClientLogger;
+#pragma endregion
+
+/************************************************************************************
+* [SECTION] FUNCTIONS
+************************************************************************************/
+#pragma region Functions
+#pragma endregion
+}

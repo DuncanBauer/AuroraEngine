@@ -17,26 +17,26 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
 
-IncludeDir["GLFW"]  = "AuroraEngineLib/vendor/glfw/include"
-IncludeDir["GLAD"]  = "AuroraEngineLib/vendor/glad/include"
-IncludeDir["glm"]   = "AuroraEngineLib/vendor/glm"
-IncludeDir["ImGui"] = "AuroraEngineLib/vendor/imgui"
+IncludeDir["GLFW"]  = "AuroraEngine/vendor/glfw/include"
+IncludeDir["GLAD"]  = "AuroraEngine/vendor/glad/include"
+IncludeDir["glm"]   = "AuroraEngine/vendor/glm"
+IncludeDir["ImGui"] = "AuroraEngine/vendor/imgui"
 
-IncludeDir["SPDLog"]  = "AuroraEngineLib/vendor/spdlog/include"
-IncludeDir["YAMLcpp"] = "AuroraEngineLib/vendor/yaml-cpp/include"
+IncludeDir["SPDLog"]  = "AuroraEngine/vendor/spdlog/include"
+IncludeDir["YAMLcpp"] = "AuroraEngine/vendor/yaml-cpp/include"
 
-IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
+IncludeDir["AuroraEngine"] = "AuroraEngine/src"
 
 LinkDir = {}
-LinkDir["YAMLcpp"]  = "AuroraEngineLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
+LinkDir["YAMLcpp"]  = "AuroraEngine/vendor/yaml-cpp/build/%{cfg.buildcfg}"
 
 -- Includes the premake file for 3rd party libraries
-include "AuroraEngineLib/vendor/glfw"
-include "AuroraEngineLib/vendor/glad"
-include "AuroraEngineLib/vendor/imgui"
+include "AuroraEngine/vendor/glfw"
+include "AuroraEngine/vendor/glad"
+include "AuroraEngine/vendor/imgui"
 
-project "AuroraEngineLib"
-	location "AuroraEngineLib"
+project "AuroraEngine"
+	location "AuroraEngine"
 	kind "StaticLib"
 	staticruntime "on"
 	language "C++"
@@ -45,8 +45,8 @@ project "AuroraEngineLib"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "AuroraEngineLibPCH.h"
-	pchsource "AuroraEngineLib/src/AuroraEngineLibPCH.cpp"
+	pchheader "AuroraEnginePCH.h"
+	pchsource "AuroraEngine/src/AuroraEnginePCH.cpp"
 
 	files
 	{
@@ -56,7 +56,7 @@ project "AuroraEngineLib"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraEngineLib}",
+		"%{IncludeDir.AuroraEngine}",
 		"%{IncludeDir.SPDLog}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
@@ -136,7 +136,7 @@ project "AuroraClient"
 
 	includedirs
 	{
-		"%{IncludeDir.AuroraEngineLib}",
+		"%{IncludeDir.AuroraEngine}",
 		"%{IncludeDir.Boost}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
@@ -145,7 +145,7 @@ project "AuroraClient"
 
 	links
 	{
-		"AuroraEngineLib",
+		"AuroraEngine",
 	}
 
 	filter "system:windows"

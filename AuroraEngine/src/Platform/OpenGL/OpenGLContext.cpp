@@ -1,4 +1,4 @@
-#include "AuroraEngineLibPCH.h"
+#include "AuroraEnginePCH.h"
 
 #include "OpenGLContext.h"
 #include "Aurora/Core/Util.h"
