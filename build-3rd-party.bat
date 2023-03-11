@@ -21,15 +21,3 @@ cmake ..
 cmake --build . --target ALL_BUILD --config Debug
 cmake --build . --target ALL_BUILD --config Release
 cd ../../../../
-
-
-
-:: Compile CryptoPP with MSBuild for Windows | Other platforms to come later
-cd AuroraMapleLib/vendor/cryptopp
-if not exist x64\Output\Debug (
-    MSBuild cryptdll.vcxproj /p:Configuration=Debug /p:Platform=x64
-)
-if not exist x64\Output\Release (
-    MSBuild cryptdll.vcxproj /p:Configuration=Release /p:Platform=x64
-)
-cd ../../../

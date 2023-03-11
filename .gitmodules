@@ -4,9 +4,6 @@
 [submodule "AuroraEngineLib/vendor/imgui"]
 	path = AuroraEngineLib/vendor/imgui
 	url = https://github.com/duncanbauer/imgui
-[submodule "AuroraMapleLib/vendor/cryptopp"]
-	path = AuroraMapleLib/vendor/cryptopp
-	url = https://github.com/duncanbauer/cryptopp
 [submodule "AuroraEngineLib/vendor/glm"]
 	path = AuroraEngineLib/vendor/glm
 	url = https://github.com/g-truc/glm

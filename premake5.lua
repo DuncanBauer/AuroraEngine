@@ -17,8 +17,6 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["Boost"] = "C:/boost/boost_1_81_0"
 
--- IncludeDir["CryptoPP"] = "AuroraMapleLib/vendor"
-
 IncludeDir["GLFW"]  = "AuroraEngineLib/vendor/glfw/include"
 IncludeDir["GLAD"]  = "AuroraEngineLib/vendor/glad/include"
 IncludeDir["glm"]   = "AuroraEngineLib/vendor/glm"
@@ -28,10 +26,8 @@ IncludeDir["SPDLog"]  = "AuroraEngineLib/vendor/spdlog/include"
 IncludeDir["YAMLcpp"] = "AuroraEngineLib/vendor/yaml-cpp/include"
 
 IncludeDir["AuroraEngineLib"] = "AuroraEngineLib/src"
--- IncludeDir["AuroraMapleLib"]  = "AuroraMapleLib/src"
 
 LinkDir = {}
-LinkDir["CryptoPP"] = "AuroraMapleLib/vendor/cryptopp/x64/DLL_Output/%{cfg.buildcfg}"
 LinkDir["YAMLcpp"]  = "AuroraEngineLib/vendor/yaml-cpp/build/%{cfg.buildcfg}"
 
 -- Includes the premake file for 3rd party libraries
@@ -94,12 +90,6 @@ project "AuroraEngineLib"
 			"PA_PLATFORM_WINDOWS",
 			"PA_ASSERTS_ENABLED"
 		}
-		-- postbuildcommands
-		-- {
-		-- 	("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
-		-- 	("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer"),
-		-- 	("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraUnitTesting")
-		-- }
 
 	filter "configurations:Debug"
 		defines "PA_DEBUG"
@@ -127,75 +117,9 @@ project "AuroraEngineLib"
 		{
 			"yaml-cpp.lib"
 		}
-
-
--- project "AuroraMapleLib"
--- 	location "AuroraMapleLib"
--- 	kind "SharedLib"
--- 	staticruntime "on"
--- 	language "C++"
--- 	cppdialect "C++20"
-
--- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
--- 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	
--- 	pchheader "AuroraMapleLibPCH.h"
--- 	pchsource "AuroraMapleLib/src/AuroraMapleLibPCH.cpp"
-
--- 	files
--- 	{
--- 		"%{prj.name}/src/**.cpp",
--- 		"%{prj.name}/src/**.h"
--- 	}
-
--- 	includedirs
--- 	{
--- 		"%{IncludeDir.AuroraMapleLib}",
--- 		"%{IncludeDir.Boost}",
--- 		"%{IncludeDir.CryptoPP}",
--- 		"%{IncludeDir.SPDLog}"
--- 	}
-
--- 	libdirs
--- 	{
--- 		"%{LinkDir.CryptoPP}"
--- 	}
-
--- 	links
--- 	{
--- 		"cryptopp.dll"
--- 	}
-
--- 	filter "system:windows"
--- 		systemversion "latest"
-
--- 		defines
--- 		{
--- 			"PA_PLATFORM_WINDOWS",
--- 			"PA_ASSERTS_ENABLED",
--- 			"PA_MAPLE_BUILD_DLL"
--- 		}
-
--- 		postbuildcommands
--- 		{
--- 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleClient"),
--- 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraMapleServer"),
--- 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/AuroraUnitTesting")
--- 		}
-
--- 	filter "configurations:Debug"
--- 		defines "PA_DEBUG"
--- 		runtime "Debug"
--- 		symbols "on"
-
--- 	filter "configurations:Release"
--- 		defines "PA_RELEASE"
--- 		runtime "Release"
--- 		optimize "on"
-
 		
-project "AuroraMapleClient"
-	location "AuroraMapleClient"
+project "AuroraClient"
+	location "AuroraClient"
 	kind "ConsoleApp"
 	staticruntime "on"
 	language "C++"
@@ -213,25 +137,15 @@ project "AuroraMapleClient"
 	includedirs
 	{
 		"%{IncludeDir.AuroraEngineLib}",
-		"%{IncludeDir.AuroraMapleLib}",
 		"%{IncludeDir.Boost}",
-		-- "%{IncludeDir.CryptoPP}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.SPDLog}"
 	}
 
-	-- libdirs
-	-- {
-	-- 	"%{LinkDir.CryptoPP}"
-	-- }
-
 	links
 	{
 		"AuroraEngineLib",
-		-- "AuroraMapleLib",
-		-- "ImGui",
-		-- "cryptopp.dll"
 	}
 
 	filter "system:windows"
@@ -255,114 +169,3 @@ project "AuroraMapleClient"
 		defines "PA_DIST"
 		runtime "Release"
 		optimize "on"
-
-
--- project "AuroraMapleServer"
--- 	location "AuroraMapleServer"
--- 	kind "ConsoleApp"
--- 	staticruntime "on"
--- 	language "C++"
--- 	cppdialect "C++20"
-
--- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
--- 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
--- 	files
--- 	{
--- 		"%{prj.name}/src/**.cpp",
--- 		"%{prj.name}/src/**.h"
--- 	}
-
--- 	includedirs
--- 	{
--- 		"%{IncludeDir.AuroraEngineLib}",
--- 		"%{IncludeDir.AuroraMapleLib}",
--- 		"%{IncludeDir.SPDLog}",
--- 		"%{IncludeDir.Boost}",
--- 		"%{IncludeDir.CryptoPP}"
--- 	}
-
--- 	libdirs
--- 	{
--- 		"%{LinkDir.CryptoPP}"
--- 	}
-
--- 	links
--- 	{
--- 		"AuroraEngineLib",
--- 		"AuroraMapleLib",
--- 		"cryptopp.dll"
--- 	}
-
--- 	filter "system:windows"
--- 		systemversion "latest"
--- 		defines
--- 		{
--- 			"PA_PLATFORM_WINDOWS",
--- 		}
-
--- 	filter "configurations:Debug"
--- 		defines "PA_DEBUG"
--- 		runtime "Debug"
--- 		symbols "on"
-
--- 	filter "configurations:Release"
--- 		defines "PA_RELEASE"
--- 		runtime "Release"
--- 		optimize "on"
-
-
--- project "AuroraUnitTesting"
--- 	location "AuroraUnitTesting"
--- 	kind "ConsoleApp"
--- 	staticruntime "on"
--- 	language "C++"
--- 	cppdialect "C++20"
-
--- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
--- 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
--- 	files
--- 	{
--- 		"%{prj.name}/src/**.cpp",
--- 		"%{prj.name}/src/**.h"
--- 	}
-
--- 	includedirs
--- 	{
--- 		"%{IncludeDir.AuroraEngineLib}",
--- 		-- "%{IncludeDir.AuroraMapleLib}",
--- 		"%{IncludeDir.SPDLog}",
--- 		"%{IncludeDir.Boost}",
--- 		-- "%{IncludeDir.CryptoPP}"
--- 	}
-
--- 	-- libdirs
--- 	-- {
--- 	-- 	"%{LinkDir.CryptoPP}"
--- 	-- }
-
--- 	links
--- 	{
--- 		"AuroraEngineLib",
--- 		-- "AuroraMapleLib",
--- 		-- "cryptopp.dll"
--- 	}
-
--- 	filter "system:windows"
--- 		systemversion "latest"
--- 		defines
--- 		{
--- 			"PA_PLATFORM_WINDOWS",
--- 		}
-
--- 	filter "configurations:Debug"
--- 		defines "PA_DEBUG"
--- 		runtime "Debug"
--- 		symbols "on"
-
--- 	filter "configurations:Release"
--- 		defines "PA_RELEASE"
--- 		runtime "Release"
--- 		staticruntime 
--- 		optimize "on"
