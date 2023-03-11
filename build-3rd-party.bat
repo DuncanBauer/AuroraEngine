@@ -1,5 +1,5 @@
 :: Compile spdlog with CMake
-cd AuroraEngineLib/vendor/spdlog
+cd AuroraEngine/vendor/spdlog
 if not exist build\ (
     mkdir build
 )
@@ -12,7 +12,7 @@ cd ../../../../
 
 
 :: Compile yaml-cpp with CMake
-cd AuroraEngineLib/vendor/yaml-cpp
+cd AuroraEngine/vendor/yaml-cpp
 if not exist build\ (
     mkdir build
 )
