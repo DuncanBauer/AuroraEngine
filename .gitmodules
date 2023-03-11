@@ -1,15 +1,15 @@
-[submodule "AuroraEngineLib/vendor/glfw"]
-	path = AuroraEngineLib/vendor/glfw
+[submodule "AuroraEngine/vendor/glfw"]
+	path = AuroraEngine/vendor/glfw
 	url = https://github.com/duncanbauer/glfw.git
-[submodule "AuroraEngineLib/vendor/imgui"]
-	path = AuroraEngineLib/vendor/imgui
+[submodule "AuroraEngine/vendor/imgui"]
+	path = AuroraEngine/vendor/imgui
 	url = https://github.com/duncanbauer/imgui
-[submodule "AuroraEngineLib/vendor/glm"]
-	path = AuroraEngineLib/vendor/glm
+[submodule "AuroraEngine/vendor/glm"]
+	path = AuroraEngine/vendor/glm
 	url = https://github.com/g-truc/glm
-[submodule "AuroraEngineLib/vendor/spdlog"]
-	path = AuroraEngineLib/vendor/spdlog
+[submodule "AuroraEngine/vendor/spdlog"]
+	path = AuroraEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "AuroraEngineLib/vendor/yaml-cpp"]
-	path = AuroraEngineLib/vendor/yaml-cpp
+[submodule "AuroraEngine/vendor/yaml-cpp"]
+	path = AuroraEngine/vendor/yaml-cpp
 	url = https://github.com/duncanbauer/yaml-cpp
